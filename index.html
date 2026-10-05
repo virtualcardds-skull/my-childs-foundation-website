@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The [Child's Name] Foundation</title>
+    <meta name="description" content="Honoring [Child's Name] by making a difference in the world. Join us in supporting [Your Cause].">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           1. CSS VARIABLES & RESET
+           ========================================= */
+        :root {
+            --primary-color: #2c5282;      /* Trustworthy Blue */
+            --secondary-color: #ed8936;    /* Warm, Hopeful Orange */
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --bg-white: #ffffff;
+            --font-heading: 'Merriweather', serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-white);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================================
+           2. LAYOUT & TYPOGRAPHY
+           ========================================= */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; text-align: center; margin-bottom: 40px;}
+        p { margin-bottom: 15px; color: var(--text-light); }
+
+        /* =========================================
+           3. BUTTONS
+           ========================================= */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        /* =========================================
+           4. HEADER & NAVIGATION
+           ========================================= */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* =========================================
+           5. HERO SECTION
+           ========================================= */
+        .hero {
+            background: linear-gradient(rgba(44, 82, 130, 0.85), rgba(44, 82, 130, 0.85)), 
+                        url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover;
+            /* Note: Replace the URL above with a link to your own photo if you have one hosted online */
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* =========================================
+           6. CONTENT SECTIONS
+           ========================================= */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-light {
+            background-color: var(--bg-light);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .content-grid img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* =========================================
+           7. DONATION SECTION
+           ========================================= */
+        .donate-section {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .donate-section h2 {
+            color: white;
+        }
+
+        .donate-section p {
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            font-size: 1.1rem;
+        }
+
+        .donation-widget-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* =========================================
+           8. FOOTER
+           ========================================= */
+        footer {
+            background-color: #1a202c;
+            color: #a0aec0;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer p {
+            color: #a0aec0;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        footer a {
+            color: var(--secondary-color);
+        }
+
+        /* =========================================
+           9. MOBILE RESPONSIVENESS
+           ========================================= */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            .hero h1 { font-size: 2.25rem; }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .content-grid .text-content {
+                order: 2; /* Put text below image on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">[Child's Name] Foundation</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#impact">Our Impact</a></li>
+                    <li><a href="#donate">Donate</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1>Honoring [Child's Name]'s Beautiful Life</h1>
+            <p>We are dedicated to [briefly state your mission, e.g., funding pediatric research / bringing joy to sick children / supporting families in need] in [Child's Name]'s memory.</p>
+            <div class="hero-buttons">
+                <a href="#donate" class="btn btn-primary">Donate Now</a>
+                <a href="#about" class="btn btn-secondary">Read Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT / STORY SECTION -->
+    <section id="about">
+        <div class="container">
+            <div class="content-grid">
+                <div class="text-content">
+                    <h2>Our Story</h2>
+                    <p>[Child's Name] was a bright, loving, and incredible soul who [share 1-2 sentences about their personality or what they loved]. Though their time with us was too short, their impact on our lives and the lives of others was immeasurable.</p>
+                    <p>We created this foundation to ensure that [Child's Name]'s legacy lives on. By channeling our love for them into action, we hope to [state the specific goal of the foundation].</p>
+                </div>
+                <div>
+                    <!-- Replace the src below with a URL to a photo of your child -->
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80" alt="A photo representing [Child's Name]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT SECTION -->
+    <section id="impact" class="section-light">
+        <div class="container">
+            <div class="content-grid">
+                <div>
+                    <!-- Replace the src below with a photo representing your cause -->
+                    <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=800&q=80" alt="Our Impact">
+                </div>
+                <div class="text-content">
+                    <h2>Our Impact</h2>
+                    <p>Every donation, no matter the size, brings us closer to our goal. Here is how your generosity makes a difference:</p>
+                    <p><strong>1. [Goal 1]:</strong> [Explain how funds help, e.g., Providing grants to families facing medical bills.]</p>
+                    <p><strong>2. [Goal 2]:</strong> [Explain how funds help, e.g., Funding critical research at local hospitals.]</p>
+                    <p><strong>3. [Goal 3]:</strong> [Explain how funds help, e.g., Creating memorial scholarships for students.]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONATION SECTION -->
+    <section id="donate" class="donate-section">
+        <div class="container">
+            <h2>Make a Difference Today</h2>
+            <p>100% of your tax-deductible donation goes directly to supporting [Your Cause]. Thank you for helping us honor [Child's Name]'s legacy.</p>
+            
+            <div class="donation-widget-container">
+                <!-- ==========================================
+                     PASTE YOUR DONORBOX / STRIPE IFRAME HERE 
+                     ========================================== -->
+                <p style="color: var(--text-dark); padding: 40px 0; font-weight: 600;">
+                    [ Your secure donation form will be embedded here. <br> Replace this text with your Donorbox/Stripe iframe code. ]
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <p><strong>The [Child's Name] Foundation</strong></p>
+            <p>Contact us: <a href="mailto:hello@[yourfoundation].org">hello@[yourfoundation].org</a></p>
+            <p>Mailing Address: [Your Official Mailing Address, City, State, Zip]</p>
+            <br>
+            <p>The [Child's Name] Foundation is a registered 501(c)(3) non-profit organization. <br>EIN / Tax ID: [XX-XXXXXXX]. Donations are tax-deductible to the fullest extent allowed by law.</p>
+            <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2026 The [Child's Name] Foundation. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
