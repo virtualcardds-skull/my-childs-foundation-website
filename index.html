@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The [Child's Name] Foundation</title>
-    <meta name="description" content="Honoring [Child's Name] by making a difference in the world. Join us in supporting [Your Cause].">
+    <title>Destiny John Foundation</title>
+    <meta name="description" content="The Destiny John Foundation is dedicated to reducing under-5 child mortality and enhancing child wellbeing in Sierra Leone through healthcare, education, and community support.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,15 +13,16 @@
 
     <style>
         /* =========================================
-           1. CSS VARIABLES & RESET
+           1. CSS VARIABLES & RESET (Concept 3 Colors)
            ========================================= */
         :root {
-            --primary-color: #2c5282;      /* Trustworthy Blue */
-            --secondary-color: #ed8936;    /* Warm, Hopeful Orange */
-            --text-dark: #2d3748;
-            --text-light: #718096;
-            --bg-light: #f7fafc;
-            --bg-white: #ffffff;
+            --primary-color: #1A365D;      /* Navy Blue: Strength, trust, professionalism */
+            --secondary-color: #FF8A80;    /* Soft Coral/Pink: Love, tenderness, compassion */
+            --accent-sun: #FBD38D;         /* Rising Sun: Hope and a brighter future */
+            --text-dark: #1A202C;
+            --text-light: #4A5568;
+            --bg-light: #FFF5F5;           /* Very soft pink/white tint for warmth and innocence */
+            --bg-white: #FFFFFF;           /* White: Innocence and peace */
             --font-heading: 'Merriweather', serif;
             --font-body: 'Open Sans', sans-serif;
         }
@@ -39,7 +40,7 @@
         body {
             font-family: var(--font-body);
             color: var(--text-dark);
-            line-height: 1.6;
+            line-height: 1.7;
             background-color: var(--bg-white);
         }
 
@@ -70,16 +71,20 @@
         }
 
         h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; text-align: center; margin-bottom: 40px;}
+        h2 { font-size: 2rem; text-align: center; margin-bottom: 30px; }
         p { margin-bottom: 15px; color: var(--text-light); }
+
+        .highlight {
+            color: var(--secondary-color);
+        }
 
         /* =========================================
            3. BUTTONS
            ========================================= */
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            border-radius: 5px;
+            padding: 14px 32px;
+            border-radius: 50px; /* Softer, more compassionate shape */
             font-weight: 600;
             font-size: 1rem;
             transition: transform 0.2s, box-shadow 0.2s;
@@ -89,18 +94,18 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 15px rgba(26, 54, 93, 0.2);
         }
 
         .btn-primary {
             background-color: var(--secondary-color);
-            color: white;
+            color: var(--bg-white);
         }
 
         .btn-secondary {
             background-color: transparent;
-            color: white;
-            border: 2px solid white;
+            color: var(--bg-white);
+            border: 2px solid var(--bg-white);
         }
 
         /* =========================================
@@ -108,7 +113,7 @@
            ========================================= */
         header {
             background-color: var(--bg-white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(26, 54, 93, 0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -125,9 +130,17 @@
 
         .logo {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--primary-color);
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-heart {
+            color: var(--secondary-color);
+            font-size: 1.6rem;
         }
 
         nav ul {
@@ -140,6 +153,7 @@
             font-weight: 600;
             color: var(--text-dark);
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
         nav a:hover {
@@ -150,25 +164,38 @@
            5. HERO SECTION
            ========================================= */
         .hero {
-            background: linear-gradient(rgba(44, 82, 130, 0.85), rgba(44, 82, 130, 0.85)), 
+            /* Navy blue gradient with a subtle warm coral/sun glow at the bottom */
+            background: linear-gradient(180deg, rgba(26, 54, 93, 0.9) 0%, rgba(26, 54, 93, 0.75) 100%), 
                         url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover;
-            /* Note: Replace the URL above with a link to your own photo if you have one hosted online */
             color: white;
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        /* Subtle rising sun effect at the bottom of the hero */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun), var(--secondary-color));
         }
 
         .hero h1 {
             color: white;
             font-size: 3rem;
             margin-bottom: 20px;
+            line-height: 1.2;
         }
 
         .hero p {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.95);
             font-size: 1.25rem;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
+            max-width: 750px;
+            margin: 0 auto 35px auto;
         }
 
         .hero-buttons {
@@ -182,7 +209,7 @@
            6. CONTENT SECTIONS
            ========================================= */
         section {
-            padding: 80px 0;
+            padding: 90px 0;
         }
 
         .section-light {
@@ -192,13 +219,50 @@
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
         }
 
         .content-grid img {
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15);
+        }
+
+        .vision-mission-box {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+
+        .vision-mission-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .impact-list li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .impact-list li::before {
+            content: '❤️'; /* Heart symbol for care */
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1.2rem;
         }
 
         /* =========================================
@@ -216,38 +280,49 @@
 
         .donate-section p {
             color: rgba(255,255,255,0.9);
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto 40px auto;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
 
         .donation-widget-container {
             max-width: 600px;
             margin: 0 auto;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         }
 
         /* =========================================
            8. FOOTER
            ========================================= */
         footer {
-            background-color: #1a202c;
-            color: #a0aec0;
+            background-color: #0F172A; /* Darker navy for footer */
+            color: #A0AEC0;
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
 
         footer p {
-            color: #a0aec0;
+            color: #A0AEC0;
             font-size: 0.9rem;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         footer a {
             color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-sun {
+            color: var(--accent-sun);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
         /* =========================================
@@ -264,12 +339,14 @@
             }
 
             nav ul {
-                gap: 15px;
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .content-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 40px;
             }
             
             .content-grid .text-content {
@@ -283,13 +360,15 @@
     <!-- HEADER -->
     <header>
         <div class="nav-container">
-            <div class="logo">[Child's Name] Foundation</div>
+            <div class="logo">
+                <span class="logo-heart">❤️</span> Destiny John Foundation
+            </div>
             <nav>
                 <ul>
                     <li><a href="#about">Our Story</a></li>
+                    <li><a href="#vision">Vision & Mission</a></li>
                     <li><a href="#impact">Our Impact</a></li>
                     <li><a href="#donate">Donate</a></li>
-                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -298,46 +377,56 @@
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="container">
-            <h1>Honoring [Child's Name]'s Beautiful Life</h1>
-            <p>We are dedicated to [briefly state your mission, e.g., funding pediatric research / bringing joy to sick children / supporting families in need] in [Child's Name]'s memory.</p>
+            <h1>Every Child Deserves a Chance <br><span style="font-size: 0.6em; font-weight: 400; color: var(--accent-sun);">🌅 A Brighter Future for Sierra Leone</span></h1>
+            <p>Honoring Destiny John by ensuring every child, regardless of socio-economic status, has access to quality healthcare, education, and a safe, supportive environment to fulfill their potential.</p>
             <div class="hero-buttons">
                 <a href="#donate" class="btn btn-primary">Donate Now</a>
-                <a href="#about" class="btn btn-secondary">Read Our Story</a>
+                <a href="#vision" class="btn btn-secondary">Learn Our Mission</a>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT / STORY SECTION -->
-    <section id="about">
+    <!-- VISION & MISSION SECTION -->
+    <section id="vision" class="section-light">
         <div class="container">
+            <h2>Our Purpose</h2>
             <div class="content-grid">
                 <div class="text-content">
-                    <h2>Our Story</h2>
-                    <p>[Child's Name] was a bright, loving, and incredible soul who [share 1-2 sentences about their personality or what they loved]. Though their time with us was too short, their impact on our lives and the lives of others was immeasurable.</p>
-                    <p>We created this foundation to ensure that [Child's Name]'s legacy lives on. By channeling our love for them into action, we hope to [state the specific goal of the foundation].</p>
+                    <div class="vision-mission-box">
+                        <h3>👁️ Our Vision</h3>
+                        <p style="color: var(--text-dark); margin-bottom: 0;">A Sierra Leone where every child, regardless of socio-economic status, has access to quality healthcare, quality education, and the opportunity to fulfill their potential in a safe, supportive environment.</p>
+                    </div>
+                    <div class="vision-mission-box" style="border-left-color: var(--primary-color);">
+                        <h3>🎯 Our Mission</h3>
+                        <p style="color: var(--text-dark); margin-bottom: 0;">To reduce under-5 child mortality and enhance child wellbeing through direct pediatric medical intervention, frontline healthcare worker mentorship, child welfare support, and proactive community engagement.</p>
+                    </div>
                 </div>
                 <div>
-                    <!-- Replace the src below with a URL to a photo of your child -->
-                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80" alt="A photo representing [Child's Name]">
+                    <!-- Replace with a photo representing healthcare, children, or community in Sierra Leone -->
+                    <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80" alt="Children in a supportive, hopeful environment">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- IMPACT SECTION -->
-    <section id="impact" class="section-light">
+    <section id="impact">
         <div class="container">
+            <h2>How We Make a Difference</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px auto;">Driven by love, guided by professionalism, and fueled by hope. Your support directly funds these critical areas:</p>
+            
             <div class="content-grid">
                 <div>
-                    <!-- Replace the src below with a photo representing your cause -->
-                    <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=800&q=80" alt="Our Impact">
+                    <!-- Replace with a photo representing medical care or community support -->
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Healthcare workers supporting children">
                 </div>
                 <div class="text-content">
-                    <h2>Our Impact</h2>
-                    <p>Every donation, no matter the size, brings us closer to our goal. Here is how your generosity makes a difference:</p>
-                    <p><strong>1. [Goal 1]:</strong> [Explain how funds help, e.g., Providing grants to families facing medical bills.]</p>
-                    <p><strong>2. [Goal 2]:</strong> [Explain how funds help, e.g., Funding critical research at local hospitals.]</p>
-                    <p><strong>3. [Goal 3]:</strong> [Explain how funds help, e.g., Creating memorial scholarships for students.]</p>
+                    <ul class="impact-list">
+                        <li><strong>Direct Pediatric Medical Intervention:</strong> Providing life-saving treatments, medications, and care to vulnerable children under five.</li>
+                        <li><strong>Frontline Healthcare Worker Mentorship:</strong> Training and supporting local nurses and doctors to build sustainable, long-term healthcare capacity.</li>
+                        <li><strong>Child Welfare Support:</strong> Ensuring access to quality education and safe environments so children can thrive, not just survive.</li>
+                        <li><strong>Proactive Community Engagement:</strong> Educating families and communities on preventative health, nutrition, and child rights.</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -346,15 +435,16 @@
     <!-- DONATION SECTION -->
     <section id="donate" class="donate-section">
         <div class="container">
-            <h2>Make a Difference Today</h2>
-            <p>100% of your tax-deductible donation goes directly to supporting [Your Cause]. Thank you for helping us honor [Child's Name]'s legacy.</p>
+            <h2>Help Us Build a Brighter Tomorrow</h2>
+            <p>Your generous contribution brings quality healthcare and hope to children in Sierra Leone. Together, we can honor Destiny John's legacy by giving every child the chance they deserve.</p>
             
             <div class="donation-widget-container">
                 <!-- ==========================================
                      PASTE YOUR DONORBOX / STRIPE IFRAME HERE 
                      ========================================== -->
                 <p style="color: var(--text-dark); padding: 40px 0; font-weight: 600;">
-                    [ Your secure donation form will be embedded here. <br> Replace this text with your Donorbox/Stripe iframe code. ]
+                    🌸 Your secure donation form will be embedded here. <br> 
+                    <span style="font-weight: 400; font-size: 0.9rem; color: var(--text-light);">Replace this text with your Donorbox or Stripe iframe code.</span>
                 </p>
             </div>
         </div>
@@ -363,12 +453,13 @@
     <!-- FOOTER -->
     <footer id="contact">
         <div class="container">
-            <p><strong>The [Child's Name] Foundation</strong></p>
-            <p>Contact us: <a href="mailto:hello@[yourfoundation].org">hello@[yourfoundation].org</a></p>
-            <p>Mailing Address: [Your Official Mailing Address, City, State, Zip]</p>
+            <div class="footer-sun">🌅</div>
+            <p><strong>Destiny John Foundation</strong></p>
+            <p>Contact us: <a href="mailto:info@destinyjohnfoundation.org">info@destinyjohnfoundation.org</a></p>
+            <p>Mailing Address: [Your Official Mailing Address, City, Country]</p>
             <br>
-            <p>The [Child's Name] Foundation is a registered 501(c)(3) non-profit organization. <br>EIN / Tax ID: [XX-XXXXXXX]. Donations are tax-deductible to the fullest extent allowed by law.</p>
-            <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2026 The [Child's Name] Foundation. All rights reserved.</p>
+            <p>The Destiny John Foundation is a registered non-profit organization. <br>Registration / Tax ID: [XX-XXXXXXX]. Donations are tax-deductible to the fullest extent allowed by law.</p>
+            <p style="margin-top: 25px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Destiny John Foundation. All rights reserved. | Built with ❤️ for the children of Sierra Leone.</p>
         </div>
     </footer>
 
