@@ -155,7 +155,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 18px; /* Slightly reduced gap to fit all 7 buttons neatly */
             align-items: center;
         }
 
@@ -163,7 +163,7 @@
             font-weight: 600;
             color: var(--text-dark);
             transition: color 0.3s;
-            font-size: 0.95rem;
+            font-size: 0.9rem; /* Slightly smaller font to fit all 7 buttons */
         }
 
         nav a:hover {
@@ -407,9 +407,12 @@
 
             <nav>
                 <ul id="nav-list">
-                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#story">Our Story</a></li>
                     <li><a href="#vision">Vision & Mission</a></li>
                     <li><a href="#impact">Our Impact</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                     <li><a href="#donate" class="btn btn-primary">Donate</a></li>
                 </ul>
             </nav>
@@ -428,30 +431,46 @@
         </div>
     </section>
 
-    <!-- OUR STORY SECTION -->
+    <!-- ABOUT US SECTION -->
     <section id="about">
         <div class="container">
             <div class="content-grid">
                 <div class="text-content">
-                    <h2>Our Story</h2>
-                    <p>Destiny John was a bright, loving, and incredible soul. Though their time with us was too short, their impact on our lives and the lives of others was immeasurable.</p>
-                    <p>We created this foundation to ensure that Destiny John's legacy lives on. By channeling our love into action, we hope to build a brighter, healthier future for the children of Sierra Leone.</p>
+                    <h2>About Us</h2>
+                    <p>The Destiny John Foundation was born out of profound love and a deep desire to create lasting change. We are a registered non-profit organization dedicated to transforming the lives of vulnerable children in Sierra Leone.</p>
+                    <p>Through compassion, community partnership, and strategic interventions, we strive to build a world where no child is left behind, and every child is given the tools they need to thrive.</p>
                 </div>
                 <div>
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Children smiling and playing">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR STORY SECTION -->
+    <section id="story" class="section-light">
+        <div class="container">
+            <div class="content-grid">
+                <div>
                     <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80" alt="A photo representing hope and children">
+                </div>
+                <div class="text-content">
+                    <h2>Our Story</h2>
+                    <p>Destiny John was a bright, loving, and incredible soul. Though their time with us was too short, their impact on our lives and the lives of others was immeasurable.</p>
+                    <p>We created this foundation to ensure that Destiny John's legacy lives on. By channeling our love into action, we hope to build a brighter, healthier future for the children of Sierra Leone, honoring the beautiful life we were blessed to share.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- VISION & MISSION SECTION -->
-    <section id="vision" class="section-light">
+    <section id="vision">
         <div class="container">
-            <h2>Our Purpose</h2>
+            <h2>Vision & Mission</h2>
             <div class="content-grid">
                 <div class="text-content">
                     <div class="vision-mission-box">
-                        <h3>👁️ Our Vision</h3>
+                        <h3>️ Our Vision</h3>
                         <p style="color: var(--text-dark); margin-bottom: 0;">A Sierra Leone where every child, regardless of socio-economic status, has access to quality healthcare, quality education, and the opportunity to fulfill their potential in a safe, supportive environment.</p>
                     </div>
                     <div class="vision-mission-box" style="border-left-color: var(--primary-color);">
@@ -466,10 +485,10 @@
         </div>
     </section>
 
-    <!-- IMPACT SECTION -->
-    <section id="impact">
+    <!-- OUR IMPACT SECTION -->
+    <section id="impact" class="section-light">
         <div class="container">
-            <h2>How We Make a Difference</h2>
+            <h2>Our Impact</h2>
             <p style="text-align: center; max-width: 700px; margin: 0 auto 50px auto;">Driven by love, guided by professionalism, and fueled by hope. Your support directly funds these critical areas:</p>
             
             <div class="content-grid">
@@ -503,7 +522,7 @@
         </div>
     </section>
 
-    <!-- CONTACT / FOOTER SECTION -->
+    <!-- CONTACT US / FOOTER SECTION -->
     <footer id="contact">
         <div class="container">
             <div class="footer-sun">🌅</div>
