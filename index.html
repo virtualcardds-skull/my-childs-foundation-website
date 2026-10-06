@@ -16,60 +16,28 @@
            1. CSS VARIABLES & RESET
            ========================================= */
         :root {
-            --primary-color: #1A365D;      /* Navy Blue: Strength, trust, professionalism */
-            --secondary-color: #FF8A80;    /* Soft Coral/Pink: Love, tenderness, compassion */
-            --accent-sun: #FBD38D;         /* Rising Sun: Hope and a brighter future */
+            --primary-color: #1A365D;
+            --secondary-color: #FF8A80;
+            --accent-sun: #FBD38D;
             --text-dark: #1A202C;
             --text-light: #4A5568;
-            --bg-light: #FFF5F5;           /* Very soft pink/white tint */
-            --bg-white: #FFFFFF;           /* White: Innocence and peace */
+            --bg-light: #FFF5F5;
+            --bg-white: #FFFFFF;
             --font-heading: 'Merriweather', serif;
             --font-body: 'Open Sans', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--text-dark);
-            line-height: 1.7;
-            background-color: var(--bg-white);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--text-dark); line-height: 1.7; background-color: var(--bg-white); }
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
 
         /* =========================================
            2. LAYOUT & TYPOGRAPHY
            ========================================= */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { font-family: var(--font-heading); color: var(--primary-color); margin-bottom: 20px; }
         h1 { font-size: 2.5rem; }
         h2 { font-size: 2rem; text-align: center; margin-bottom: 30px; }
         p { margin-bottom: 15px; color: var(--text-light); }
@@ -77,859 +45,207 @@
         /* =========================================
            3. BUTTONS
            ========================================= */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            border: none;
-            text-align: center;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(26, 54, 93, 0.2);
-        }
-
-        .btn-primary {
-            background-color: var(--secondary-color);
-            color: var(--bg-white);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--bg-white);
-            border: 2px solid var(--bg-white);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
+        .btn { display: inline-block; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; text-align: center; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(26, 54, 93, 0.2); }
+        .btn-primary { background-color: var(--secondary-color); color: var(--bg-white); }
+        .btn-secondary { background-color: transparent; color: var(--bg-white); border: 2px solid var(--bg-white); }
+        .btn-outline { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
+        .btn-outline:hover { background-color: var(--primary-color); color: white; }
 
         /* =========================================
            4. HEADER & NAVIGATION
            ========================================= */
-        header {
-            background-color: var(--bg-white);
-            box-shadow: 0 2px 15px rgba(26, 54, 93, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 10px 0;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo img {
-            height: 90px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--primary-color);
-            padding: 5px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 18px;
-            align-items: center;
-        }
-
-        nav a {
-            font-weight: 600;
-            color: var(--text-dark);
-            transition: color 0.3s;
-            font-size: 0.9rem;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--secondary-color);
-        }
-
-        nav .btn-primary {
-            padding: 10px 24px;
-            font-size: 0.9rem;
-            color: white !important;
-        }
+        header { background-color: var(--bg-white); box-shadow: 0 2px 15px rgba(26, 54, 93, 0.08); position: sticky; top: 0; z-index: 1000; padding: 10px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 5px 20px; max-width: 1100px; margin: 0 auto; position: relative; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 90px; width: auto; object-fit: contain; }
+        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); padding: 5px; }
+        nav ul { display: flex; list-style: none; gap: 18px; align-items: center; }
+        nav a { font-weight: 600; color: var(--text-dark); transition: color 0.3s; font-size: 0.9rem; }
+        nav a:hover, nav a.active { color: var(--secondary-color); }
+        nav .btn-primary { padding: 10px 24px; font-size: 0.9rem; color: white !important; }
 
         /* =========================================
            5. HERO SECTION
            ========================================= */
-        .hero {
-            background: linear-gradient(180deg, rgba(26, 54, 93, 0.9) 0%, rgba(26, 54, 93, 0.75) 100%), 
-                        url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover;
-            color: white;
-            text-align: center;
-            padding: 150px 20px;
-            position: relative;
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun), var(--secondary-color));
-        }
-
-        .hero h1 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            color: rgba(255,255,255,0.95);
-            font-size: 1.25rem;
-            max-width: 750px;
-            margin: 0 auto 35px auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .hero { background: linear-gradient(180deg, rgba(26, 54, 93, 0.9) 0%, rgba(26, 54, 93, 0.75) 100%), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover; color: white; text-align: center; padding: 150px 20px; position: relative; min-height: 80vh; display: flex; align-items: center; justify-content: center; }
+        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun), var(--secondary-color)); }
+        .hero h1 { color: white; font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { color: rgba(255,255,255,0.95); font-size: 1.25rem; max-width: 750px; margin: 0 auto 35px auto; }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
         /* =========================================
            6. IMPACT STATISTICS SECTION
            ========================================= */
-        .impact-stats {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #ff7676 100%);
-            padding: 80px 20px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .impact-stats::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-
-        .stats-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 30px 20px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            font-family: var(--font-heading);
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
+        .impact-stats { background: linear-gradient(135deg, var(--secondary-color) 0%, #ff7676 100%); padding: 80px 20px; color: white; position: relative; overflow: hidden; }
+        .impact-stats::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: rgba(255,255,255,0.1); border-radius: 50%; }
+        .stats-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; position: relative; z-index: 1; }
+        .stat-item { text-align: center; padding: 30px 20px; background: rgba(255,255,255,0.15); border-radius: 15px; backdrop-filter: blur(10px); transition: transform 0.3s; }
+        .stat-item:hover { transform: translateY(-10px); }
+        .stat-number { font-size: 3.5rem; font-weight: 700; font-family: var(--font-heading); margin-bottom: 10px; display: block; }
+        .stat-label { font-size: 1.1rem; opacity: 0.95; }
 
         /* =========================================
-           7. PROGRAMS PREVIEW SECTION
+           7. PARTNERS SECTION (NEW)
            ========================================= */
-        .programs-section {
-            padding: 100px 20px;
-            background-color: var(--bg-white);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
-        }
-
-        .section-header h2 {
-            margin-bottom: 15px;
-        }
-
-        .programs-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .program-card {
-            background: var(--bg-white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .program-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
-            border-color: var(--secondary-color);
-        }
-
-        .program-image {
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .program-content {
-            padding: 30px;
-        }
-
-        .program-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .program-content p {
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        .program-link {
-            color: var(--secondary-color);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: gap 0.3s;
-        }
-
-        .program-link:hover {
-            gap: 12px;
-        }
+        .partners-section { padding: 60px 20px; background-color: var(--bg-white); text-align: center; }
+        .partners-section h3 { font-size: 1.2rem; color: var(--text-light); margin-bottom: 30px; font-family: var(--font-body); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .partners-grid { max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px; opacity: 0.6; }
+        .partner-logo { font-size: 1.5rem; font-weight: 700; color: var(--text-light); display: flex; align-items: center; gap: 8px; transition: opacity 0.3s; }
+        .partner-logo:hover { opacity: 1; color: var(--primary-color); }
 
         /* =========================================
-           8. WHY CHOOSE US SECTION
+           8. PROGRAMS PREVIEW SECTION
            ========================================= */
-        .why-us-section {
-            padding: 100px 20px;
-            background-color: var(--bg-light);
-        }
-
-        .why-us-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .why-us-content h2 {
-            text-align: left;
-            margin-bottom: 30px;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .feature-item {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 25px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .feature-item:hover {
-            transform: translateX(10px);
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-sun));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .feature-text h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--primary-color);
-        }
-
-        .feature-text p {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
-
-        .why-us-image {
-            position: relative;
-        }
-
-        .why-us-image img {
-            border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(26, 54, 93, 0.2);
-        }
-
-        .experience-badge {
-            position: absolute;
-            bottom: -20px;
-            left: -20px;
-            background: var(--secondary-color);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(255, 138, 128, 0.4);
-        }
-
-        .experience-badge .years {
-            font-size: 2.5rem;
-            font-weight: 700;
-            font-family: var(--font-heading);
-            display: block;
-        }
-
-        .experience-badge .text {
-            font-size: 0.9rem;
-            opacity: 0.95;
-        }
+        .programs-section { padding: 100px 20px; background-color: var(--bg-white); }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+        .programs-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .program-card { background: var(--bg-white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1); transition: transform 0.3s, box-shadow 0.3s; border: 2px solid transparent; }
+        .program-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15); border-color: var(--secondary-color); }
+        .program-image { height: 220px; background-size: cover; background-position: center; }
+        .program-content { padding: 30px; }
+        .program-content h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--primary-color); }
+        .program-content p { margin-bottom: 20px; font-size: 0.95rem; }
+        .program-link { color: var(--secondary-color); font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.3s; }
+        .program-link:hover { gap: 12px; }
 
         /* =========================================
-           9. TESTIMONIALS SECTION
+           9. WHY CHOOSE US SECTION
            ========================================= */
-        .testimonials-section {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .testimonials-section h2 {
-            color: white;
-            margin-bottom: 60px;
-        }
-
-        .testimonials-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.15);
-        }
-
-        .testimonial-text {
-            font-size: 1rem;
-            font-style: italic;
-            margin-bottom: 25px;
-            line-height: 1.8;
-            opacity: 0.95;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--accent-sun);
-        }
-
-        .testimonial-role {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
+        .why-us-section { padding: 100px 20px; background-color: var(--bg-light); }
+        .why-us-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .why-us-content h2 { text-align: left; margin-bottom: 30px; }
+        .feature-list { list-style: none; margin-top: 30px; }
+        .feature-item { display: flex; gap: 20px; margin-bottom: 25px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .feature-item:hover { transform: translateX(10px); }
+        .feature-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--secondary-color), var(--accent-sun)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; flex-shrink: 0; }
+        .feature-text h3 { font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-color); }
+        .feature-text p { font-size: 0.9rem; margin-bottom: 0; }
+        .why-us-image { position: relative; }
+        .why-us-image img { border-radius: 15px; box-shadow: 0 20px 50px rgba(26, 54, 93, 0.2); }
+        .experience-badge { position: absolute; bottom: -20px; left: -20px; background: var(--secondary-color); color: white; padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(255, 138, 128, 0.4); }
+        .experience-badge .years { font-size: 2.5rem; font-weight: 700; font-family: var(--font-heading); display: block; }
+        .experience-badge .text { font-size: 0.9rem; opacity: 0.95; }
 
         /* =========================================
-           10. CALL TO ACTION SECTION
+           10. LATEST NEWS SECTION (NEW)
            ========================================= */
-        .cta-section {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, var(--accent-sun) 0%, #f6e05e 100%);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '❤️';
-            position: absolute;
-            font-size: 20rem;
-            opacity: 0.05;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: var(--text-dark);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-buttons .btn {
-            padding: 18px 40px;
-            font-size: 1.1rem;
-        }
+        .news-section { padding: 100px 20px; background-color: var(--bg-white); }
+        .news-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .news-card { background: var(--bg-white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08); transition: transform 0.3s; border: 1px solid #edf2f7; }
+        .news-card:hover { transform: translateY(-5px); }
+        .news-date { padding: 20px 30px 0; font-size: 0.85rem; color: var(--secondary-color); font-weight: 600; text-transform: uppercase; }
+        .news-content { padding: 15px 30px 30px; }
+        .news-content h3 { font-size: 1.2rem; margin-bottom: 10px; line-height: 1.4; }
+        .news-content p { font-size: 0.95rem; margin-bottom: 20px; }
 
         /* =========================================
-           11. FLOATING NEWSLETTER SECTION (SUSPENDED ABOVE FOOTER)
+           11. TESTIMONIALS SECTION
            ========================================= */
-        .newsletter-wrapper {
-            background-color: var(--bg-light);
-            padding: 80px 20px 0;
-            position: relative;
-        }
-
-        .newsletter-card {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
-            border-radius: 20px;
-            padding: 60px;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 50px;
-            align-items: center;
-            position: relative;
-            top: 40px; /* Suspends/overlaps above the footer */
-            box-shadow: 0 20px 60px rgba(26, 54, 93, 0.3);
-        }
-
-        .newsletter-image {
-            text-align: center;
-        }
-
-        .newsletter-image svg {
-            width: 280px;
-            height: 280px;
-            color: rgba(255,255,255,0.9);
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
-        }
-
-        .newsletter-content h2 {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 15px;
-            text-align: left;
-            line-height: 1.3;
-        }
-
-        .newsletter-content > p {
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 30px;
-            font-size: 1.05rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            background: white;
-            border-radius: 50px;
-            padding: 6px;
-            max-width: 500px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-family: var(--font-body);
-            background: transparent;
-            color: var(--text-dark);
-        }
-
-        .newsletter-form input::placeholder {
-            color: var(--text-light);
-        }
-
-        .newsletter-form input:focus {
-            outline: none;
-        }
-
-        .newsletter-form button {
-            padding: 14px 32px;
-            border-radius: 50px;
-            border: none;
-            background: var(--bg-white);
-            color: var(--primary-color);
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-
-        .newsletter-form button:hover {
-            background: var(--secondary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .newsletter-note {
-            margin-top: 15px;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .newsletter-note a {
-            color: var(--accent-sun);
-            text-decoration: underline;
-        }
+        .testimonials-section { padding: 100px 20px; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); color: white; text-align: center; }
+        .testimonials-section h2 { color: white; margin-bottom: 60px; }
+        .testimonials-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .testimonial-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s; }
+        .testimonial-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.15); }
+        .testimonial-text { font-size: 1rem; font-style: italic; margin-bottom: 25px; line-height: 1.8; opacity: 0.95; }
+        .testimonial-author { font-weight: 600; font-size: 1.1rem; color: var(--accent-sun); }
+        .testimonial-role { font-size: 0.9rem; opacity: 0.8; margin-top: 5px; }
 
         /* =========================================
-           12. MAIN FOOTER (WHITE, BELOW NEWSLETTER)
+           12. FAQ SECTION (NEW)
            ========================================= */
-        .main-footer {
-            background-color: var(--bg-white);
-            padding: 120px 20px 30px; /* Extra top padding to account for suspended newsletter */
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .footer-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-brand .logo img {
-            height: 70px;
-            margin-bottom: 20px;
-        }
-
-        .footer-brand p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .social-icons a:hover {
-            background: var(--secondary-color);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-column h3 {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            color: var(--primary-color);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column ul li a {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--secondary-color);
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        .contact-item svg {
-            width: 20px;
-            height: 20px;
-            color: var(--secondary-color);
-            flex-shrink: 0;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #e2e8f0;
-            padding-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-bottom p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary-color);
-        }
+        .faq-section { padding: 100px 20px; background-color: var(--bg-light); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--bg-white); border-radius: 10px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 1px solid #edf2f7; overflow: hidden; }
+        .faq-item summary { padding: 25px 30px; font-weight: 600; color: var(--primary-color); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.5rem; color: var(--secondary-color); transition: transform 0.3s; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-item p { padding: 0 30px 25px; margin-bottom: 0; font-size: 0.95rem; }
 
         /* =========================================
-           13. MOBILE RESPONSIVENESS
+           13. CALL TO ACTION SECTION
+           ========================================= */
+        .cta-section { padding: 100px 20px; background: linear-gradient(135deg, var(--accent-sun) 0%, #f6e05e 100%); text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: '❤️'; position: absolute; font-size: 20rem; opacity: 0.05; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .cta-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--primary-color); }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; color: var(--text-dark); }
+        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .cta-buttons .btn { padding: 18px 40px; font-size: 1.1rem; }
+
+        /* =========================================
+           14. FLOATING NEWSLETTER SECTION
+           ========================================= */
+        .newsletter-wrapper { background-color: var(--bg-light); padding: 80px 20px 0; position: relative; }
+        .newsletter-card { max-width: 1100px; margin: 0 auto; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); border-radius: 20px; padding: 60px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: center; position: relative; top: 40px; box-shadow: 0 20px 60px rgba(26, 54, 93, 0.3); }
+        .newsletter-image { text-align: center; }
+        .newsletter-image svg { width: 280px; height: 280px; color: rgba(255,255,255,0.9); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); }
+        .newsletter-content h2 { color: white; font-size: 2rem; margin-bottom: 15px; text-align: left; line-height: 1.3; }
+        .newsletter-content > p { color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: 1.05rem; }
+        .newsletter-form { display: flex; background: white; border-radius: 50px; padding: 6px; max-width: 500px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .newsletter-form input { flex: 1; padding: 14px 20px; border: none; border-radius: 50px; font-size: 1rem; font-family: var(--font-body); background: transparent; color: var(--text-dark); }
+        .newsletter-form input::placeholder { color: var(--text-light); }
+        .newsletter-form input:focus { outline: none; }
+        .newsletter-form button { padding: 14px 32px; border-radius: 50px; border: none; background: var(--bg-white); color: var(--primary-color); font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; white-space: nowrap; }
+        .newsletter-form button:hover { background: var(--secondary-color); color: white; transform: translateY(-2px); }
+        .newsletter-note { margin-top: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+        .newsletter-note a { color: var(--accent-sun); text-decoration: underline; }
+
+        /* =========================================
+           15. MAIN FOOTER
+           ========================================= */
+        .main-footer { background-color: var(--bg-white); padding: 120px 20px 30px; border-top: 1px solid #e2e8f0; }
+        .footer-container { max-width: 1100px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 50px; }
+        .footer-brand .logo img { height: 70px; margin-bottom: 20px; }
+        .footer-brand p { color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+        .social-icons { display: flex; gap: 15px; }
+        .social-icons a { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-light); display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-size: 1.1rem; font-weight: bold; transition: all 0.3s; }
+        .social-icons a:hover { background: var(--secondary-color); color: white; transform: translateY(-3px); }
+        .footer-column h3 { font-size: 1.1rem; margin-bottom: 25px; color: var(--primary-color); }
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 12px; }
+        .footer-column ul li a { color: var(--text-light); font-size: 0.95rem; transition: color 0.3s; }
+        .footer-column ul li a:hover { color: var(--secondary-color); }
+        .contact-info { display: flex; flex-direction: column; gap: 15px; }
+        .contact-item { display: flex; align-items: center; gap: 12px; color: var(--text-light); font-size: 0.95rem; }
+        .contact-item svg { width: 20px; height: 20px; color: var(--secondary-color); flex-shrink: 0; }
+        .footer-bottom { border-top: 1px solid #e2e8f0; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .footer-bottom p { color: var(--text-light); font-size: 0.9rem; }
+        .footer-links { display: flex; gap: 30px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-light); font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--secondary-color); }
+
+        /* =========================================
+           16. MOBILE RESPONSIVENESS
            ========================================= */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            .hero h1 { font-size: 2.25rem; }
+            h1 { font-size: 2rem; } h2 { font-size: 1.75rem; } .hero h1 { font-size: 2.25rem; }
+            .logo img { height: 80px; }
+            .menu-toggle { display: block; }
+            nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--bg-white); box-shadow: 0 10px 20px rgba(0,0,0,0.1); padding: 20px; gap: 20px; text-align: center; border-top: 1px solid #eee; }
+            nav ul.active { display: flex; }
+            nav .btn-primary { width: 100%; display: block; }
             
-            .logo img {
-                height: 80px;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--bg-white);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                padding: 20px;
-                gap: 20px;
-                text-align: center;
-                border-top: 1px solid #eee;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            nav .btn-primary {
-                width: 100%;
-                display: block;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .programs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .why-us-container {
-                grid-template-columns: 1fr;
-            }
-
-            .why-us-content h2 {
-                text-align: center;
-            }
-
-            .experience-badge {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* Newsletter card mobile */
-            .newsletter-card {
-                grid-template-columns: 1fr;
-                padding: 40px 25px;
-                top: 20px;
-                text-align: center;
-            }
-
-            .newsletter-content h2 {
-                text-align: center;
-            }
-
-            .newsletter-form {
-                max-width: 100%;
-                flex-direction: column;
-                border-radius: 15px;
-                padding: 10px;
-            }
-
-            .newsletter-form input {
-                width: 100%;
-            }
-
-            .newsletter-form button {
-                width: 100%;
-            }
-
-            .newsletter-image svg {
-                width: 180px;
-                height: 180px;
-            }
-
-            .main-footer {
-                padding-top: 80px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 30px;
-            }
-
-            .footer-brand {
-                grid-column: 1 / -1;
-                text-align: center;
-            }
-
-            .social-icons {
-                justify-content: center;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
+            .stats-container { grid-template-columns: repeat(2, 1fr); }
+            .programs-grid, .news-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            .why-us-container { grid-template-columns: 1fr; }
+            .why-us-content h2 { text-align: center; }
+            .experience-badge { left: 50%; transform: translateX(-50%); }
+            
+            .newsletter-card { grid-template-columns: 1fr; padding: 40px 25px; top: 20px; text-align: center; }
+            .newsletter-content h2 { text-align: center; }
+            .newsletter-form { max-width: 100%; flex-direction: column; border-radius: 15px; padding: 10px; }
+            .newsletter-form input { width: 100%; }
+            .newsletter-form button { width: 100%; }
+            .newsletter-image svg { width: 180px; height: 180px; }
+            
+            .main-footer { padding-top: 80px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+            .footer-brand { grid-column: 1 / -1; text-align: center; }
+            .social-icons { justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -939,14 +255,9 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <a href="index.html"><img src="logo.png" alt="Destiny John Foundation Logo - Every Child Deserves a Chance"></a>
+                <a href="index.html"><img src="logo.png" alt="Destiny John Foundation Logo"></a>
             </div>
-            
-            <!-- Hamburger Menu Icon for Mobile -->
-            <div class="menu-toggle" id="mobile-menu">
-                &#9776;
-            </div>
-
+            <div class="menu-toggle" id="mobile-menu">&#9776;</div>
             <nav>
                 <ul id="nav-list">
                     <li><a href="index.html" class="active">Home</a></li>
@@ -976,22 +287,23 @@
     <!-- IMPACT STATISTICS SECTION -->
     <section class="impact-stats">
         <div class="stats-container">
-            <div class="stat-item">
-                <span class="stat-number">5,000+</span>
-                <span class="stat-label">Children Supported</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">50+</span>
-                <span class="stat-label">Healthcare Workers Trained</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">25+</span>
-                <span class="stat-label">Communities Reached</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Dedication to Change</span>
-            </div>
+            <div class="stat-item"><span class="stat-number">5,000+</span><span class="stat-label">Children Supported</span></div>
+            <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Healthcare Workers Trained</span></div>
+            <div class="stat-item"><span class="stat-number">25+</span><span class="stat-label">Communities Reached</span></div>
+            <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Dedication to Change</span></div>
+        </div>
+    </section>
+
+    <!-- PARTNERS SECTION (NEW) -->
+    <section class="partners-section">
+        <h3>Trusted By Our Partners & Supporters</h3>
+        <div class="partners-grid">
+            <!-- Replace these text placeholders with actual partner logo images later -->
+            <div class="partner-logo">🏥 Ministry of Health</div>
+            <div class="partner-logo">🌍 UNICEF Sierra Leone</div>
+            <div class="partner-logo">🏫 Local Schools Network</div>
+            <div class="partner-logo">🤝 Global Aid Partners</div>
+            <div class="partner-logo">🏥 Freetown Medical Center</div>
         </div>
     </section>
 
@@ -1013,7 +325,7 @@
             <div class="program-card">
                 <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80');"></div>
                 <div class="program-content">
-                    <h3> Education Support</h3>
+                    <h3>📚 Education Support</h3>
                     <p>Ensuring every child has access to quality education and the resources they need to learn and thrive.</p>
                     <a href="#" class="program-link">Learn More →</a>
                 </div>
@@ -1036,41 +348,48 @@
                 <h2>Why Choose Destiny John Foundation?</h2>
                 <p>We are driven by love, guided by expertise, and committed to creating measurable impact in the lives of Sierra Leone's most vulnerable children.</p>
                 <ul class="feature-list">
-                    <li class="feature-item">
-                        <div class="feature-icon">❤️</div>
-                        <div class="feature-text">
-                            <h3>Child-Centered Approach</h3>
-                            <p>Every decision we make puts the needs and wellbeing of children first.</p>
-                        </div>
-                    </li>
-                    <li class="feature-item">
-                        <div class="feature-icon"></div>
-                        <div class="feature-text">
-                            <h3>Expert Healthcare Partners</h3>
-                            <p>We collaborate with experienced medical professionals to deliver the best care.</p>
-                        </div>
-                    </li>
-                    <li class="feature-item">
-                        <div class="feature-icon">🌍</div>
-                        <div class="feature-text">
-                            <h3>Sustainable Impact</h3>
-                            <p>We focus on long-term solutions that create lasting change in communities.</p>
-                        </div>
-                    </li>
-                    <li class="feature-item">
-                        <div class="feature-icon">🔍</div>
-                        <div class="feature-text">
-                            <h3>Transparent Operations</h3>
-                            <p>We maintain complete transparency in how we use every donation.</p>
-                        </div>
-                    </li>
+                    <li class="feature-item"><div class="feature-icon">❤️</div><div class="feature-text"><h3>Child-Centered Approach</h3><p>Every decision we make puts the needs and wellbeing of children first.</p></div></li>
+                    <li class="feature-item"><div class="feature-icon">🏥</div><div class="feature-text"><h3>Expert Healthcare Partners</h3><p>We collaborate with experienced medical professionals to deliver the best care.</p></div></li>
+                    <li class="feature-item"><div class="feature-icon">🌍</div><div class="feature-text"><h3>Sustainable Impact</h3><p>We focus on long-term solutions that create lasting change in communities.</p></div></li>
+                    <li class="feature-item"><div class="feature-icon">🔍</div><div class="feature-text"><h3>Transparent Operations</h3><p>We maintain complete transparency in how we use every donation.</p></div></li>
                 </ul>
             </div>
             <div class="why-us-image">
                 <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80" alt="Children smiling and playing">
-                <div class="experience-badge">
-                    <span class="years">2026</span>
-                    <span class="text">Years of<br>Excellence</span>
+                <div class="experience-badge"><span class="years">2026</span><span class="text">Years of<br>Excellence</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LATEST NEWS SECTION (NEW) -->
+    <section class="news-section">
+        <div class="section-header">
+            <h2>Latest News & Updates</h2>
+            <p>Stay up to date with our recent activities, events, and success stories from the field.</p>
+        </div>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-date">October 15, 2026</div>
+                <div class="news-content">
+                    <h3>Medical Outreach in Freetown</h3>
+                    <p>Our team successfully provided free pediatric check-ups to over 200 children in the Freetown community last weekend.</p>
+                    <a href="#" class="program-link">Read More →</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-date">September 28, 2026</div>
+                <div class="news-content">
+                    <h3>New Partnership Announced</h3>
+                    <p>We are thrilled to announce a new partnership with local healthcare providers to expand our mentorship program.</p>
+                    <a href="#" class="program-link">Read More →</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-date">September 10, 2026</div>
+                <div class="news-content">
+                    <h3>Back to School Drive Success</h3>
+                    <p>Thanks to your generous donations, we distributed 500 school kits to underprivileged children across three districts.</p>
+                    <a href="#" class="program-link">Read More →</a>
                 </div>
             </div>
         </div>
@@ -1081,12 +400,12 @@
         <h2>Stories of Hope & Impact</h2>
         <div class="testimonials-grid">
             <div class="testimonial-card">
-                <p class="testimonial-text">"Thanks to the Destiny John Foundation, my child received the medical care that saved their life. We are forever grateful for their compassion and support."</p>
+                <p class="testimonial-text">"Thanks to the Destiny John Foundation, my child received the medical care that saved their life. We are forever grateful."</p>
                 <div class="testimonial-author">Fatima K.</div>
                 <div class="testimonial-role">Mother from Freetown</div>
             </div>
             <div class="testimonial-card">
-                <p class="testimonial-text">"The training provided by the foundation has transformed how I care for my young patients. I now have the skills and confidence to make a real difference."</p>
+                <p class="testimonial-text">"The training provided by the foundation has transformed how I care for my young patients. I now have the skills to make a real difference."</p>
                 <div class="testimonial-author">Dr. Ibrahim S.</div>
                 <div class="testimonial-role">Pediatric Nurse</div>
             </div>
@@ -1095,6 +414,29 @@
                 <div class="testimonial-author">Sarah M.</div>
                 <div class="testimonial-role">Community Leader</div>
             </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION (NEW) -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2>Frequently Asked Questions</h2>
+            <details class="faq-item">
+                <summary>Is my donation tax-deductible?</summary>
+                <p>Yes! The Destiny John Foundation is a registered non-profit organization. All donations are tax-deductible to the fullest extent allowed by law, and you will receive an official tax receipt via email.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How is my donation used?</summary>
+                <p>We are committed to transparency. 100% of your donation goes directly to our programs, including pediatric medical interventions, healthcare worker training, and educational support for children in Sierra Leone.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Can I volunteer with the foundation?</summary>
+                <p>Absolutely! We welcome volunteers, especially those with medical, educational, or community development backgrounds. Please visit our Contact Us page to inquire about volunteer opportunities.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How can I partner with the Destiny John Foundation?</summary>
+                <p>We love collaborating with like-minded organizations, businesses, and government bodies. Please reach out to us at info@destinyjohnfoundation.org to discuss partnership opportunities.</p>
+            </details>
         </div>
     </section>
 
@@ -1110,11 +452,10 @@
         </div>
     </section>
 
-    <!-- FLOATING NEWSLETTER SECTION (SUSPENDED ABOVE FOOTER) -->
+    <!-- FLOATING NEWSLETTER SECTION -->
     <div class="newsletter-wrapper">
         <div class="newsletter-card">
             <div class="newsletter-image">
-                <!-- Decorative SVG representing hope/children -->
                 <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="100" cy="100" r="90" fill="rgba(255,255,255,0.1)"/>
                     <path d="M100 40 C80 40, 60 55, 60 80 C60 105, 80 120, 100 140 C120 120, 140 105, 140 80 C140 55, 120 40, 100 40Z" fill="rgba(255,255,255,0.9)"/>
@@ -1139,25 +480,20 @@
         </div>
     </div>
 
-    <!-- MAIN FOOTER (WHITE, BELOW NEWSLETTER) -->
+    <!-- MAIN FOOTER -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-grid">
-                <!-- Brand Column -->
                 <div class="footer-brand">
-                    <div class="logo">
-                        <img src="logo.png" alt="Destiny John Foundation">
-                    </div>
+                    <div class="logo"><img src="logo.png" alt="Destiny John Foundation"></div>
                     <p>Honoring Destiny John's legacy by ensuring every child in Sierra Leone has access to quality healthcare, education, and the opportunity to fulfill their potential in a safe, supportive environment.</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook">f</a>
-                        <a href="#" aria-label="Twitter"></a>
+                        <a href="#" aria-label="Twitter">𝕏</a>
                         <a href="#" aria-label="Instagram">📷</a>
                         <a href="#" aria-label="LinkedIn">in</a>
                     </div>
                 </div>
-                
-                <!-- Foundation Column -->
                 <div class="footer-column">
                     <h3>Foundation</h3>
                     <ul>
@@ -1168,8 +504,6 @@
                         <li><a href="#">Careers</a></li>
                     </ul>
                 </div>
-                
-                <!-- Programs Column -->
                 <div class="footer-column">
                     <h3>Programs</h3>
                     <ul>
@@ -1180,8 +514,6 @@
                         <li><a href="#">Events</a></li>
                     </ul>
                 </div>
-                
-                <!-- Get Involved Column -->
                 <div class="footer-column">
                     <h3>Get Involved</h3>
                     <ul>
@@ -1192,8 +524,6 @@
                         <li><a href="#">Resources</a></li>
                     </ul>
                 </div>
-                
-                <!-- Contact Column -->
                 <div class="footer-column">
                     <h3>Contact Us</h3>
                     <div class="contact-info">
@@ -1212,8 +542,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
                 <p>© 2026 Destiny John Foundation. All rights reserved. | Built with ❤️ for the children of Sierra Leone.</p>
                 <div class="footer-links">
@@ -1230,18 +558,8 @@
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
-        
-        // Toggle menu open/close when hamburger is clicked
-        menuToggle.addEventListener('click', () => {
-            navList.classList.toggle('active');
-        });
-
-        // Close the menu automatically when a link is clicked
-        document.querySelectorAll('#nav-list a').forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('active');
-            });
-        });
+        menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
+        document.querySelectorAll('#nav-list a').forEach(link => { link.addEventListener('click', () => { navList.classList.remove('active'); }); });
     </script>
 
 </body>
