@@ -3,527 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destiny John Foundation</title>
-    <meta name="description" content="The Destiny John Foundation is dedicated to reducing under-5 child mortality and enhancing child wellbeing in Sierra Leone through healthcare, education, and community support.">
-    
-    <!-- Google Fonts -->
+    <title>Destiny John Foundation - Home</title>
+    <meta name="description" content="The Destiny John Foundation is dedicated to reducing under-5 child mortality and enhancing child wellbeing in Sierra Leone.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
     <style>
-        /* =========================================
-           1. CSS VARIABLES & RESET (Concept 3 Colors)
-           ========================================= */
-        :root {
-            --primary-color: #1A365D;      /* Navy Blue: Strength, trust, professionalism */
-            --secondary-color: #FF8A80;    /* Soft Coral/Pink: Love, tenderness, compassion */
-            --accent-sun: #FBD38D;         /* Rising Sun: Hope and a brighter future */
-            --text-dark: #1A202C;
-            --text-light: #4A5568;
-            --bg-light: #FFF5F5;           /* Very soft pink/white tint for warmth and innocence */
-            --bg-white: #FFFFFF;           /* White: Innocence and peace */
-            --font-heading: 'Merriweather', serif;
-            --font-body: 'Open Sans', sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--text-dark);
-            line-height: 1.7;
-            background-color: var(--bg-white);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* =========================================
-           2. LAYOUT & TYPOGRAPHY
-           ========================================= */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; text-align: center; margin-bottom: 30px; }
+        :root { --primary-color: #1A365D; --secondary-color: #FF8A80; --accent-sun: #FBD38D; --text-dark: #1A202C; --text-light: #4A5568; --bg-light: #FFF5F5; --bg-white: #FFFFFF; --font-heading: 'Merriweather', serif; --font-body: 'Open Sans', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--text-dark); line-height: 1.7; background-color: var(--bg-white); }
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { font-family: var(--font-heading); color: var(--primary-color); margin-bottom: 20px; }
+        h1 { font-size: 2.5rem; } h2 { font-size: 2rem; text-align: center; margin-bottom: 30px; }
         p { margin-bottom: 15px; color: var(--text-light); }
-
-        .highlight {
-            color: var(--secondary-color);
-        }
-
-        /* =========================================
-           3. BUTTONS
-           ========================================= */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            border: none;
-            text-align: center;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(26, 54, 93, 0.2);
-        }
-
-        .btn-primary {
-            background-color: var(--secondary-color);
-            color: var(--bg-white);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--bg-white);
-            border: 2px solid var(--bg-white);
-        }
-
-        /* =========================================
-           4. HEADER & NAVIGATION
-           ========================================= */
-        header {
-            background-color: var(--bg-white);
-            box-shadow: 0 2px 15px rgba(26, 54, 93, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 10px 0;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* PERFECT LOGO SIZE: Readable but not overpowering */
-        .logo img {
-            height: 90px; 
-            width: auto;
-            object-fit: contain;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--primary-color);
-            padding: 5px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 18px; /* Slightly reduced gap to fit all 7 buttons neatly */
-            align-items: center;
-        }
-
-        nav a {
-            font-weight: 600;
-            color: var(--text-dark);
-            transition: color 0.3s;
-            font-size: 0.9rem; /* Slightly smaller font to fit all 7 buttons */
-        }
-
-        nav a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Nav Donate Button Styling */
-        nav .btn-primary {
-            padding: 10px 24px;
-            font-size: 0.9rem;
-            color: white !important;
-        }
-
-        /* =========================================
-           5. HERO SECTION
-           ========================================= */
-        .hero {
-            background: linear-gradient(180deg, rgba(26, 54, 93, 0.9) 0%, rgba(26, 54, 93, 0.75) 100%), 
-                        url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover;
-            color: white;
-            text-align: center;
-            padding: 120px 20px;
-            position: relative;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun), var(--secondary-color));
-        }
-
-        .hero h1 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            color: rgba(255,255,255,0.95);
-            font-size: 1.25rem;
-            max-width: 750px;
-            margin: 0 auto 35px auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* =========================================
-           6. CONTENT SECTIONS
-           ========================================= */
-        section {
-            padding: 90px 0;
-        }
-
-        .section-light {
-            background-color: var(--bg-light);
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .content-grid img {
-            border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15);
-        }
-
-        .vision-mission-box {
-            background: var(--bg-white);
-            padding: 30px;
-            border-radius: 12px;
-            border-left: 5px solid var(--secondary-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-        }
-
-        .vision-mission-box h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .impact-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .impact-list li {
-            margin-bottom: 20px;
-            padding-left: 35px;
-            position: relative;
-            color: var(--text-dark);
-        }
-
-        .impact-list li::before {
-            content: '❤️'; 
-            position: absolute;
-            left: 0;
-            top: 2px;
-            font-size: 1.2rem;
-        }
-
-        /* =========================================
-           7. DONATION SECTION
-           ========================================= */
-        .donate-section {
-            text-align: center;
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .donate-section h2 {
-            color: white;
-        }
-
-        .donate-section p {
-            color: rgba(255,255,255,0.9);
-            max-width: 650px;
-            margin: 0 auto 40px auto;
-            font-size: 1.15rem;
-        }
-
-        .donation-widget-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-        }
-
-        /* =========================================
-           8. FOOTER
-           ========================================= */
-        footer {
-            background-color: #0F172A;
-            color: #A0AEC0;
-            text-align: center;
-            padding: 50px 20px;
-        }
-
-        footer p {
-            color: #A0AEC0;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        footer a {
-            color: var(--secondary-color);
-            font-weight: 600;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-sun {
-            color: var(--accent-sun);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        /* =========================================
-           9. MOBILE RESPONSIVENESS & HAMBURGER MENU
-           ========================================= */
+        .btn { display: inline-block; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; text-align: center; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(26, 54, 93, 0.2); }
+        .btn-primary { background-color: var(--secondary-color); color: var(--bg-white); }
+        .btn-secondary { background-color: transparent; color: var(--bg-white); border: 2px solid var(--bg-white); }
+        header { background-color: var(--bg-white); box-shadow: 0 2px 15px rgba(26, 54, 93, 0.08); position: sticky; top: 0; z-index: 1000; padding: 10px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 5px 20px; max-width: 1100px; margin: 0 auto; position: relative; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 90px; width: auto; object-fit: contain; }
+        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); padding: 5px; }
+        nav ul { display: flex; list-style: none; gap: 18px; align-items: center; }
+        nav a { font-weight: 600; color: var(--text-dark); transition: color 0.3s; font-size: 0.9rem; }
+        nav a:hover, nav a.active { color: var(--secondary-color); }
+        nav .btn-primary { padding: 10px 24px; font-size: 0.9rem; color: white !important; }
+        .hero { background: linear-gradient(180deg, rgba(26, 54, 93, 0.9) 0%, rgba(26, 54, 93, 0.75) 100%), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover; color: white; text-align: center; padding: 150px 20px; position: relative; min-height: 80vh; display: flex; align-items: center; justify-content: center;}
+        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun), var(--secondary-color)); }
+        .hero h1 { color: white; font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { color: rgba(255,255,255,0.95); font-size: 1.25rem; max-width: 750px; margin: 0 auto 35px auto; }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .page-content { padding: 90px 0; }
+        .section-light { background-color: var(--bg-light); }
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .content-grid img { border-radius: 12px; box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15); }
+        footer { background-color: #0F172A; color: #A0AEC0; text-align: center; padding: 50px 20px; }
+        footer p { color: #A0AEC0; font-size: 0.9rem; margin-bottom: 8px; }
+        footer a { color: var(--secondary-color); font-weight: 600; }
+        .footer-sun { color: var(--accent-sun); font-size: 1.5rem; margin-bottom: 15px; }
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            .hero h1 { font-size: 2.25rem; }
-            
-            .logo img {
-                height: 80px; /* Perfect mobile logo size */
-            }
-
-            .menu-toggle {
-                display: block; /* Show hamburger on mobile */
-            }
-
-            nav ul {
-                display: none; /* Hidden by default on mobile */
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--bg-white);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                padding: 20px;
-                gap: 20px;
-                text-align: center;
-                border-top: 1px solid #eee;
-            }
-
-            nav ul.active {
-                display: flex; /* Show when active class is added via JS */
-            }
-
-            nav .btn-primary {
-                width: 100%;
-                display: block;
-            }
-
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .content-grid .text-content {
-                order: 2;
-            }
+            h1 { font-size: 2rem; } h2 { font-size: 1.75rem; } .hero h1 { font-size: 2.25rem; }
+            .logo img { height: 80px; }
+            .menu-toggle { display: block; }
+            nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--bg-white); box-shadow: 0 10px 20px rgba(0,0,0,0.1); padding: 20px; gap: 20px; text-align: center; border-top: 1px solid #eee; }
+            nav ul.active { display: flex; }
+            nav .btn-primary { width: 100%; display: block; }
+            .content-grid { grid-template-columns: 1fr; gap: 40px; }
+            .content-grid .text-content { order: 2; }
         }
     </style>
 </head>
-<body id="home">
-
-    <!-- HEADER -->
+<body>
     <header>
         <div class="nav-container">
             <div class="logo">
-                <img src="logo.png" alt="Destiny John Foundation Logo - Every Child Deserves a Chance">
+                <a href="index.html"><img src="logo.png" alt="Destiny John Foundation Logo"></a>
             </div>
-            
-            <!-- Hamburger Menu Icon for Mobile -->
-            <div class="menu-toggle" id="mobile-menu">
-                &#9776;
-            </div>
-
+            <div class="menu-toggle" id="mobile-menu">&#9776;</div>
             <nav>
                 <ul id="nav-list">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#story">Our Story</a></li>
-                    <li><a href="#vision">Vision & Mission</a></li>
-                    <li><a href="#impact">Our Impact</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#donate" class="btn btn-primary">Donate</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="story.html">Our Story</a></li>
+                    <li><a href="vision.html">Vision & Mission</a></li>
+                    <li><a href="impact.html">Our Impact</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="donate.html" class="btn btn-primary">Donate</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero">
         <div class="container">
             <h1>Every Child Deserves a Chance <br><span style="font-size: 0.6em; font-weight: 400; color: var(--accent-sun);">🌅 A Brighter Future for Sierra Leone</span></h1>
             <p>Honoring Destiny John by ensuring every child, regardless of socio-economic status, has access to quality healthcare, education, and a safe, supportive environment to fulfill their potential.</p>
             <div class="hero-buttons">
-                <a href="#donate" class="btn btn-primary">Donate Now</a>
-                <a href="#vision" class="btn btn-secondary">Learn Our Mission</a>
+                <a href="donate.html" class="btn btn-primary">Donate Now</a>
+                <a href="vision.html" class="btn btn-secondary">Learn Our Mission</a>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT US SECTION -->
-    <section id="about">
-        <div class="container">
-            <div class="content-grid">
-                <div class="text-content">
-                    <h2>About Us</h2>
-                    <p>The Destiny John Foundation was born out of profound love and a deep desire to create lasting change. We are a registered non-profit organization dedicated to transforming the lives of vulnerable children in Sierra Leone.</p>
-                    <p>Through compassion, community partnership, and strategic interventions, we strive to build a world where no child is left behind, and every child is given the tools they need to thrive.</p>
-                </div>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Children smiling and playing">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- OUR STORY SECTION -->
-    <section id="story" class="section-light">
-        <div class="container">
-            <div class="content-grid">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80" alt="A photo representing hope and children">
-                </div>
-                <div class="text-content">
-                    <h2>Our Story</h2>
-                    <p>Destiny John was a bright, loving, and incredible soul. Though their time with us was too short, their impact on our lives and the lives of others was immeasurable.</p>
-                    <p>We created this foundation to ensure that Destiny John's legacy lives on. By channeling our love into action, we hope to build a brighter, healthier future for the children of Sierra Leone, honoring the beautiful life we were blessed to share.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- VISION & MISSION SECTION -->
-    <section id="vision">
-        <div class="container">
-            <h2>Vision & Mission</h2>
-            <div class="content-grid">
-                <div class="text-content">
-                    <div class="vision-mission-box">
-                        <h3>️ Our Vision</h3>
-                        <p style="color: var(--text-dark); margin-bottom: 0;">A Sierra Leone where every child, regardless of socio-economic status, has access to quality healthcare, quality education, and the opportunity to fulfill their potential in a safe, supportive environment.</p>
-                    </div>
-                    <div class="vision-mission-box" style="border-left-color: var(--primary-color);">
-                        <h3>🎯 Our Mission</h3>
-                        <p style="color: var(--text-dark); margin-bottom: 0;">To reduce under-5 child mortality and enhance child wellbeing through direct pediatric medical intervention, frontline healthcare worker mentorship, child welfare support, and proactive community engagement.</p>
-                    </div>
-                </div>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80" alt="Children in a supportive, hopeful environment">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- OUR IMPACT SECTION -->
-    <section id="impact" class="section-light">
-        <div class="container">
-            <h2>Our Impact</h2>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px auto;">Driven by love, guided by professionalism, and fueled by hope. Your support directly funds these critical areas:</p>
-            
-            <div class="content-grid">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Healthcare workers supporting children">
-                </div>
-                <div class="text-content">
-                    <ul class="impact-list">
-                        <li><strong>Direct Pediatric Medical Intervention:</strong> Providing life-saving treatments, medications, and care to vulnerable children under five.</li>
-                        <li><strong>Frontline Healthcare Worker Mentorship:</strong> Training and supporting local nurses and doctors to build sustainable, long-term healthcare capacity.</li>
-                        <li><strong>Child Welfare Support:</strong> Ensuring access to quality education and safe environments so children can thrive, not just survive.</li>
-                        <li><strong>Proactive Community Engagement:</strong> Educating families and communities on preventative health, nutrition, and child rights.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DONATION SECTION -->
-    <section id="donate" class="donate-section">
-        <div class="container">
-            <h2>Help Us Build a Brighter Tomorrow</h2>
-            <p>Your generous contribution brings quality healthcare and hope to children in Sierra Leone. Together, we can honor Destiny John's legacy by giving every child the chance they deserve.</p>
-            
-            <div class="donation-widget-container">
-                <p style="color: var(--text-dark); padding: 40px 0; font-weight: 600;">
-                    🌸 Your secure donation form will be embedded here. <br> 
-                    <span style="font-weight: 400; font-size: 0.9rem; color: var(--text-light);">Replace this text with your Donorbox or Stripe iframe code.</span>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT US / FOOTER SECTION -->
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-sun">🌅</div>
             <p><strong>Destiny John Foundation</strong></p>
@@ -535,23 +101,11 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR MOBILE MENU TOGGLE -->
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
-        
-        // Toggle menu open/close when hamburger is clicked
-        menuToggle.addEventListener('click', () => {
-            navList.classList.toggle('active');
-        });
-
-        // Close the menu automatically when a link is clicked
-        document.querySelectorAll('#nav-list a').forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('active');
-            });
-        });
+        menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
+        document.querySelectorAll('#nav-list a').forEach(link => { link.addEventListener('click', () => { navList.classList.remove('active'); }); });
     </script>
-
 </body>
 </html>
