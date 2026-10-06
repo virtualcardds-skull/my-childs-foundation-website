@@ -84,12 +84,13 @@
         .btn {
             display: inline-block;
             padding: 14px 32px;
-            border-radius: 50px; /* Softer, more compassionate shape */
+            border-radius: 50px;
             font-weight: 600;
             font-size: 1rem;
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
             border: none;
+            text-align: center;
         }
 
         .btn:hover {
@@ -117,16 +118,17 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 10px 0; /* Added slight padding to let the larger logo breathe */
+            padding: 10px 0;
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 5px 20px;
             max-width: 1100px;
             margin: 0 auto;
+            position: relative;
         }
 
         .logo {
@@ -135,17 +137,26 @@
             gap: 10px;
         }
 
-        /* UPDATED LOGO SIZING TO MAKE TEXT READABLE */
+        /* REDUCED LOGO SIZE FOR BETTER PROPORTION */
         .logo img {
-            height: 130px; /* Increased from 70px so the text inside the logo is clear */
+            height: 90px; 
             width: auto;
             object-fit: contain;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            padding: 5px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
             gap: 30px;
+            align-items: center;
         }
 
         nav a {
@@ -159,11 +170,17 @@
             color: var(--secondary-color);
         }
 
+        /* Nav Donate Button Styling */
+        nav .btn-primary {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            color: white !important;
+        }
+
         /* =========================================
            5. HERO SECTION
            ========================================= */
         .hero {
-            /* Navy blue gradient with a subtle warm coral/sun glow at the bottom */
             background: linear-gradient(180deg, rgba(26, 54, 93, 0.9) 0%, rgba(26, 54, 93, 0.75) 100%), 
                         url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover;
             color: white;
@@ -172,7 +189,6 @@
             position: relative;
         }
 
-        /* Subtle rising sun effect at the bottom of the hero */
         .hero::after {
             content: '';
             position: absolute;
@@ -257,7 +273,7 @@
         }
 
         .impact-list li::before {
-            content: '❤️'; /* Heart symbol for care */
+            content: '❤️'; 
             position: absolute;
             left: 0;
             top: 2px;
@@ -297,7 +313,7 @@
            8. FOOTER
            ========================================= */
         footer {
-            background-color: #0F172A; /* Darker navy for footer */
+            background-color: #0F172A;
             color: #A0AEC0;
             text-align: center;
             padding: 50px 20px;
@@ -325,27 +341,43 @@
         }
 
         /* =========================================
-           9. MOBILE RESPONSIVENESS
+           9. MOBILE RESPONSIVENESS & HAMBURGER MENU
            ========================================= */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             h2 { font-size: 1.75rem; }
             .hero h1 { font-size: 2.25rem; }
             
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
+            .logo img {
+                height: 80px; /* Reduced mobile logo size */
             }
 
-            /* UPDATED MOBILE LOGO SIZING */
-            .logo img {
-                height: 100px; /* Increased from 60px for mobile readability */
+            .menu-toggle {
+                display: block; /* Show hamburger on mobile */
             }
 
             nav ul {
+                display: none; /* Hidden by default on mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-white);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                padding: 20px;
                 gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
+                text-align: center;
+                border-top: 1px solid #eee;
+            }
+
+            nav ul.active {
+                display: flex; /* Show when active class is added via JS */
+            }
+
+            nav .btn-primary {
+                width: 100%;
+                display: block;
             }
 
             .content-grid {
@@ -354,12 +386,12 @@
             }
             
             .content-grid .text-content {
-                order: 2; /* Put text below image on mobile */
+                order: 2;
             }
         }
     </style>
 </head>
-<body>
+<body id="home">
 
     <!-- HEADER -->
     <header>
@@ -367,12 +399,18 @@
             <div class="logo">
                 <img src="logo.png" alt="Destiny John Foundation Logo - Every Child Deserves a Chance">
             </div>
+            
+            <!-- Hamburger Menu Icon for Mobile -->
+            <div class="menu-toggle" id="mobile-menu">
+                &#9776;
+            </div>
+
             <nav>
-                <ul>
-                    <li><a href="#about">Our Story</a></li>
-                    <li><a href="#vision">Vision & Mission</a></li>
-                    <li><a href="#impact">Our Impact</a></li>
-                    <li><a href="#donate">Donate</a></li>
+                <ul id="nav-list">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#donate" class="btn btn-primary">Donate</a></li>
                 </ul>
             </nav>
         </div>
@@ -385,15 +423,15 @@
             <p>Honoring Destiny John by ensuring every child, regardless of socio-economic status, has access to quality healthcare, education, and a safe, supportive environment to fulfill their potential.</p>
             <div class="hero-buttons">
                 <a href="#donate" class="btn btn-primary">Donate Now</a>
-                <a href="#vision" class="btn btn-secondary">Learn Our Mission</a>
+                <a href="#about" class="btn btn-secondary">About Us</a>
             </div>
         </div>
     </section>
 
-    <!-- VISION & MISSION SECTION -->
-    <section id="vision" class="section-light">
+    <!-- ABOUT US / VISION & MISSION SECTION -->
+    <section id="about" class="section-light">
         <div class="container">
-            <h2>Our Purpose</h2>
+            <h2>About Us</h2>
             <div class="content-grid">
                 <div class="text-content">
                     <div class="vision-mission-box">
@@ -406,7 +444,6 @@
                     </div>
                 </div>
                 <div>
-                    <!-- Replace with a photo representing healthcare, children, or community in Sierra Leone -->
                     <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80" alt="Children in a supportive, hopeful environment">
                 </div>
             </div>
@@ -421,7 +458,6 @@
             
             <div class="content-grid">
                 <div>
-                    <!-- Replace with a photo representing medical care or community support -->
                     <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Healthcare workers supporting children">
                 </div>
                 <div class="text-content">
@@ -443,9 +479,6 @@
             <p>Your generous contribution brings quality healthcare and hope to children in Sierra Leone. Together, we can honor Destiny John's legacy by giving every child the chance they deserve.</p>
             
             <div class="donation-widget-container">
-                <!-- ==========================================
-                     PASTE YOUR DONORBOX / STRIPE IFRAME HERE 
-                     ========================================== -->
                 <p style="color: var(--text-dark); padding: 40px 0; font-weight: 600;">
                     🌸 Your secure donation form will be embedded here. <br> 
                     <span style="font-weight: 400; font-size: 0.9rem; color: var(--text-light);">Replace this text with your Donorbox or Stripe iframe code.</span>
@@ -454,7 +487,7 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- CONTACT / FOOTER SECTION -->
     <footer id="contact">
         <div class="container">
             <div class="footer-sun">🌅</div>
@@ -466,6 +499,24 @@
             <p style="margin-top: 25px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Destiny John Foundation. All rights reserved. | Built with ❤️ for the children of Sierra Leone.</p>
         </div>
     </footer>
+
+    <!-- JAVASCRIPT FOR MOBILE MENU TOGGLE -->
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        
+        // Toggle menu open/close when hamburger is clicked
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Close the menu automatically when a link is clicked
+        document.querySelectorAll('#nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
