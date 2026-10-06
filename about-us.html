@@ -13,7 +13,7 @@
 
     <style>
         /* =========================================
-           1. CSS VARIABLES & RESET (SAME AS HOME)
+           1. CSS VARIABLES & RESET
            ========================================= */
         :root {
             --primary-color: #1A365D;
@@ -130,7 +130,7 @@
         }
 
         /* =========================================
-           7. VALUES SECTION (CREATIVE CARDS)
+           7. VALUES SECTION
            ========================================= */
         .values-section { padding: 100px 20px; background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%); }
         .values-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
@@ -168,65 +168,122 @@
         .value-card p { font-size: 0.9rem; margin-bottom: 0; }
 
         /* =========================================
-           8. TIMELINE SECTION
+           8. NEW CREATIVE JOURNEY SECTION (ZIG-ZAG PATH)
            ========================================= */
-        .timeline-section { padding: 100px 20px; background: var(--primary-color); color: white; position: relative; overflow: hidden; }
-        .timeline-section::before {
-            content: '❤️';
-            position: absolute;
-            font-size: 25rem;
-            opacity: 0.03;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .journey-section { 
+            padding: 100px 20px; 
+            background: linear-gradient(180deg, var(--primary-color) 0%, #0F172A 100%); 
+            color: white; 
+            position: relative; 
+            overflow: hidden; 
         }
-        .timeline-section h2 { color: white; position: relative; z-index: 1; }
-        .timeline-section h2::after {
+        /* Subtle background pattern */
+        .journey-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 0;
+        }
+        .journey-section h2 { color: white; position: relative; z-index: 1; }
+        .journey-section h2::after {
             content: '';
             display: block;
             width: 80px;
             height: 4px;
-            background: var(--accent-sun);
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun));
             margin: 15px auto 0;
             border-radius: 2px;
         }
-        .timeline { max-width: 900px; margin: 60px auto 0; position: relative; z-index: 1; }
-        .timeline::before {
-            content: '';
+        
+        .journey-container { max-width: 1000px; margin: 60px auto 0; position: relative; z-index: 1; }
+        
+        /* The glowing center line */
+        .journey-line {
             position: absolute;
             left: 50%;
             top: 0;
             bottom: 0;
-            width: 3px;
-            background: rgba(255,255,255,0.2);
-            transform: translateX(-50%);
-        }
-        .timeline-item { display: flex; margin-bottom: 50px; position: relative; }
-        .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
-        .timeline-content {
-            width: 45%;
+            width: 4px;
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: transform 0.3s;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
-        .timeline-content:hover { transform: scale(1.03); background: rgba(255,255,255,0.15); }
-        .timeline-content h3 { color: var(--accent-sun); font-size: 1.3rem; margin-bottom: 8px; }
-        .timeline-content .year { font-size: 0.9rem; color: var(--secondary-color); font-weight: 700; margin-bottom: 10px; display: block; }
-        .timeline-content p { color: rgba(255,255,255,0.9); font-size: 0.95rem; margin-bottom: 0; }
-        .timeline-dot {
+        .journey-line::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to bottom, var(--secondary-color), var(--accent-sun));
+            animation: flowDown 4s linear infinite;
+            border-radius: 2px;
+        }
+        @keyframes flowDown {
+            0% { top: -50%; }
+            100% { top: 100%; }
+        }
+
+        .journey-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        .journey-item:nth-child(even) { flex-direction: row-reverse; }
+        
+        .journey-content {
+            width: 42%;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+        }
+        .journey-content:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+            border-color: var(--secondary-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .journey-content h3 { color: var(--accent-sun); font-size: 1.4rem; margin-bottom: 10px; }
+        .journey-content p { color: rgba(255,255,255,0.85); font-size: 0.95rem; margin-bottom: 0; line-height: 1.6; }
+
+        /* Floating Year Badge */
+        .journey-year {
+            width: 42%;
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-sun));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.8;
+            transition: all 0.4s;
+        }
+        .journey-item:hover .journey-year { opacity: 1; transform: scale(1.1); }
+
+        /* Glowing Center Dot */
+        .journey-dot {
             position: absolute;
             left: 50%;
-            top: 30px;
-            width: 20px;
-            height: 20px;
-            background: var(--secondary-color);
-            border: 4px solid var(--primary-color);
+            top: 50%;
+            width: 24px;
+            height: 24px;
+            background: var(--bg-white);
+            border: 4px solid var(--secondary-color);
             border-radius: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
             z-index: 2;
+            box-shadow: 0 0 20px var(--secondary-color), 0 0 40px rgba(255, 138, 128, 0.5);
+            transition: all 0.3s;
+        }
+        .journey-item:hover .journey-dot {
+            transform: translate(-50%, -50%) scale(1.3);
+            box-shadow: 0 0 30px var(--accent-sun), 0 0 60px rgba(251, 211, 141, 0.6);
         }
 
         /* =========================================
@@ -283,7 +340,7 @@
             overflow: hidden;
         }
         .promise-section::before {
-            content: '🌅';
+            content: '';
             position: absolute;
             font-size: 20rem;
             opacity: 0.08;
@@ -306,7 +363,7 @@
         .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
         /* =========================================
-           12. FOOTER (SAME AS HOME)
+           12. FOOTER
            ========================================= */
         .main-footer { background-color: var(--bg-white); padding: 70px 20px 30px; border-top: 1px solid #e2e8f0; }
         .footer-container { max-width: 1100px; margin: 0 auto; }
@@ -361,10 +418,13 @@
             
             .values-grid { grid-template-columns: 1fr 1fr; }
             
-            .timeline::before { left: 20px; }
-            .timeline-item, .timeline-item:nth-child(odd) { flex-direction: row; }
-            .timeline-content { width: 80%; margin-left: 50px; }
-            .timeline-dot { left: 20px; }
+            /* Mobile Journey adjustments */
+            .journey-line { left: 20px; }
+            .journey-item, .journey-item:nth-child(even) { flex-direction: column; align-items: flex-start; margin-left: 50px; margin-bottom: 50px; }
+            .journey-content { width: 100%; }
+            .journey-year { width: 100%; text-align: left; font-size: 2rem; margin-bottom: 10px; }
+            .journey-dot { left: 20px; top: 20px; transform: translate(-50%, 0); }
+            .journey-item:hover .journey-dot { transform: translate(-50%, 0) scale(1.3); }
             
             .team-grid { grid-template-columns: 1fr; }
             
@@ -389,7 +449,7 @@
             <nav>
                 <ul id="nav-list">
                     <li><a href="index">Home</a></li>
-                    <li><a href="about" class="active">About Us</a></li>
+                    <li><a href="about-us" class="active">About Us</a></li>
                     <li><a href="story">Our Story</a></li>
                     <li><a href="vision">Vision & Mission</a></li>
                     <li><a href="impact">Our Impact</a></li>
@@ -460,43 +520,53 @@
         </div>
     </section>
 
-    <!-- TIMELINE SECTION -->
-    <section class="timeline-section">
+    <!-- NEW CREATIVE JOURNEY SECTION (ZIG-ZAG PATH) -->
+    <section class="journey-section">
         <div class="container">
             <h2>Our Journey So Far</h2>
         </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <span class="year">2024</span>
+        <div class="journey-container">
+            <!-- Glowing Center Line -->
+            <div class="journey-line"></div>
+
+            <!-- Milestone 1 -->
+            <div class="journey-item">
+                <div class="journey-content">
                     <h3>The Foundation is Born</h3>
-                    <p>Destiny John Foundation is officially established with a clear mission to reduce under-5 child mortality in Sierra Leone.</p>
+                    <p>Destiny John Foundation is officially established with a clear, unwavering mission to reduce under-5 child mortality and bring hope to families across Sierra Leone.</p>
                 </div>
-                <div class="timeline-dot"></div>
+                <div class="journey-dot"></div>
+                <div class="journey-year">2024</div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <span class="year">2025</span>
+
+            <!-- Milestone 2 -->
+            <div class="journey-item">
+                <div class="journey-content">
                     <h3>First Medical Outreach</h3>
-                    <p>Our team conducted our first free pediatric health screening, reaching over 200 children in underserved communities.</p>
+                    <p>Our team hit the ground running, conducting our first free pediatric health screening and reaching over 200 children in underserved communities.</p>
                 </div>
-                <div class="timeline-dot"></div>
+                <div class="journey-dot"></div>
+                <div class="journey-year">2025</div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <span class="year">2025</span>
+
+            <!-- Milestone 3 -->
+            <div class="journey-item">
+                <div class="journey-content">
                     <h3>Healthcare Worker Training</h3>
-                    <p>Launched our frontline mentorship program, training 50+ local nurses and community health workers.</p>
+                    <p>We launched our frontline mentorship program, empowering and training 50+ local nurses and community health workers to provide sustainable care.</p>
                 </div>
-                <div class="timeline-dot"></div>
+                <div class="journey-dot"></div>
+                <div class="journey-year">2025</div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <span class="year">2026</span>
+
+            <!-- Milestone 4 -->
+            <div class="journey-item">
+                <div class="journey-content">
                     <h3>Growing Our Impact</h3>
-                    <p>Expanded to 25+ communities, launched education support programs, and built partnerships with local hospitals.</p>
+                    <p>Expanded our reach to 25+ communities, launched comprehensive education support programs, and built vital partnerships with local hospitals.</p>
                 </div>
-                <div class="timeline-dot"></div>
+                <div class="journey-dot"></div>
+                <div class="journey-year">2026</div>
             </div>
         </div>
     </section>
@@ -590,7 +660,7 @@
                 <div class="footer-column">
                     <h3>Foundation</h3>
                     <ul>
-                        <li><a href="about">About Us</a></li>
+                        <li><a href="about-us">About Us</a></li>
                         <li><a href="story">Our Story</a></li>
                         <li><a href="impact">Our Impact</a></li>
                         <li><a href="#">Our Team</a></li>
