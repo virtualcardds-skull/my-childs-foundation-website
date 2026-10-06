@@ -4,50 +4,229 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Destiny John Foundation - Home</title>
-    <meta name="description" content="The Destiny John Foundation is dedicated to reducing under-5 child mortality and enhancing child wellbeing in Sierra Leone.">
+    <meta name="description" content="The Destiny John Foundation is dedicated to reducing under-5 child mortality and enhancing child wellbeing in Sierra Leone through healthcare, education, and community support.">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
-        :root { --primary-color: #1A365D; --secondary-color: #FF8A80; --accent-sun: #FBD38D; --text-dark: #1A202C; --text-light: #4A5568; --bg-light: #FFF5F5; --bg-white: #FFFFFF; --font-heading: 'Merriweather', serif; --font-body: 'Open Sans', sans-serif; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); color: var(--text-dark); line-height: 1.7; background-color: var(--bg-white); }
-        img { max-width: 100%; height: auto; display: block; }
-        a { text-decoration: none; color: inherit; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        h1, h2, h3 { font-family: var(--font-heading); color: var(--primary-color); margin-bottom: 20px; }
-        h1 { font-size: 2.5rem; } h2 { font-size: 2rem; text-align: center; margin-bottom: 30px; }
+        /* =========================================
+           1. CSS VARIABLES & RESET
+           ========================================= */
+        :root {
+            --primary-color: #1A365D;      /* Navy Blue: Strength, trust, professionalism */
+            --secondary-color: #FF8A80;    /* Soft Coral/Pink: Love, tenderness, compassion */
+            --accent-sun: #FBD38D;         /* Rising Sun: Hope and a brighter future */
+            --text-dark: #1A202C;
+            --text-light: #4A5568;
+            --bg-light: #FFF5F5;           /* Very soft pink/white tint */
+            --bg-white: #FFFFFF;           /* White: Innocence and peace */
+            --font-heading: 'Merriweather', serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--bg-white);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================================
+           2. LAYOUT & TYPOGRAPHY
+           ========================================= */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; text-align: center; margin-bottom: 30px; }
         p { margin-bottom: 15px; color: var(--text-light); }
-        .btn { display: inline-block; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; text-align: center; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(26, 54, 93, 0.2); }
-        .btn-primary { background-color: var(--secondary-color); color: var(--bg-white); }
-        .btn-secondary { background-color: transparent; color: var(--bg-white); border: 2px solid var(--bg-white); }
-        header { background-color: var(--bg-white); box-shadow: 0 2px 15px rgba(26, 54, 93, 0.08); position: sticky; top: 0; z-index: 1000; padding: 10px 0; }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 5px 20px; max-width: 1100px; margin: 0 auto; position: relative; }
-        .logo { display: flex; align-items: center; gap: 10px; }
-        .logo img { height: 90px; width: auto; object-fit: contain; }
-        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); padding: 5px; }
-        nav ul { display: flex; list-style: none; gap: 18px; align-items: center; }
-        nav a { font-weight: 600; color: var(--text-dark); transition: color 0.3s; font-size: 0.9rem; }
-        nav a:hover, nav a.active { color: var(--secondary-color); }
-        nav .btn-primary { padding: 10px 24px; font-size: 0.9rem; color: white !important; }
-        .hero { background: linear-gradient(180deg, rgba(26, 54, 93, 0.9) 0%, rgba(26, 54, 93, 0.75) 100%), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover; color: white; text-align: center; padding: 150px 20px; position: relative; min-height: 80vh; display: flex; align-items: center; justify-content: center;}
-        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun), var(--secondary-color)); }
-        .hero h1 { color: white; font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
-        .hero p { color: rgba(255,255,255,0.95); font-size: 1.25rem; max-width: 750px; margin: 0 auto 35px auto; }
-        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-        .page-content { padding: 90px 0; }
-        .section-light { background-color: var(--bg-light); }
-        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .content-grid img { border-radius: 12px; box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15); }
-        
-        /* NEW FOOTER STYLES */
+
+        /* =========================================
+           3. BUTTONS
+           ========================================= */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(26, 54, 93, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--bg-white);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--bg-white);
+            border: 2px solid var(--bg-white);
+        }
+
+        /* =========================================
+           4. HEADER & NAVIGATION
+           ========================================= */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 15px rgba(26, 54, 93, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 90px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            padding: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 18px;
+            align-items: center;
+        }
+
+        nav a {
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+
+        nav .btn-primary {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            color: white !important;
+        }
+
+        /* =========================================
+           5. HERO SECTION
+           ========================================= */
+        .hero {
+            background: linear-gradient(180deg, rgba(26, 54, 93, 0.9) 0%, rgba(26, 54, 93, 0.75) 100%), 
+                        url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun), var(--secondary-color));
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.25rem;
+            max-width: 750px;
+            margin: 0 auto 35px auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* =========================================
+           6. NEWSLETTER SECTION
+           ========================================= */
         .newsletter-section {
             background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
-            padding: 60px 20px;
+            padding: 80px 20px;
             color: white;
         }
+
         .newsletter-container {
             max-width: 1100px;
             margin: 0 auto;
@@ -56,30 +235,36 @@
             gap: 50px;
             align-items: center;
         }
+
         .newsletter-image {
             text-align: center;
         }
-        .newsletter-image img {
-            max-width: 300px;
-            margin: 0 auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.9;
+
+        .newsletter-image svg {
+            width: 200px;
+            height: 200px;
+            color: rgba(255,255,255,0.2);
         }
+
         .newsletter-content h2 {
             color: white;
             font-size: 2rem;
             margin-bottom: 15px;
+            text-align: left;
         }
+
         .newsletter-content p {
             color: rgba(255,255,255,0.9);
             margin-bottom: 25px;
             font-size: 1.05rem;
         }
+
         .newsletter-form {
             display: flex;
             gap: 10px;
             max-width: 500px;
         }
+
         .newsletter-form input {
             flex: 1;
             padding: 14px 20px;
@@ -91,13 +276,16 @@
             color: white;
             backdrop-filter: blur(10px);
         }
+
         .newsletter-form input::placeholder {
             color: rgba(255,255,255,0.7);
         }
+
         .newsletter-form input:focus {
             outline: none;
             background: rgba(255,255,255,0.3);
         }
+
         .newsletter-form button {
             padding: 14px 32px;
             border-radius: 50px;
@@ -109,49 +297,61 @@
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
         }
+
         .newsletter-form button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.2);
         }
+
         .newsletter-note {
             margin-top: 15px;
             font-size: 0.85rem;
             color: rgba(255,255,255,0.8);
         }
+
         .newsletter-note a {
             color: var(--accent-sun);
             text-decoration: underline;
         }
-        
+
+        /* =========================================
+           7. MAIN FOOTER
+           ========================================= */
         .main-footer {
             background-color: var(--bg-white);
             padding: 70px 20px 30px;
             border-top: 1px solid #e2e8f0;
         }
+
         .footer-container {
             max-width: 1100px;
             margin: 0 auto;
         }
+
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
             gap: 40px;
             margin-bottom: 50px;
         }
+
         .footer-brand .logo img {
             height: 70px;
             margin-bottom: 20px;
         }
+
         .footer-brand p {
             color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 20px;
         }
+
         .social-icons {
             display: flex;
             gap: 15px;
         }
+
         .social-icons a {
             width: 40px;
             height: 40px;
@@ -161,38 +361,47 @@
             align-items: center;
             justify-content: center;
             color: var(--primary-color);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
             transition: all 0.3s;
         }
+
         .social-icons a:hover {
             background: var(--secondary-color);
             color: white;
             transform: translateY(-3px);
         }
+
         .footer-column h3 {
             font-size: 1.1rem;
             margin-bottom: 25px;
             color: var(--primary-color);
         }
+
         .footer-column ul {
             list-style: none;
         }
+
         .footer-column ul li {
             margin-bottom: 12px;
         }
+
         .footer-column ul li a {
             color: var(--text-light);
             font-size: 0.95rem;
             transition: color 0.3s;
         }
+
         .footer-column ul li a:hover {
             color: var(--secondary-color);
         }
+
         .contact-info {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
+
         .contact-item {
             display: flex;
             align-items: center;
@@ -200,12 +409,14 @@
             color: var(--text-light);
             font-size: 0.95rem;
         }
+
         .contact-item svg {
             width: 20px;
             height: 20px;
             color: var(--secondary-color);
             flex-shrink: 0;
         }
+
         .footer-bottom {
             border-top: 1px solid #e2e8f0;
             padding-top: 30px;
@@ -215,53 +426,96 @@
             flex-wrap: wrap;
             gap: 20px;
         }
+
         .footer-bottom p {
             color: var(--text-light);
             font-size: 0.9rem;
         }
+
         .footer-links {
             display: flex;
             gap: 30px;
             flex-wrap: wrap;
         }
+
         .footer-links a {
             color: var(--text-light);
             font-size: 0.9rem;
             transition: color 0.3s;
         }
+
         .footer-links a:hover {
             color: var(--secondary-color);
         }
-        
+
+        /* =========================================
+           8. MOBILE RESPONSIVENESS
+           ========================================= */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; } h2 { font-size: 1.75rem; } .hero h1 { font-size: 2.25rem; }
-            .logo img { height: 80px; }
-            .menu-toggle { display: block; }
-            nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--bg-white); box-shadow: 0 10px 20px rgba(0,0,0,0.1); padding: 20px; gap: 20px; text-align: center; border-top: 1px solid #eee; }
-            nav ul.active { display: flex; }
-            nav .btn-primary { width: 100%; display: block; }
-            .content-grid { grid-template-columns: 1fr; gap: 40px; }
-            .content-grid .text-content { order: 2; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            .hero h1 { font-size: 2.25rem; }
             
+            .logo img {
+                height: 80px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-white);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                padding: 20px;
+                gap: 20px;
+                text-align: center;
+                border-top: 1px solid #eee;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav .btn-primary {
+                width: 100%;
+                display: block;
+            }
+
             .newsletter-container {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
+
+            .newsletter-content h2 {
+                text-align: center;
+            }
+
             .newsletter-form {
                 max-width: 100%;
                 flex-direction: column;
             }
+
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 30px;
             }
+
             .footer-brand {
                 grid-column: 1 / -1;
                 text-align: center;
             }
+
             .social-icons {
                 justify-content: center;
             }
+
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
@@ -270,12 +524,19 @@
     </style>
 </head>
 <body>
+
+    <!-- HEADER -->
     <header>
         <div class="nav-container">
             <div class="logo">
-                <a href="index.html"><img src="logo.png" alt="Destiny John Foundation Logo"></a>
+                <a href="index.html"><img src="logo.png" alt="Destiny John Foundation Logo - Every Child Deserves a Chance"></a>
             </div>
-            <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+            
+            <!-- Hamburger Menu Icon for Mobile -->
+            <div class="menu-toggle" id="mobile-menu">
+                &#9776;
+            </div>
+
             <nav>
                 <ul id="nav-list">
                     <li><a href="index.html" class="active">Home</a></li>
@@ -290,6 +551,7 @@
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="container">
             <h1>Every Child Deserves a Chance <br><span style="font-size: 0.6em; font-weight: 400; color: var(--accent-sun);">🌅 A Brighter Future for Sierra Leone</span></h1>
@@ -305,16 +567,17 @@
     <section class="newsletter-section">
         <div class="newsletter-container">
             <div class="newsletter-image">
-                <svg width="280" height="280" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Decorative SVG Icon -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"/>
                     <path d="M11 7H13V9H11V7ZM11 11H13V17H11V11Z" fill="currentColor"/>
                 </svg>
             </div>
             <div class="newsletter-content">
-                <h2>Subscribe to our newsletter to get updates to our latest programs</h2>
+                <h2>Subscribe to our newsletter to get updates on our latest programs</h2>
                 <p>Stay informed about our initiatives, success stories, and ways you can help children in Sierra Leone.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email" required>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <input type="email" placeholder="Enter your email address" required>
                     <button type="submit">Subscribe</button>
                 </form>
                 <p class="newsletter-note">You will be able to unsubscribe at any time. <br>Read our privacy policy <a href="#">here</a>.</p>
@@ -326,6 +589,7 @@
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-grid">
+                <!-- Brand Column -->
                 <div class="footer-brand">
                     <div class="logo">
                         <img src="logo.png" alt="Destiny John Foundation">
@@ -334,12 +598,12 @@
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook">f</a>
                         <a href="#" aria-label="Twitter">𝕏</a>
-                        <a href="#" aria-label="Instagram"></a>
+                        <a href="#" aria-label="Instagram">📷</a>
                         <a href="#" aria-label="LinkedIn">in</a>
-                        <a href="#" aria-label="YouTube">▶</a>
                     </div>
                 </div>
                 
+                <!-- Foundation Column -->
                 <div class="footer-column">
                     <h3>Foundation</h3>
                     <ul>
@@ -351,6 +615,7 @@
                     </ul>
                 </div>
                 
+                <!-- Programs Column -->
                 <div class="footer-column">
                     <h3>Programs</h3>
                     <ul>
@@ -362,6 +627,7 @@
                     </ul>
                 </div>
                 
+                <!-- Get Involved Column -->
                 <div class="footer-column">
                     <h3>Get Involved</h3>
                     <ul>
@@ -373,6 +639,7 @@
                     </ul>
                 </div>
                 
+                <!-- Contact Column -->
                 <div class="footer-column">
                     <h3>Contact Us</h3>
                     <div class="contact-info">
@@ -386,12 +653,13 @@
                         </div>
                         <div class="contact-item">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <span>[Your City], Sierra Leone</span>
+                            <span>Freetown, Sierra Leone</span>
                         </div>
                     </div>
                 </div>
             </div>
             
+            <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
                 <p>© 2026 Destiny John Foundation. All rights reserved. | Built with ❤️ for the children of Sierra Leone.</p>
                 <div class="footer-links">
@@ -404,11 +672,23 @@
         </div>
     </footer>
 
+    <!-- JAVASCRIPT FOR MOBILE MENU TOGGLE -->
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
-        menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
-        document.querySelectorAll('#nav-list a').forEach(link => { link.addEventListener('click', () => { navList.classList.remove('active'); }); });
+        
+        // Toggle menu open/close when hamburger is clicked
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Close the menu automatically when a link is clicked
+        document.querySelectorAll('#nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
     </script>
+
 </body>
 </html>
