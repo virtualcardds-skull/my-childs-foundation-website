@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* ========================================= 
+        /* =========================================
            1. CSS VARIABLES & RESET
            ========================================= */
         :root {
@@ -182,10 +182,9 @@
            13. FLOATING NEWSLETTER SECTION (COMPACT)
            ========================================= */
         .newsletter-wrapper { background-color: var(--bg-light); padding: 40px 20px 0; position: relative; }
-        .newsletter-card { max-width: 1100px; margin: 0 auto; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); border-radius: 20px; padding: 30px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 25px; align-items: center; position: relative; top: 60px; box-shadow: 0 20px 60px rgba(26, 54, 93, 0.3); }
+        .newsletter-card { max-width: 1100px; margin: 0 auto; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); border-radius: 20px; padding: 30px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 25px; align-items: center; position: relative; top: 60px; z-index: 10; box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4); }
         .newsletter-image { text-align: center; }
         
-        /* NEW STYLING FOR THE NEWSLETTER IMAGE */
         .newsletter-image img {
             width: 100%;
             max-width: 240px;
@@ -346,7 +345,7 @@
             <div class="program-card">
                 <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80');"></div>
                 <div class="program-content">
-                    <h3>📚 Education Support</h3>
+                    <h3> Education Support</h3>
                     <p>Ensuring every child has access to quality education and the resources they need to learn and thrive.</p>
                     <a href="#" class="program-link">Learn More →</a>
                 </div>
@@ -477,7 +476,6 @@
     <div class="newsletter-wrapper">
         <div class="newsletter-card">
             <div class="newsletter-image">
-                <!-- REPLACED SVG WITH A BEAUTIFUL, RELEVANT IMAGE -->
                 <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=500&q=80" alt="A smiling child representing hope and the future of Sierra Leone">
             </div>
             <div class="newsletter-content">
