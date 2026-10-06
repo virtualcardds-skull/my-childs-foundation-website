@@ -41,10 +41,198 @@
         .section-light { background-color: var(--bg-light); }
         .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .content-grid img { border-radius: 12px; box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15); }
-        footer { background-color: #0F172A; color: #A0AEC0; text-align: center; padding: 50px 20px; }
-        footer p { color: #A0AEC0; font-size: 0.9rem; margin-bottom: 8px; }
-        footer a { color: var(--secondary-color); font-weight: 600; }
-        .footer-sun { color: var(--accent-sun); font-size: 1.5rem; margin-bottom: 15px; }
+        
+        /* NEW FOOTER STYLES */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
+            padding: 60px 20px;
+            color: white;
+        }
+        .newsletter-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .newsletter-image {
+            text-align: center;
+        }
+        .newsletter-image img {
+            max-width: 300px;
+            margin: 0 auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+        .newsletter-content h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .newsletter-content p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            background: rgba(255,255,255,0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        .newsletter-form input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.3);
+        }
+        .newsletter-form button {
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            background: var(--secondary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        .newsletter-note {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+        }
+        .newsletter-note a {
+            color: var(--accent-sun);
+            text-decoration: underline;
+        }
+        
+        .main-footer {
+            background-color: var(--bg-white);
+            padding: 70px 20px 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        .footer-brand .logo img {
+            height: 70px;
+            margin-bottom: 20px;
+        }
+        .footer-brand p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        .social-icons a:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        .footer-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        .footer-column ul li a {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            color: var(--secondary-color);
+            flex-shrink: 0;
+        }
+        .footer-bottom {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-bottom p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
         @media (max-width: 768px) {
             h1 { font-size: 2rem; } h2 { font-size: 1.75rem; } .hero h1 { font-size: 2.25rem; }
             .logo img { height: 80px; }
@@ -54,6 +242,30 @@
             nav .btn-primary { width: 100%; display: block; }
             .content-grid { grid-template-columns: 1fr; gap: 40px; }
             .content-grid .text-content { order: 2; }
+            
+            .newsletter-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .newsletter-form {
+                max-width: 100%;
+                flex-direction: column;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .footer-brand {
+                grid-column: 1 / -1;
+                text-align: center;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -89,15 +301,106 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-sun">🌅</div>
-            <p><strong>Destiny John Foundation</strong></p>
-            <p>Contact us: <a href="mailto:info@destinyjohnfoundation.org">info@destinyjohnfoundation.org</a></p>
-            <p>Mailing Address: [Your Official Mailing Address, City, Country]</p>
-            <br>
-            <p>The Destiny John Foundation is a registered non-profit organization. <br>Registration / Tax ID: [XX-XXXXXXX]. Donations are tax-deductible to the fullest extent allowed by law.</p>
-            <p style="margin-top: 25px; font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Destiny John Foundation. All rights reserved. | Built with ❤️ for the children of Sierra Leone.</p>
+    <!-- NEWSLETTER SECTION -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-image">
+                <svg width="280" height="280" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"/>
+                    <path d="M11 7H13V9H11V7ZM11 11H13V17H11V11Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="newsletter-content">
+                <h2>Subscribe to our newsletter to get updates to our latest programs</h2>
+                <p>Stay informed about our initiatives, success stories, and ways you can help children in Sierra Leone.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="newsletter-note">You will be able to unsubscribe at any time. <br>Read our privacy policy <a href="#">here</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="logo.png" alt="Destiny John Foundation">
+                    </div>
+                    <p>Honoring Destiny John's legacy by ensuring every child in Sierra Leone has access to quality healthcare, education, and the opportunity to fulfill their potential in a safe, supportive environment.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter">𝕏</a>
+                        <a href="#" aria-label="Instagram"></a>
+                        <a href="#" aria-label="LinkedIn">in</a>
+                        <a href="#" aria-label="YouTube">▶</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Foundation</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="impact.html">Our Impact</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Programs</h3>
+                    <ul>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Community Support</a></li>
+                        <li><a href="#">Mentorship</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Get Involved</h3>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Partner With Us</a></li>
+                        <li><a href="#">Fundraise</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>(+232) XX XXX XXX</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <span>info@destinyjohnfoundation.org</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>[Your City], Sierra Leone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 Destiny John Foundation. All rights reserved. | Built with ❤️ for the children of Sierra Leone.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Legal</a>
+                    <a href="#">Site Map</a>
+                </div>
+            </div>
         </div>
     </footer>
 
