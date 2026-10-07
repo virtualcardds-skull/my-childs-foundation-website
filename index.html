@@ -339,13 +339,13 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <!-- UPDATED: Points to index.html -->
+                <!-- UPDATED: Added class="home-link" for the URL cleaner script -->
                 <a href="index.html" class="home-link"><img src="logo.png" alt="Destiny John Foundation Logo"></a>
             </div>
             <div class="menu-toggle" id="mobile-menu">&#9776;</div>
             <nav>
                 <ul id="nav-list">
-                    <!-- UPDATED: Points to index.html -->
+                    <!-- UPDATED: Added class="home-link" for the URL cleaner script -->
                     <li><a href="index.html" class="active home-link">Home</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     <li><a href="story.html">Our Story</a></li>
@@ -747,29 +747,45 @@
         });
 
         // ==========================================
-        // URL CLEANER: Forces the URL to show only "/index"
+        // GITHUB PAGES URL CLEANER
+        // Forces the URL to maintain exactly ".../my-childs-foundation-website/index"
         // ==========================================
         function cleanUrlToIndex() {
-            // If the URL ends with index.html or is just the root /, change it to /index
-            if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
-                window.history.replaceState(null, null, '/index');
+            const currentPath = window.location.pathname;
+            
+            // Check if the path ends with index.html, is just '/', or is empty
+            if (currentPath.endsWith('index.html') || currentPath === '/' || currentPath === '') {
+                // Find the last slash to safely get the repository folder path (e.g., "/my-childs-foundation-website/")
+                const lastSlashIndex = currentPath.lastIndexOf('/');
+                const basePath = currentPath.substring(0, lastSlashIndex + 1);
+                const newPath = basePath + 'index';
+                
+                // Only replace the URL if it isn't already exactly what we want
+                if (window.location.pathname !== newPath) {
+                    window.history.replaceState(null, document.title, newPath);
+                }
             }
         }
 
-        // Run on page load
+        // Run the cleaner immediately when the page loads
         cleanUrlToIndex();
 
-        // Run when clicking the Logo or Home tab
+        // Handle clicks specifically on the Logo and Home tab
         document.querySelectorAll('.home-link').forEach(link => {
             link.addEventListener('click', function(e) {
-                // If we are already on the home page, just change the URL without reloading
-                if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/index') {
-                    e.preventDefault();
-                    window.history.replaceState(null, null, '/index');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                const currentPath = window.location.pathname;
+                const lastSlashIndex = currentPath.lastIndexOf('/');
+                const basePath = currentPath.substring(0, lastSlashIndex + 1);
+                const targetPath = basePath + 'index';
+
+                // If we are already on the home page (or index.html), prevent the default page reload
+                if (currentPath.endsWith('index.html') || currentPath === targetPath || currentPath === '/') {
+                    e.preventDefault(); // Stop the browser from reloading
+                    window.history.replaceState(null, document.title, targetPath); // Force URL to be exactly "/index"
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smoothly scroll to the top
                 }
-                // If we are on another page, let the link navigate normally to index.html, 
-                // and the page load event above will clean the URL automatically.
+                // If we are on another page (like about-us.html), let the browser navigate to index.html normally.
+                // Once that new page loads, the cleanUrlToIndex() function above will automatically run and fix the URL.
             });
         });
     </script>
