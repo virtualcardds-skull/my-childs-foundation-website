@@ -443,18 +443,19 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <a href="index"><img src="logo.png" alt="Destiny John Foundation Logo"></a>
+                <a href="index.html" class="home-link"><img src="logo.png" alt="Destiny John Foundation Logo"></a>
             </div>
             <div class="menu-toggle" id="mobile-menu">&#9776;</div>
             <nav>
                 <ul id="nav-list">
-                    <li><a href="index">Home</a></li>
-                    <li><a href="about-us" class="active">About Us</a></li>
-                    <li><a href="story">Our Story</a></li>
-                    <li><a href="vision">Vision & Mission</a></li>
-                    <li><a href="impact">Our Impact</a></li>
-                    <li><a href="contact">Contact Us</a></li>
-                    <li><a href="donate" class="btn btn-primary">Donate</a></li>
+                    <li><a href="index.html" class="home-link">Home</a></li>
+                    <!-- UPDATED: Added .html and class="about-us-link" for the URL cleaner script -->
+                    <li><a href="about-us.html" class="active about-us-link">About Us</a></li>
+                    <li><a href="story.html">Our Story</a></li>
+                    <li><a href="vision.html">Vision & Mission</a></li>
+                    <li><a href="impact.html">Our Impact</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="donate.html" class="btn btn-primary">Donate</a></li>
                 </ul>
             </nav>
         </div>
@@ -464,7 +465,7 @@
     <section class="page-hero">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index">Home</a> &nbsp;/&nbsp; About Us
+                <a href="index.html">Home</a> &nbsp;/&nbsp; About Us
             </div>
             <h1>Who We Are</h1>
             <p>A foundation built on love, driven by purpose, and committed to giving every child in Sierra Leone the chance to thrive.</p>
@@ -485,7 +486,7 @@
                 <div class="story-quote">
                     "Every child we help is a piece of Destiny's legacy living on — a smile saved, a life protected, a future secured."
                 </div>
-                <a href="story" class="btn btn-outline">Read Our Full Story →</a>
+                <a href="story.html" class="btn btn-outline">Read Our Full Story →</a>
             </div>
         </div>
     </section>
@@ -629,8 +630,8 @@
             <h2>Join Our Family of Changemakers</h2>
             <p>Whether you donate, volunteer, or simply share our story — you become part of Destiny's legacy.</p>
             <div class="cta-buttons">
-                <a href="donate" class="btn btn-primary">Make a Donation</a>
-                <a href="contact" class="btn btn-outline">Get In Touch</a>
+                <a href="donate.html" class="btn btn-primary">Make a Donation</a>
+                <a href="contact.html" class="btn btn-outline">Get In Touch</a>
             </div>
         </div>
     </section>
@@ -660,9 +661,9 @@
                 <div class="footer-column">
                     <h3>Foundation</h3>
                     <ul>
-                        <li><a href="about-us">About Us</a></li>
-                        <li><a href="story">Our Story</a></li>
-                        <li><a href="impact">Our Impact</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="impact.html">Our Impact</a></li>
                         <li><a href="#">Our Team</a></li>
                         <li><a href="#">Careers</a></li>
                     </ul>
@@ -680,7 +681,7 @@
                 <div class="footer-column">
                     <h3>Get Involved</h3>
                     <ul>
-                        <li><a href="donate">Donate</a></li>
+                        <li><a href="donate.html">Donate</a></li>
                         <li><a href="#">Volunteer</a></li>
                         <li><a href="#">Partner With Us</a></li>
                         <li><a href="#">Fundraise</a></li>
@@ -743,6 +744,73 @@
         });
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ==========================================
+        // GITHUB PAGES URL CLEANER
+        // Forces the URL to maintain clean paths without .html
+        // ==========================================
+        function cleanUrl() {
+            const currentPath = window.location.pathname;
+            const lastSlashIndex = currentPath.lastIndexOf('/');
+            const basePath = currentPath.substring(0, lastSlashIndex + 1);
+            
+            let newPath = currentPath;
+            if (currentPath.endsWith('index.html')) {
+                newPath = basePath + 'index';
+            } else if (currentPath.endsWith('about-us.html')) {
+                newPath = basePath + 'about-us';
+            } else if (currentPath.endsWith('story.html')) {
+                newPath = basePath + 'story';
+            } else if (currentPath.endsWith('vision.html')) {
+                newPath = basePath + 'vision';
+            } else if (currentPath.endsWith('impact.html')) {
+                newPath = basePath + 'impact';
+            } else if (currentPath.endsWith('contact.html')) {
+                newPath = basePath + 'contact';
+            } else if (currentPath.endsWith('donate.html')) {
+                newPath = basePath + 'donate';
+            }
+
+            if (window.location.pathname !== newPath) {
+                window.history.replaceState(null, document.title, newPath);
+            }
+        }
+
+        // Run the cleaner immediately when the page loads
+        cleanUrl();
+
+        // Handle clicks specifically on the About Us tab
+        document.querySelectorAll('.about-us-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const currentPath = window.location.pathname;
+                const lastSlashIndex = currentPath.lastIndexOf('/');
+                const basePath = currentPath.substring(0, lastSlashIndex + 1);
+                const targetPath = basePath + 'about-us';
+
+                // If we are already on the about-us page, prevent the default page reload
+                if (currentPath.endsWith('about-us.html') || currentPath === targetPath) {
+                    e.preventDefault(); // Stop the browser from reloading
+                    window.history.replaceState(null, document.title, targetPath); // Force URL to be exactly "/about-us"
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smoothly scroll to the top
+                }
+            });
+        });
+        
+        // Handle clicks specifically on the Home tab
+        document.querySelectorAll('.home-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const currentPath = window.location.pathname;
+                const lastSlashIndex = currentPath.lastIndexOf('/');
+                const basePath = currentPath.substring(0, lastSlashIndex + 1);
+                const targetPath = basePath + 'index';
+
+                if (currentPath.endsWith('index.html') || currentPath === targetPath || currentPath === '/') {
+                    e.preventDefault(); 
+                    window.history.replaceState(null, document.title, targetPath); 
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+                }
+            });
         });
     </script>
 
