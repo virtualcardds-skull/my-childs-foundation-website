@@ -141,10 +141,8 @@
         .money-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-radius: 15px; border: 2px solid #edf2f7; transition: all 0.3s; background: white; }
         .money-card:hover { border-color: var(--secondary-color); transform: translateX(5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         .money-info { display: flex; align-items: center; gap: 20px; }
-        .money-logo { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 0.8rem; text-align: center; line-height: 1.1; }
-        .money-logo.orange { background: var(--orange-color); }
-        .money-logo.africell { background: var(--africell-color); }
-        .money-logo.qcell { background: var(--qcell-color); }
+        .money-logo { width: 120px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: white; padding: 10px; }
+        .money-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .money-details h4 { font-size: 1.1rem; margin-bottom: 2px; color: var(--primary-color); }
         .money-details p { font-size: 0.9rem; margin-bottom: 0; color: var(--text-light); }
         .copy-btn { padding: 8px 16px; background: var(--bg-light); color: var(--primary-color); border: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 5px; }
@@ -163,6 +161,19 @@
         .bank-row:last-child { border-bottom: none; }
         .bank-label { font-weight: 600; color: var(--text-light); font-size: 0.95rem; }
         .bank-value { font-weight: 600; color: var(--primary-color); font-size: 1rem; text-align: right; }
+
+        /* Transaction Screenshot Upload Form */
+        .upload-section { margin-top: 30px; padding: 30px; background: var(--bg-light); border-radius: 15px; border: 2px dashed #cbd5e0; }
+        .upload-section h4 { font-size: 1.2rem; margin-bottom: 15px; color: var(--primary-color); }
+        .upload-section p { font-size: 0.9rem; margin-bottom: 20px; }
+        .file-input-wrapper { position: relative; margin-bottom: 20px; }
+        .file-input-wrapper input[type="file"] { display: none; }
+        .file-input-label { display: block; padding: 15px; background: white; border: 2px dashed #cbd5e0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s; }
+        .file-input-label:hover { border-color: var(--secondary-color); background: var(--bg-white); }
+        .file-input-label svg { width: 40px; height: 40px; color: var(--text-light); margin-bottom: 10px; }
+        .file-name { margin-top: 10px; font-size: 0.9rem; color: var(--text-dark); font-weight: 600; }
+        .submit-btn { width: 100%; padding: 14px; background: var(--primary-color); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; }
+        .submit-btn:hover { background: var(--secondary-color); transform: translateY(-2px); }
 
         /* =========================================
            7. TRANSPARENCY SECTION
@@ -335,7 +346,7 @@
                 <!-- Tabs -->
                 <div class="payment-tabs">
                     <button class="tab-btn active" data-tab="mobile">
-                        <span class="tab-icon">📱</span>
+                        <span class="tab-icon"></span>
                         Mobile Money
                     </button>
                     <button class="tab-btn" data-tab="international">
@@ -357,7 +368,9 @@
                         <!-- Orange Money -->
                         <div class="money-card">
                             <div class="money-info">
-                                <div class="money-logo orange">Orange<br>Money</div>
+                                <div class="money-logo">
+                                    <img src="assets/project-djf-images/orange-money-logo.png" alt="Orange Money">
+                                </div>
                                 <div class="money-details">
                                     <h4>Orange Money</h4>
                                     <p class="phone-number">076 000 000</p>
@@ -372,9 +385,11 @@
                         <!-- Africell Money -->
                         <div class="money-card">
                             <div class="money-info">
-                                <div class="money-logo africell">Africell<br>Money</div>
+                                <div class="money-logo">
+                                    <img src="assets/project-djf-images/afrimoney-logo.png" alt="Afrimoney">
+                                </div>
                                 <div class="money-details">
-                                    <h4>Africell Money</h4>
+                                    <h4>Afrimoney</h4>
                                     <p class="phone-number">088 000 000</p>
                                 </div>
                             </div>
@@ -387,7 +402,9 @@
                         <!-- QMoney -->
                         <div class="money-card">
                             <div class="money-info">
-                                <div class="money-logo qcell">Q<br>Money</div>
+                                <div class="money-logo">
+                                    <img src="assets/project-djf-images/qmoney-logo.png" alt="QMoney">
+                                </div>
                                 <div class="money-details">
                                     <h4>QMoney (Qcell)</h4>
                                     <p class="phone-number">031 000 000</p>
@@ -399,7 +416,37 @@
                             </button>
                         </div>
                     </div>
-                    <p style="margin-top: 20px; font-size: 0.85rem; color: var(--text-light); text-align: center;">After sending, please email your transaction screenshot to <strong>info@destinyjohnfoundation.org</strong> for your tax receipt.</p>
+
+                    <!-- Transaction Screenshot Upload Form -->
+                    <div class="upload-section">
+                        <h4>📸 Send Transaction Screenshot</h4>
+                        <p>After completing your mobile money transfer, upload a screenshot of the transaction confirmation. We'll send you a tax receipt via email.</p>
+                        
+                        <form id="transactionForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+                            <div class="file-input-wrapper">
+                                <input type="file" id="screenshot" name="screenshot" accept="image/*" required onchange="updateFileName(this)">
+                                <label for="screenshot" class="file-input-label">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                    <div>Click to upload screenshot</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 5px;">PNG, JPG up to 5MB</div>
+                                </label>
+                                <div class="file-name" id="fileName"></div>
+                            </div>
+                            
+                            <input type="email" name="email" placeholder="Your Email Address" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 8px; margin-bottom: 15px; font-family: var(--font-body);">
+                            
+                            <input type="text" name="phone" placeholder="Your Phone Number" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 8px; margin-bottom: 15px; font-family: var(--font-body);">
+                            
+                            <input type="text" name="amount" placeholder="Amount Donated (Le)" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 8px; margin-bottom: 15px; font-family: var(--font-body);">
+                            
+                            <button type="submit" class="submit-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                Send Screenshot & Receipt Request
+                            </button>
+                        </form>
+                    </div>
+
+                    <p style="margin-top: 20px; font-size: 0.85rem; color: var(--text-light); text-align: center;">Or email screenshots directly to <strong>info@destinyjohnfoundation.org</strong></p>
                 </div>
 
                 <!-- Tab 2: International -->
@@ -618,6 +665,20 @@
             }).catch(err => {
                 console.error('Failed to copy: ', err);
             });
+        }
+
+        // ==========================================
+        // FILE UPLOAD NAME DISPLAY
+        // ==========================================
+        function updateFileName(input) {
+            const fileName = input.files[0]?.name || '';
+            const fileNameDisplay = document.getElementById('fileName');
+            if (fileName) {
+                fileNameDisplay.textContent = `Selected: ${fileName}`;
+                fileNameDisplay.style.color = 'var(--primary-color)';
+            } else {
+                fileNameDisplay.textContent = '';
+            }
         }
 
         // ==========================================
