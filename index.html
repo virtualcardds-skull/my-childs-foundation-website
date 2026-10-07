@@ -154,7 +154,15 @@
         .feature-text h3 { font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-color); }
         .feature-text p { font-size: 0.9rem; margin-bottom: 0; }
         .why-us-image { position: relative; }
-        .why-us-image img { border-radius: 15px; box-shadow: 0 20px 50px rgba(26, 54, 93, 0.2); }
+        .why-us-image img { 
+            border-radius: 15px; 
+            box-shadow: 0 20px 50px rgba(26, 54, 93, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .why-us-image img:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 25px 60px rgba(26, 54, 93, 0.3);
+        }
         .experience-badge { position: absolute; bottom: -20px; left: -20px; background: var(--secondary-color); color: white; padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(255, 138, 128, 0.4); }
         .experience-badge .years { font-size: 2.5rem; font-weight: 700; font-family: var(--font-heading); display: block; }
         .experience-badge .text { font-size: 0.9rem; opacity: 0.95; }
@@ -222,6 +230,11 @@
             object-fit: cover;
             aspect-ratio: 1 / 1;
             margin: 0 auto;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .newsletter-image img:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
         }
 
         .newsletter-content h2 { color: white; font-size: 1.5rem; margin-bottom: 10px; text-align: left; line-height: 1.3; }
@@ -551,7 +564,8 @@
     <div class="newsletter-wrapper">
         <div class="newsletter-card">
             <div class="newsletter-image">
-                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=500&q=80" alt="A smiling child representing hope and the future of Sierra Leone">
+                <!-- UPDATED: Replaced Unsplash image with local image -->
+                <img src="assets/project-djf-images/image4.jpeg" alt="A smiling child representing hope and the future of Sierra Leone">
             </div>
             <div class="newsletter-content">
                 <h2>Subscribe to our newsletter to get updates on our latest programs</h2>
