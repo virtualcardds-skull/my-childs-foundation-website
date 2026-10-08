@@ -71,54 +71,247 @@
         nav .btn-primary { padding: 10px 24px; font-size: 0.9rem; color: white !important; }
 
         /* =========================================
-           5. CREATIVE PAGE HERO
+           5. CREATIVE PAGE HERO (REDESIGNED)
            ========================================= */
         .page-hero {
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(44, 82, 130, 0.9) 100%), 
-                        url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
-            padding: 140px 20px 100px;
+            padding: 160px 20px 120px;
             position: relative;
             overflow: hidden;
         }
+        
+        /* Animated Background Shapes */
         .page-hero::before {
             content: '';
             position: absolute;
-            bottom: -50px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: var(--bg-white);
-            clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
         }
+        
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .hero-shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .hero-shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .hero-shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+        }
+        
         .page-hero .breadcrumb {
             font-size: 0.95rem;
             color: var(--accent-sun);
             margin-bottom: 20px;
             font-weight: 600;
             letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
         }
-        .page-hero .breadcrumb a { color: rgba(255,255,255,0.8); transition: color 0.3s; }
-        .page-hero .breadcrumb a:hover { color: var(--accent-sun); }
-        .page-hero h1 { color: white; font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
-        .page-hero p { color: rgba(255,255,255,0.95); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
+        
+        .page-hero .breadcrumb a { 
+            color: rgba(255,255,255,0.9); 
+            transition: color 0.3s; 
+        }
+        
+        .page-hero .breadcrumb a:hover { 
+            color: var(--accent-sun); 
+        }
+        
+        .page-hero h1 { 
+            color: white; 
+            font-size: 3.5rem; 
+            margin-bottom: 20px; 
+            line-height: 1.2; 
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .page-hero p { 
+            color: rgba(255,255,255,0.95); 
+            font-size: 1.25rem; 
+            max-width: 700px; 
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-stat {
+            text-align: center;
+            padding: 20px 30px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .hero-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
 
         /* =========================================
-           6. DONATION SECTION (CREATIVE LAYOUT)
+           6. CAUSES SECTION
            ========================================= */
-        .donation-section { padding: 80px 20px 100px; background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-light) 100%); }
+        .causes-section { padding: 80px 20px; background: var(--bg-light); }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 50px; }
+        .section-header h2 { margin-bottom: 15px; }
+        .section-header p { font-size: 1.1rem; }
+        
+        .causes-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .cause-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .cause-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(26, 54, 93, 0.15);
+        }
+        
+        .cause-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .cause-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .cause-content { padding: 30px; }
+        .cause-content h3 { font-size: 1.4rem; margin-bottom: 12px; }
+        .cause-content p { font-size: 0.95rem; margin-bottom: 20px; color: var(--text-light); }
+        
+        .cause-progress {
+            margin-bottom: 20px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun));
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+        
+        .cause-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #edf2f7;
+        }
+        
+        .cause-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .cause-amount span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* =========================================
+           7. DONATION SECTION
+           ========================================= */
+        .donation-section { padding: 80px 20px 100px; background: var(--bg-white); }
         .donation-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: start; }
         
         /* Left Column: Impact & Trust */
         .donation-impact { position: sticky; top: 120px; }
-        .impact-card { background: var(--bg-white); padding: 30px; border-radius: 20px; border-left: 5px solid var(--secondary-color); margin-bottom: 25px; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05); transition: transform 0.3s; }
+        .impact-card { background: var(--bg-light); padding: 30px; border-radius: 20px; border-left: 5px solid var(--secondary-color); margin-bottom: 25px; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05); transition: transform 0.3s; }
         .impact-card:hover { transform: translateY(-5px); }
         .impact-card h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--primary-color); }
         .impact-card p { font-size: 0.95rem; margin-bottom: 0; }
         .trust-badges { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
         .trust-item { display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: var(--text-dark); font-weight: 600; }
-        .trust-icon { width: 40px; height: 40px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .trust-icon { width: 40px; height: 40px; background: var(--bg-white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
         /* Right Column: Payment Tabs */
         .payment-container { background: white; border-radius: 24px; box-shadow: 0 25px 60px rgba(26, 54, 93, 0.12); overflow: hidden; border: 1px solid #edf2f7; }
@@ -223,7 +416,7 @@
         }
 
         /* =========================================
-           7. TRANSPARENCY SECTION
+           8. TRANSPARENCY SECTION
            ========================================= */
         .transparency-section { padding: 80px 20px; background: var(--bg-white); text-align: center; }
         .transparency-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
@@ -234,7 +427,7 @@
         .transparency-card p { font-size: 0.95rem; margin-bottom: 0; }
 
         /* =========================================
-           8. FLOATING NEWSLETTER SECTION (COMPACT)
+           9. FLOATING NEWSLETTER SECTION (COMPACT)
            ========================================= */
         .newsletter-wrapper { background-color: var(--bg-light); padding: 40px 20px 0; position: relative; }
         .newsletter-card { max-width: 1100px; margin: 0 auto; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); border-radius: 20px; padding: 30px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 25px; align-items: center; position: relative; top: 60px; z-index: 10; box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4); }
@@ -253,7 +446,7 @@
         .newsletter-note a { color: var(--accent-sun); text-decoration: underline; }
 
         /* =========================================
-           9. MAIN FOOTER
+           10. MAIN FOOTER
            ========================================= */
         .main-footer { background-color: var(--bg-white); padding: 100px 20px 30px; border-top: 1px solid #e2e8f0; }
         .footer-container { max-width: 1100px; margin: 0 auto; }
@@ -279,14 +472,14 @@
         .footer-links a:hover { color: var(--secondary-color); }
 
         /* =========================================
-           10. SCROLL TO TOP BUTTON
+           11. SCROLL TO TOP BUTTON
            ========================================= */
         .scroll-top-btn { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--primary-color); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; z-index: 999; }
         .scroll-top-btn:hover { background-color: var(--secondary-color); transform: translateY(-5px); }
         .scroll-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
         /* =========================================
-           11. MOBILE RESPONSIVENESS
+           12. MOBILE RESPONSIVENESS
            ========================================= */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; } h2 { font-size: 1.75rem; } .page-hero h1 { font-size: 2.25rem; }
@@ -295,6 +488,9 @@
             nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--bg-white); box-shadow: 0 10px 20px rgba(0,0,0,0.1); padding: 20px; gap: 20px; text-align: center; border-top: 1px solid #eee; }
             nav ul.active { display: flex; }
             nav .btn-primary { width: 100%; display: block; }
+            
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .hero-stat { width: 100%; }
             
             .donation-layout { grid-template-columns: 1fr; gap: 40px; }
             .donation-impact { position: static; }
@@ -347,19 +543,123 @@
         </div>
     </header>
 
-    <!-- CREATIVE PAGE HERO -->
+    <!-- CREATIVE PAGE HERO (REDESIGNED) -->
     <section class="page-hero">
+        <!-- Animated Background Shapes -->
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        
         <div class="container">
             <div class="breadcrumb">
                 <a href="index.html">Home</a> &nbsp;/&nbsp; Donate
             </div>
-            <h1>Your Generosity Saves Lives</h1>
-            <p>Every contribution, no matter the size, directly impacts a child's future in Sierra Leone. Choose your preferred method below.</p>
+            <h1>Make a Difference Today</h1>
+            <p>Your generosity creates lasting change in the lives of Sierra Leone's children. Choose a cause close to your heart or make a general donation.</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">5,000+</span>
+                    <span class="hero-stat-label">Children Helped</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">25+</span>
+                    <span class="hero-stat-label">Communities</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">100%</span>
+                    <span class="hero-stat-label">Transparent</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAUSES SECTION -->
+    <section class="causes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Choose Your Cause</h2>
+                <p>Select a specific project to support, or make a general donation to help us where it's needed most.</p>
+            </div>
+            
+            <div class="causes-grid">
+                <!-- Cause 1: Healthcare -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80');">
+                        <span class="cause-badge">Urgent</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Pediatric Healthcare</h3>
+                        <p>Provide life-saving medical care, vaccinations, and treatments for children under 5 in underserved communities.</p>
+                        <div class="cause-progress">
+                            <div class="progress-header">
+                                <span>Raised: $12,450</span>
+                                <span>Goal: $25,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                        <div class="cause-footer">
+                            <div class="cause-amount">$25 <span>min donation</span></div>
+                            <button class="btn btn-primary" onclick="scrollToDonation()">Donate Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cause 2: Education -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80');">
+                        <span class="cause-badge">Ongoing</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Education Support</h3>
+                        <p>Supply school materials, uniforms, and scholarships to ensure every child has access to quality education.</p>
+                        <div class="cause-progress">
+                            <div class="progress-header">
+                                <span>Raised: $8,200</span>
+                                <span>Goal: $15,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 55%;"></div>
+                            </div>
+                        </div>
+                        <div class="cause-footer">
+                            <div class="cause-amount">$15 <span>min donation</span></div>
+                            <button class="btn btn-primary" onclick="scrollToDonation()">Donate Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cause 3: Community Development -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80');">
+                        <span class="cause-badge">New</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Community Development</h3>
+                        <p>Build sustainable infrastructure, clean water systems, and nutrition programs for entire communities.</p>
+                        <div class="cause-progress">
+                            <div class="progress-header">
+                                <span>Raised: $5,600</span>
+                                <span>Goal: $20,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 28%;"></div>
+                            </div>
+                        </div>
+                        <div class="cause-footer">
+                            <div class="cause-amount">$50 <span>min donation</span></div>
+                            <button class="btn btn-primary" onclick="scrollToDonation()">Donate Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- DONATION SECTION -->
-    <section class="donation-section">
+    <section class="donation-section" id="donationSection">
         <div class="donation-layout">
             
             <!-- Left Column: Impact & Trust -->
@@ -398,7 +698,7 @@
                         Mobile Money
                     </button>
                     <button class="tab-btn" data-tab="international">
-                        <span class="tab-icon">🌍</span>
+                        <span class="tab-icon"></span>
                         International
                     </button>
                     <button class="tab-btn" data-tab="bank">
@@ -730,6 +1030,13 @@
             } else {
                 fileNameDisplay.textContent = '';
             }
+        }
+
+        // ==========================================
+        // SCROLL TO DONATION SECTION
+        // ==========================================
+        function scrollToDonation() {
+            document.getElementById('donationSection').scrollIntoView({ behavior: 'smooth' });
         }
 
         // ==========================================
