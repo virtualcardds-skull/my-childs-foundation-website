@@ -131,44 +131,60 @@
         .cause-amount { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
         .cause-amount span { font-size: 0.9rem; color: var(--text-light); font-weight: 400; }
 
-        /* WALL OF HOPE - NEW FEATURE #4 */
-        .wall-of-hope { padding: 80px 20px; background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%); overflow: hidden; }
+        /* WALL OF HOPE - UPDATED TO SLIDER */
+        .wall-of-hope { padding: 80px 20px; background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%); }
         .wall-header { text-align: center; max-width: 700px; margin: 0 auto 40px; }
         .wall-header h2 { margin-bottom: 10px; }
         .wall-header p { font-size: 1.05rem; }
-        .wall-marquee { position: relative; max-width: 1100px; margin: 0 auto; }
-        .wall-marquee::before, .wall-marquee::after {
-            content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+        
+        .wall-slider-container { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 20px;
         }
-        .wall-marquee::before { left: 0; background: linear-gradient(to right, var(--bg-light), transparent); }
-        .wall-marquee::after { right: 0; background: linear-gradient(to left, var(--bg-white), transparent); }
-        .wall-track { display: flex; gap: 20px; animation: scroll-wall 40s linear infinite; width: max-content; }
-        .wall-track:hover { animation-play-state: paused; }
-        @keyframes scroll-wall { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .wall-track { 
+            display: flex; 
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
         .donor-card {
-            background: white; padding: 20px 25px; border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(26, 54, 93, 0.08);
-            min-width: 280px; border-left: 4px solid var(--secondary-color);
-            transition: all 0.3s;
+            flex: 0 0 100%;
+            background: white; 
+            padding: 35px 30px; 
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08);
+            border-left: 5px solid var(--secondary-color);
+            box-sizing: border-box;
+            text-align: center;
         }
-        .donor-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(26, 54, 93, 0.15); }
-        .donor-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .donor-header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; }
         .donor-avatar {
-            width: 42px; height: 42px; border-radius: 50%;
+            width: 55px; height: 55px; border-radius: 50%;
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-sun));
             display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: 700; font-size: 1.1rem;
+            color: white; font-weight: 700; font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(255, 138, 128, 0.3);
         }
-        .donor-name { font-weight: 700; color: var(--primary-color); font-size: 1rem; }
-        .donor-location { font-size: 0.8rem; color: var(--text-light); }
-        .donor-message { font-size: 0.9rem; color: var(--text-dark); font-style: italic; margin-bottom: 10px; line-height: 1.5; }
-        .donor-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
-        .donor-amount { font-weight: 700; color: var(--secondary-color); }
+        .donor-info { text-align: left; }
+        .donor-name { font-weight: 700; color: var(--primary-color); font-size: 1.1rem; }
+        .donor-location { font-size: 0.85rem; color: var(--text-light); }
+        .donor-message { font-size: 1.1rem; color: var(--text-dark); font-style: italic; margin-bottom: 20px; line-height: 1.6; position: relative; padding: 0 20px; }
+        .donor-message::before, .donor-message::after { content: '"'; font-size: 2rem; color: var(--secondary-color); font-family: serif; line-height: 0; vertical-align: -10px; }
+        .donor-message::after { vertical-align: -15px; }
+        .donor-meta { display: flex; justify-content: center; align-items: center; gap: 15px; font-size: 0.9rem; padding-top: 15px; border-top: 1px solid #edf2f7; }
+        .donor-amount { font-weight: 700; color: var(--secondary-color); font-size: 1.1rem; }
         .donor-time { color: var(--text-light); }
-        .wall-stats { display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
+
+        /* Slider Dots */
+        .wall-dots { display: flex; justify-content: center; gap: 10px; margin-top: 25px; }
+        .wall-dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e0; border: none; cursor: pointer; transition: all 0.3s; padding: 0; }
+        .wall-dot.active { background: var(--secondary-color); width: 30px; border-radius: 10px; }
+
+        .wall-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
         .wall-stat { text-align: center; }
-        .wall-stat-num { font-size: 2rem; font-weight: 700; color: var(--primary-color); font-family: var(--font-heading); }
-        .wall-stat-label { font-size: 0.9rem; color: var(--text-light); }
+        .wall-stat-num { font-size: 2.2rem; font-weight: 700; color: var(--primary-color); font-family: var(--font-heading); }
+        .wall-stat-label { font-size: 0.95rem; color: var(--text-light); }
 
         /* DONATION SECTION */
         .donation-section { padding: 80px 20px 100px; background: var(--bg-white); }
@@ -184,7 +200,6 @@
 
         .payment-container { background: white; border-radius: 24px; box-shadow: 0 25px 60px rgba(26, 54, 93, 0.12); overflow: hidden; border: 1px solid #edf2f7; }
 
-        /* FEATURE #3: MONTHLY / ONE-TIME TOGGLE */
         .donation-frequency { padding: 25px 40px 20px; background: var(--bg-light); border-bottom: 1px solid #edf2f7; }
         .frequency-label { font-size: 0.85rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; text-align: center; }
         .frequency-toggle { display: flex; background: white; border-radius: 50px; padding: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 380px; margin: 0 auto; }
@@ -206,7 +221,6 @@
         .tab-content h3 { font-size: 1.5rem; margin-bottom: 10px; text-align: left; }
         .tab-content > p { text-align: left; margin-bottom: 30px; }
 
-        /* FEATURE #2: QUICK AMOUNT SELECTOR */
         .quick-amount-section { margin-bottom: 30px; padding: 25px; background: var(--bg-light); border-radius: 16px; }
         .quick-amount-label { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); margin-bottom: 15px; display: block; }
         .amount-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 15px; }
@@ -215,10 +229,9 @@
         .amount-btn.active { background: linear-gradient(135deg, var(--secondary-color), #ff7676); color: white; border-color: var(--secondary-color); box-shadow: 0 6px 20px rgba(255, 138, 128, 0.4); }
         .custom-amount-wrapper { position: relative; }
         .custom-amount-wrapper .currency-symbol { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-light); font-size: 1.1rem; }
-        .custom-amount-input { width: 100%; padding: 14px 16px 14px 35px; border: 2px solid #e2e8f0; border-radius: 12px; font-family: var(--font-body); font-size: 1rem; font-weight: 600; transition: all 0.3s; background: white; }
+        .custom-amount-input { width: 100%; padding: 14px 16px 14px 45px; border: 2px solid #e2e8f0; border-radius: 12px; font-family: var(--font-body); font-size: 1rem; font-weight: 600; transition: all 0.3s; background: white; }
         .custom-amount-input:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 4px rgba(255, 138, 128, 0.1); }
 
-        /* FEATURE #5: IMPACT CALCULATOR */
         .impact-calculator { margin-top: 20px; padding: 20px; background: white; border-radius: 14px; border: 2px solid #edf2f7; transition: all 0.4s; }
         .impact-calc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
         .impact-calc-icon { font-size: 1.8rem; }
@@ -267,7 +280,6 @@
         .upload-section h4 { font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color); position: relative; z-index: 1; }
         .upload-section p { font-size: 0.95rem; margin-bottom: 25px; position: relative; z-index: 1; }
 
-        /* FEATURE #1: TRIBUTE FIELD */
         .tribute-toggle { display: flex; align-items: center; gap: 12px; padding: 15px 20px; background: linear-gradient(135deg, rgba(251, 211, 141, 0.2), rgba(255, 138, 128, 0.1)); border-radius: 12px; margin-bottom: 20px; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; }
         .tribute-toggle:hover { border-color: var(--accent-sun); }
         .tribute-toggle input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--secondary-color); cursor: pointer; }
@@ -407,17 +419,17 @@
         <div class="hero-shape"></div>
         <div class="toys-container">
             <div class="toy toy-bear">🧸</div>
-            <div class="toy toy-kite">🪁</div>
+            <div class="toy toy-kite"></div>
             <div class="toy toy-ball">⚽</div>
-            <div class="toy toy-car"></div>
+            <div class="toy toy-car">🚗</div>
             <div class="toy toy-star">✨</div>
             <div class="toy toy-train">🚂</div>
             <div class="toy toy-airplane">✈️</div>
             <div class="toy toy-rocket">🚀</div>
             <div class="toy toy-puzzle">🧩</div>
-            <div class="toy toy-palette">🎨</div>
+            <div class="toy toy-palette"></div>
             <div class="toy toy-yoyo">🪀</div>
-            <div class="toy toy-dice"></div>
+            <div class="toy toy-dice">🎲</div>
             <div class="toy toy-carousel">🎠</div>
             <div class="toy toy-balloon-red">🎈</div>
             <div class="toy toy-balloon-blue">🎈</div>
@@ -436,7 +448,6 @@
         <div class="hero-wave"><svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 50L48 45.7C96 41.3 192 32.7 288 30.2C384 27.7 480 31.3 576 38.8C672 46.3 768 57.7 864 58.5C960 59.3 1056 49.7 1152 43.2C1248 36.7 1344 33.3 1392 31.7L1440 30V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0V50Z" fill="#FFF5F5"/></svg></div>
     </section>
 
-    <!-- CAUSES SECTION -->
     <section class="causes-section">
         <div class="container">
             <div class="section-header"><h2>Choose Your Cause</h2><p>Select a specific project to support, or make a general donation to help us where it's needed most.</p></div>
@@ -446,8 +457,8 @@
                     <div class="cause-content">
                         <h3>Pediatric Healthcare</h3>
                         <p>Provide life-saving medical care, vaccinations, and treatments for children under 5 in underserved communities.</p>
-                        <div class="cause-progress"><div class="progress-header"><span>Raised: $12,450</span><span>Goal: $25,000</span></div><div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div></div>
-                        <div class="cause-footer"><div class="cause-amount">$25 <span>min donation</span></div><button class="btn btn-primary" onclick="scrollToDonation()">Donate Now</button></div>
+                        <div class="cause-progress"><div class="progress-header"><span>Raised: Le 12,450</span><span>Goal: Le 25,000</span></div><div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div></div>
+                        <div class="cause-footer"><div class="cause-amount">Le 25 <span>min donation</span></div><button class="btn btn-primary" onclick="scrollToDonation()">Donate Now</button></div>
                     </div>
                 </div>
                 <div class="cause-card">
@@ -455,8 +466,8 @@
                     <div class="cause-content">
                         <h3>Education Support</h3>
                         <p>Supply school materials, uniforms, and scholarships to ensure every child has access to quality education.</p>
-                        <div class="cause-progress"><div class="progress-header"><span>Raised: $8,200</span><span>Goal: $15,000</span></div><div class="progress-bar"><div class="progress-fill" style="width: 55%;"></div></div></div>
-                        <div class="cause-footer"><div class="cause-amount">$15 <span>min donation</span></div><button class="btn btn-primary" onclick="scrollToDonation()">Donate Now</button></div>
+                        <div class="cause-progress"><div class="progress-header"><span>Raised: Le 8,200</span><span>Goal: Le 15,000</span></div><div class="progress-bar"><div class="progress-fill" style="width: 55%;"></div></div></div>
+                        <div class="cause-footer"><div class="cause-amount">Le 15 <span>min donation</span></div><button class="btn btn-primary" onclick="scrollToDonation()">Donate Now</button></div>
                     </div>
                 </div>
                 <div class="cause-card">
@@ -464,40 +475,43 @@
                     <div class="cause-content">
                         <h3>Community Development</h3>
                         <p>Build sustainable infrastructure, clean water systems, and nutrition programs for entire communities.</p>
-                        <div class="cause-progress"><div class="progress-header"><span>Raised: $5,600</span><span>Goal: $20,000</span></div><div class="progress-bar"><div class="progress-fill" style="width: 28%;"></div></div></div>
-                        <div class="cause-footer"><div class="cause-amount">$50 <span>min donation</span></div><button class="btn btn-primary" onclick="scrollToDonation()">Donate Now</button></div>
+                        <div class="cause-progress"><div class="progress-header"><span>Raised: Le 5,600</span><span>Goal: Le 20,000</span></div><div class="progress-bar"><div class="progress-fill" style="width: 28%;"></div></div></div>
+                        <div class="cause-footer"><div class="cause-amount">Le 50 <span>min donation</span></div><button class="btn btn-primary" onclick="scrollToDonation()">Donate Now</button></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FEATURE #4: WALL OF HOPE -->
+    <!-- FEATURE #4: WALL OF HOPE (SLIDER) -->
     <section class="wall-of-hope">
         <div class="container">
             <div class="wall-header">
                 <h2>💛 Wall of Hope</h2>
                 <p>See the beautiful people making a difference right now. Every name here represents a life changed.</p>
             </div>
-            <div class="wall-marquee">
+            
+            <div class="wall-slider-container" id="wallSlider">
                 <div class="wall-track" id="wallTrack">
-                    <!-- Donor cards will be duplicated via JS for infinite scroll -->
+                    <!-- Donor cards injected via JS -->
                 </div>
             </div>
+            
+            <div class="wall-dots" id="wallDots"></div>
+
             <div class="wall-stats">
-                <div class="wall-stat"><div class="wall-stat-num" id="totalDonors">1,247</div><div class="wall-stat-label">Generous Donors</div></div>
-                <div class="wall-stat"><div class="wall-stat-num">$84,520</div><div class="wall-stat-label">Raised This Year</div></div>
+                <div class="wall-stat"><div class="wall-stat-num">1,247</div><div class="wall-stat-label">Generous Donors</div></div>
+                <div class="wall-stat"><div class="wall-stat-num">Le 84,520</div><div class="wall-stat-label">Raised This Year</div></div>
                 <div class="wall-stat"><div class="wall-stat-num">18</div><div class="wall-stat-label">Countries</div></div>
             </div>
         </div>
     </section>
 
-    <!-- DONATION SECTION -->
     <section class="donation-section" id="donationSection">
         <div class="donation-layout">
             <div class="donation-impact">
                 <div class="impact-card"><h3>Where Your Money Goes</h3><p>100% of your donation funds pediatric healthcare, education supplies, and community outreach programs for underprivileged children.</p></div>
-                <div class="impact-card"><h3>Make an Immediate Impact</h3><p>$25 provides a school kit. $50 funds a medical checkup. $100 supplies a family with a month of nutritional support.</p></div>
+                <div class="impact-card"><h3>Make an Immediate Impact</h3><p>Le 25 provides a school kit. Le 50 funds a medical checkup. Le 100 supplies a family with a month of nutritional support.</p></div>
                 <div class="trust-badges">
                     <div class="trust-item"><div class="trust-icon">🔒</div><span>100% Secure & Encrypted</span></div>
                     <div class="trust-item"><div class="trust-icon">📜</div><span>Tax-Deductible Receipt</span></div>
@@ -506,22 +520,17 @@
             </div>
 
             <div class="payment-container">
-                <!-- FEATURE #3: MONTHLY / ONE-TIME TOGGLE -->
                 <div class="donation-frequency">
                     <div class="frequency-label">Choose Donation Frequency</div>
                     <div class="frequency-toggle">
-                        <button class="freq-btn active" data-freq="onetime" onclick="setFrequency('onetime')">
-                            <span>💝</span> One-Time
-                        </button>
-                        <button class="freq-btn" data-freq="monthly" onclick="setFrequency('monthly')">
-                            <span>🔄</span> Monthly <span class="freq-save">Save 20%</span>
-                        </button>
+                        <button class="freq-btn active" data-freq="onetime" onclick="setFrequency('onetime')"><span>💝</span> One-Time</button>
+                        <button class="freq-btn" data-freq="monthly" onclick="setFrequency('monthly')"><span>🔄</span> Monthly <span class="freq-save">Save 20%</span></button>
                     </div>
                 </div>
 
                 <div class="payment-tabs">
                     <button class="tab-btn active" data-tab="mobile"><span class="tab-icon">📱</span>Mobile Money</button>
-                    <button class="tab-btn" data-tab="international"><span class="tab-icon">🌍</span>International</button>
+                    <button class="tab-btn" data-tab="international"><span class="tab-icon"></span>International</button>
                     <button class="tab-btn" data-tab="bank"><span class="tab-icon">🏦</span>Bank Transfer</button>
                 </div>
 
@@ -529,28 +538,28 @@
                     <h3>Local Mobile Money</h3>
                     <p>Quick and easy donations using your preferred mobile money provider in Sierra Leone. Tap "Copy" to copy the number.</p>
 
-                    <!-- FEATURE #2: QUICK AMOUNT SELECTOR -->
+                    <!-- FEATURE #2: QUICK AMOUNT SELECTOR (NEW LEONE) -->
                     <div class="quick-amount-section">
-                        <label class="quick-amount-label"> Select Donation Amount</label>
+                        <label class="quick-amount-label">💰 Select Donation Amount (New Leone)</label>
                         <div class="amount-grid">
-                            <button class="amount-btn" data-amount="10" onclick="selectAmount(10, this)">$10</button>
-                            <button class="amount-btn active" data-amount="25" onclick="selectAmount(25, this)">$25</button>
-                            <button class="amount-btn" data-amount="50" onclick="selectAmount(50, this)">$50</button>
-                            <button class="amount-btn" data-amount="100" onclick="selectAmount(100, this)">$100</button>
-                            <button class="amount-btn" data-amount="250" onclick="selectAmount(250, this)">$250</button>
-                            <button class="amount-btn" data-amount="500" onclick="selectAmount(500, this)">$500</button>
-                            <button class="amount-btn" data-amount="1000" onclick="selectAmount(1000, this)">$1000</button>
+                            <button class="amount-btn" data-amount="10" onclick="selectAmount(10, this)">Le 10</button>
+                            <button class="amount-btn active" data-amount="25" onclick="selectAmount(25, this)">Le 25</button>
+                            <button class="amount-btn" data-amount="50" onclick="selectAmount(50, this)">Le 50</button>
+                            <button class="amount-btn" data-amount="100" onclick="selectAmount(100, this)">Le 100</button>
+                            <button class="amount-btn" data-amount="250" onclick="selectAmount(250, this)">Le 250</button>
+                            <button class="amount-btn" data-amount="500" onclick="selectAmount(500, this)">Le 500</button>
+                            <button class="amount-btn" data-amount="1000" onclick="selectAmount(1000, this)">Le 1000</button>
                             <button class="amount-btn" data-amount="custom" onclick="selectCustomAmount(this)">Custom</button>
                         </div>
                         <div class="custom-amount-wrapper">
-                            <span class="currency-symbol">$</span>
+                            <span class="currency-symbol">Le</span>
                             <input type="number" id="customAmountInput" class="custom-amount-input" placeholder="Enter custom amount" oninput="updateImpactFromCustom(this.value)">
                         </div>
 
                         <!-- FEATURE #5: IMPACT CALCULATOR -->
                         <div class="impact-calculator">
                             <div class="impact-calc-header">
-                                <div class="impact-calc-icon" id="impactIcon"></div>
+                                <div class="impact-calc-icon" id="impactIcon">🎒</div>
                                 <div>
                                     <div class="impact-calc-title">Your Impact</div>
                                     <div class="impact-calc-subtitle">Here's what your donation provides</div>
@@ -559,7 +568,7 @@
                             <div class="impact-display">
                                 <div class="impact-visual" id="impactVisual">🎒</div>
                                 <div class="impact-details">
-                                    <div class="impact-amount" id="impactAmount">$25</div>
+                                    <div class="impact-amount" id="impactAmount">Le 25</div>
                                     <div class="impact-description" id="impactDescription">Provides a complete school kit for one child</div>
                                     <div class="impact-children" id="impactChildren">
                                         <div class="impact-child-dot"></div>
@@ -600,10 +609,9 @@
                         <p>After completing your mobile money transfer, upload a screenshot of the transaction confirmation. We'll send you a tax receipt via email.</p>
 
                         <form id="transactionForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
-                            <!-- FEATURE #1: IN MEMORY OF / TRIBUTE FIELD -->
                             <div class="tribute-toggle" onclick="toggleTribute(event)">
                                 <input type="checkbox" id="tributeCheck" onchange="toggleTributeFields()">
-                                <label for="tributeCheck">️ Dedicate this donation in memory of a loved one</label>
+                                <label for="tributeCheck">🕊️ Dedicate this donation in memory of a loved one</label>
                             </div>
                             <div class="tribute-fields" id="tributeFields">
                                 <label>In Memory Of</label>
@@ -667,7 +675,7 @@
             <div class="transparency-grid">
                 <div class="transparency-card"><div class="icon">📊</div><h3>Financial Reports</h3><p>We publish annual financial reports detailing exactly how every Leone and Dollar is spent.</p></div>
                 <div class="transparency-card"><div class="icon">📸</div><h3>Impact Updates</h3><p>Donors receive quarterly updates with photos and stories from the communities you've helped.</p></div>
-                <div class="transparency-card"><div class="icon">🤝</div><h3>Direct Support</h3><p>We minimize administrative costs so the maximum amount goes directly to the children.</p></div>
+                <div class="transparency-card"><div class="icon"></div><h3>Direct Support</h3><p>We minimize administrative costs so the maximum amount goes directly to the children.</p></div>
             </div>
         </div>
     </section>
@@ -781,9 +789,7 @@
             });
         });
 
-        // ==========================================
-        // FEATURE #3: MONTHLY / ONE-TIME TOGGLE
-        // ==========================================
+        // FEATURE #3: FREQUENCY TOGGLE
         let currentFrequency = 'onetime';
         function setFrequency(freq) {
             currentFrequency = freq;
@@ -793,9 +799,7 @@
             updateImpactFromAmount(currentSelectedAmount);
         }
 
-        // ==========================================
-        // FEATURE #2: QUICK AMOUNT SELECTOR
-        // ==========================================
+        // FEATURE #2: AMOUNT SELECTOR
         let currentSelectedAmount = 25;
         function selectAmount(amount, btn) {
             currentSelectedAmount = amount;
@@ -820,17 +824,15 @@
             }
         }
 
-        // ==========================================
-        // FEATURE #5: INTERACTIVE IMPACT CALCULATOR
-        // ==========================================
+        // FEATURE #5: IMPACT CALCULATOR
         const impactTiers = [
-            { min: 0, max: 9, icon: '', visual: '🌱', description: 'Plants a seed of hope for a child', children: 1 },
-            { min: 10, max: 24, icon: '📚', visual: '', description: 'Provides school supplies for one child', children: 1 },
+            { min: 0, max: 9, icon: '🌱', visual: '🌱', description: 'Plants a seed of hope for a child', children: 1 },
+            { min: 10, max: 24, icon: '📚', visual: '📚', description: 'Provides school supplies for one child', children: 1 },
             { min: 25, max: 49, icon: '🎒', visual: '🎒', description: 'Provides a complete school kit for one child', children: 1 },
-            { min: 50, max: 99, icon: '🩺', visual: '', description: 'Funds a medical checkup for one child', children: 1 },
+            { min: 50, max: 99, icon: '🩺', visual: '🩺', description: 'Funds a medical checkup for one child', children: 1 },
             { min: 100, max: 249, icon: '🍎', visual: '🍎', description: 'Supplies a family with a month of nutritional support', children: 3 },
             { min: 250, max: 499, icon: '💉', visual: '💉', description: 'Provides vaccines for 5 children', children: 5 },
-            { min: 500, max: 999, icon: '👩‍️', visual: '👩‍⚕️', description: 'Trains one healthcare worker for a month', children: 10 },
+            { min: 500, max: 999, icon: '👩‍️', visual: '👩‍️', description: 'Trains one healthcare worker for a month', children: 10 },
             { min: 1000, max: Infinity, icon: '💧', visual: '💧', description: 'Helps build clean water access for a community', children: 50 }
         ];
 
@@ -839,7 +841,7 @@
             const freqLabel = currentFrequency === 'monthly' ? '/month' : '';
             document.getElementById('impactIcon').textContent = tier.icon;
             document.getElementById('impactVisual').textContent = tier.visual;
-            document.getElementById('impactAmount').textContent = `$${amount}${freqLabel}`;
+            document.getElementById('impactAmount').textContent = `Le ${amount}${freqLabel}`;
             document.getElementById('impactDescription').textContent = tier.description;
             document.getElementById('formImpact').value = tier.description;
             
@@ -859,13 +861,9 @@
                 childrenContainer.appendChild(more);
             }
         }
-
-        // Initialize impact calculator
         updateImpactFromAmount(25);
 
-        // ==========================================
-        // FEATURE #1: TRIBUTE / IN MEMORY OF TOGGLE
-        // ==========================================
+        // FEATURE #1: TRIBUTE TOGGLE
         function toggleTribute(e) {
             if (e.target.tagName !== 'INPUT') {
                 const checkbox = document.getElementById('tributeCheck');
@@ -879,41 +877,84 @@
             if (checkbox.checked) { fields.classList.add('show'); } else { fields.classList.remove('show'); }
         }
 
-        // ==========================================
-        // FEATURE #4: WALL OF HOPE - DONOR FEED
-        // ==========================================
+        // FEATURE #4: WALL OF HOPE SLIDER
         const recentDonors = [
-            { name: 'Sarah M.', location: 'Freetown, SL', amount: '$50', message: 'In loving memory of my daughter. Keep shining, little one. 💛', time: '2 min ago', initial: 'S' },
-            { name: 'James K.', location: 'London, UK', amount: '$100', message: 'Every child deserves a chance. Proud to support this mission!', time: '15 min ago', initial: 'J' },
-            { name: 'Aminata B.', location: 'Bo, SL', amount: '$25', message: 'For the children of Sierra Leone. 🇱', time: '32 min ago', initial: 'A' },
-            { name: 'Michael T.', location: 'New York, USA', amount: '$250', message: 'Honoring Destiny John\'s beautiful legacy.', time: '1 hr ago', initial: 'M' },
-            { name: 'Fatima K.', location: 'Makeni, SL', amount: '$15', message: 'Education changes everything. Thank you!', time: '2 hrs ago', initial: 'F' },
-            { name: 'David & Emma', location: 'Toronto, CA', amount: '$500', message: 'Monthly donors since 2024. Keep up the amazing work! 💙', time: '3 hrs ago', initial: 'D' },
-            { name: 'Ibrahim S.', location: 'Kenema, SL', amount: '$75', message: 'As a healthcare worker, I see the impact daily.', time: '5 hrs ago', initial: 'I' },
-            { name: 'Priya R.', location: 'Mumbai, IN', amount: '$200', message: 'Sending love from India to Sierra Leone 🌍', time: '8 hrs ago', initial: 'P' }
+            { name: 'Sarah M.', location: 'Freetown, SL', amount: 'Le 50', message: 'In loving memory of my daughter. Keep shining, little one.', time: '2 min ago', initial: 'S' },
+            { name: 'James K.', location: 'London, UK', amount: 'Le 100', message: 'Every child deserves a chance. Proud to support this mission!', time: '15 min ago', initial: 'J' },
+            { name: 'Aminata B.', location: 'Bo, SL', amount: 'Le 25', message: 'For the children of Sierra Leone.', time: '32 min ago', initial: 'A' },
+            { name: 'Michael T.', location: 'New York, USA', amount: 'Le 250', message: 'Honoring Destiny John\'s beautiful legacy.', time: '1 hr ago', initial: 'M' },
+            { name: 'Fatima K.', location: 'Makeni, SL', amount: 'Le 15', message: 'Education changes everything. Thank you!', time: '2 hrs ago', initial: 'F' },
+            { name: 'David & Emma', location: 'Toronto, CA', amount: 'Le 500', message: 'Monthly donors since 2024. Keep up the amazing work!', time: '3 hrs ago', initial: 'D' },
+            { name: 'Ibrahim S.', location: 'Kenema, SL', amount: 'Le 75', message: 'As a healthcare worker, I see the impact daily.', time: '5 hrs ago', initial: 'I' },
+            { name: 'Priya R.', location: 'Mumbai, IN', amount: 'Le 200', message: 'Sending love from India to Sierra Leone.', time: '8 hrs ago', initial: 'P' }
         ];
+
+        let currentSlide = 0;
+        let sliderInterval;
 
         function buildWallOfHope() {
             const track = document.getElementById('wallTrack');
+            const dotsContainer = document.getElementById('wallDots');
+            
+            // Build cards
             const cardsHTML = recentDonors.map(d => `
                 <div class="donor-card">
                     <div class="donor-header">
                         <div class="donor-avatar">${d.initial}</div>
-                        <div>
+                        <div class="donor-info">
                             <div class="donor-name">${d.name}</div>
                             <div class="donor-location">📍 ${d.location}</div>
                         </div>
                     </div>
-                    <div class="donor-message">"${d.message}"</div>
+                    <div class="donor-message">${d.message}</div>
                     <div class="donor-meta">
                         <span class="donor-amount">${d.amount}</span>
-                        <span class="donor-time">🕐 ${d.time}</span>
+                        <span class="donor-time"> ${d.time}</span>
                     </div>
                 </div>
             `).join('');
-            // Duplicate for infinite scroll effect
-            track.innerHTML = cardsHTML + cardsHTML;
+            
+            track.innerHTML = cardsHTML;
+
+            // Build dots
+            dotsContainer.innerHTML = recentDonors.map((_, i) => 
+                `<button class="wall-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})" aria-label="Go to slide ${i + 1}"></button>`
+            ).join('');
+
+            startSliderAutoPlay();
         }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            const track = document.getElementById('wallTrack');
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            document.querySelectorAll('.wall-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            resetSliderAutoPlay();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % recentDonors.length;
+            goToSlide(currentSlide);
+        }
+
+        function startSliderAutoPlay() {
+            sliderInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetSliderAutoPlay() {
+            clearInterval(sliderInterval);
+            startSliderAutoPlay();
+        }
+
+        // Pause on hover
+        const sliderContainer = document.getElementById('wallSlider');
+        sliderContainer.addEventListener('mouseenter', () => clearInterval(sliderInterval));
+        sliderContainer.addEventListener('mouseleave', startSliderAutoPlay);
+
         buildWallOfHope();
     </script>
 </body>
