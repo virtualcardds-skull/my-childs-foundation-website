@@ -74,7 +74,7 @@
            5. CREATIVE PAGE HERO
            ========================================= */
         .page-hero {
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.92) 0%, rgba(44, 82, 130, 0.88) 100%), 
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(44, 82, 130, 0.9) 100%), 
                         url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover;
             color: white;
             text-align: center;
@@ -107,42 +107,49 @@
         /* =========================================
            6. DONATION SECTION (CREATIVE LAYOUT)
            ========================================= */
-        .donation-section { padding: 80px 20px 100px; }
+        .donation-section { padding: 80px 20px 100px; background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-light) 100%); }
         .donation-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: start; }
         
         /* Left Column: Impact & Trust */
         .donation-impact { position: sticky; top: 120px; }
-        .impact-card { background: var(--bg-light); padding: 30px; border-radius: 20px; border-left: 5px solid var(--secondary-color); margin-bottom: 25px; }
+        .impact-card { background: var(--bg-white); padding: 30px; border-radius: 20px; border-left: 5px solid var(--secondary-color); margin-bottom: 25px; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05); transition: transform 0.3s; }
+        .impact-card:hover { transform: translateY(-5px); }
         .impact-card h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--primary-color); }
         .impact-card p { font-size: 0.95rem; margin-bottom: 0; }
         .trust-badges { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
         .trust-item { display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: var(--text-dark); font-weight: 600; }
-        .trust-icon { width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .trust-icon { width: 40px; height: 40px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
         /* Right Column: Payment Tabs */
-        .payment-container { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(26, 54, 93, 0.1); overflow: hidden; border: 1px solid #edf2f7; }
+        .payment-container { background: white; border-radius: 24px; box-shadow: 0 25px 60px rgba(26, 54, 93, 0.12); overflow: hidden; border: 1px solid #edf2f7; }
         
         .payment-tabs { display: flex; background: var(--bg-light); border-bottom: 1px solid #edf2f7; }
         .tab-btn { flex: 1; padding: 20px 15px; background: transparent; border: none; font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; color: var(--text-light); cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
         .tab-btn:hover { color: var(--primary-color); background: rgba(255,255,255,0.5); }
         .tab-btn.active { color: var(--primary-color); background: white; }
-        .tab-btn.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--secondary-color); border-radius: 3px 3px 0 0; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun)); border-radius: 3px 3px 0 0; }
         .tab-icon { font-size: 1.5rem; }
 
-        .tab-content { padding: 40px; display: none; animation: fadeIn 0.4s ease; }
+        .tab-content { padding: 40px; display: none; animation: fadeIn 0.5s ease; }
         .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         .tab-content h3 { font-size: 1.5rem; margin-bottom: 10px; text-align: left; }
         .tab-content > p { text-align: left; margin-bottom: 30px; }
 
         /* Mobile Money Cards */
         .mobile-money-grid { display: grid; gap: 20px; }
-        .money-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-radius: 15px; border: 2px solid #edf2f7; transition: all 0.3s; background: white; }
-        .money-card:hover { border-color: var(--secondary-color); transform: translateX(5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .money-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-radius: 16px; border: 2px solid #edf2f7; transition: all 0.3s; background: white; }
+        
+        /* Creative Brand-Specific Hover Glows */
+        .money-card.orange-glow:hover { border-color: var(--orange-color); box-shadow: 0 10px 30px rgba(255, 121, 0, 0.15); }
+        .money-card.africell-glow:hover { border-color: var(--africell-color); box-shadow: 0 10px 30px rgba(0, 102, 179, 0.15); }
+        .money-card.qcell-glow:hover { border-color: var(--qcell-color); box-shadow: 0 10px 30px rgba(227, 6, 19, 0.15); }
+
         .money-info { display: flex; align-items: center; gap: 20px; }
         .money-logo { width: 120px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: white; padding: 10px; }
-        .money-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .money-logo img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s; }
+        .money-card:hover .money-logo img { transform: scale(1.05); }
         .money-details h4 { font-size: 1.1rem; margin-bottom: 2px; color: var(--primary-color); }
         .money-details p { font-size: 0.9rem; margin-bottom: 0; color: var(--text-light); }
         .copy-btn { padding: 8px 16px; background: var(--bg-light); color: var(--primary-color); border: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 5px; }
@@ -156,31 +163,72 @@
         .secure-note { font-size: 0.85rem; color: var(--text-light); display: flex; align-items: center; justify-content: center; gap: 5px; }
 
         /* Bank Transfer */
-        .bank-details { background: var(--bg-light); padding: 30px; border-radius: 15px; border: 1px solid #edf2f7; }
+        .bank-details { background: var(--bg-light); padding: 30px; border-radius: 16px; border: 1px solid #edf2f7; }
         .bank-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #e2e8f0; }
         .bank-row:last-child { border-bottom: none; }
         .bank-label { font-weight: 600; color: var(--text-light); font-size: 0.95rem; }
         .bank-value { font-weight: 600; color: var(--primary-color); font-size: 1rem; text-align: right; }
 
-        /* Transaction Screenshot Upload Form */
-        .upload-section { margin-top: 30px; padding: 30px; background: var(--bg-light); border-radius: 15px; border: 2px dashed #cbd5e0; }
-        .upload-section h4 { font-size: 1.2rem; margin-bottom: 15px; color: var(--primary-color); }
-        .upload-section p { font-size: 0.9rem; margin-bottom: 20px; }
+        /* Transaction Screenshot Upload Form (Enhanced) */
+        .upload-section { margin-top: 30px; padding: 35px; background: white; border-radius: 20px; border: 2px dashed #cbd5e0; position: relative; overflow: hidden; }
+        .upload-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,138,128,0.03) 10px, rgba(255,138,128,0.03) 20px);
+            pointer-events: none;
+        }
+        .upload-section h4 { font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color); position: relative; z-index: 1; }
+        .upload-section p { font-size: 0.95rem; margin-bottom: 25px; position: relative; z-index: 1; }
+        
         .file-input-wrapper { position: relative; margin-bottom: 20px; }
         .file-input-wrapper input[type="file"] { display: none; }
-        .file-input-label { display: block; padding: 15px; background: white; border: 2px dashed #cbd5e0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s; }
-        .file-input-label:hover { border-color: var(--secondary-color); background: var(--bg-white); }
-        .file-input-label svg { width: 40px; height: 40px; color: var(--text-light); margin-bottom: 10px; }
-        .file-name { margin-top: 10px; font-size: 0.9rem; color: var(--text-dark); font-weight: 600; }
-        .submit-btn { width: 100%; padding: 14px; background: var(--primary-color); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; }
-        .submit-btn:hover { background: var(--secondary-color); transform: translateY(-2px); }
+        .file-input-label { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 30px 20px; background: var(--bg-light); border: 2px dashed #cbd5e0; border-radius: 16px; 
+            text-align: center; cursor: pointer; transition: all 0.3s; position: relative; z-index: 1;
+        }
+        .file-input-label:hover { 
+            border-color: var(--secondary-color); 
+            background: var(--bg-white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 138, 128, 0.15);
+        }
+        .file-input-label svg { width: 48px; height: 48px; color: var(--secondary-color); margin-bottom: 15px; transition: transform 0.3s; }
+        .file-input-label:hover svg { transform: translateY(-5px); }
+        .file-name { margin-top: 15px; font-size: 0.95rem; color: var(--primary-color); font-weight: 600; }
+        
+        .form-input { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 15px; font-family: var(--font-body); font-size: 0.95rem; transition: all 0.3s; background: white; }
+        .form-input:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 4px rgba(255, 138, 128, 0.1); }
+        
+        .submit-btn { 
+            width: 100%; padding: 16px; 
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); 
+            color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1.05rem; 
+            cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; z-index: 1;
+        }
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+        .submit-btn:hover::before { left: 100%; }
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #ff7676 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 138, 128, 0.4);
+        }
 
         /* =========================================
            7. TRANSPARENCY SECTION
            ========================================= */
-        .transparency-section { padding: 80px 20px; background: var(--bg-light); text-align: center; }
+        .transparency-section { padding: 80px 20px; background: var(--bg-white); text-align: center; }
         .transparency-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .transparency-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05); }
+        .transparency-card { background: var(--bg-light); padding: 35px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05); transition: transform 0.3s; }
+        .transparency-card:hover { transform: translateY(-5px); }
         .transparency-card .icon { font-size: 2.5rem; margin-bottom: 15px; }
         .transparency-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
         .transparency-card p { font-size: 0.95rem; margin-bottom: 0; }
@@ -346,7 +394,7 @@
                 <!-- Tabs -->
                 <div class="payment-tabs">
                     <button class="tab-btn active" data-tab="mobile">
-                        <span class="tab-icon"></span>
+                        <span class="tab-icon">📱</span>
                         Mobile Money
                     </button>
                     <button class="tab-btn" data-tab="international">
@@ -366,7 +414,7 @@
                     
                     <div class="mobile-money-grid">
                         <!-- Orange Money -->
-                        <div class="money-card">
+                        <div class="money-card orange-glow">
                             <div class="money-info">
                                 <div class="money-logo">
                                     <img src="assets/project-djf-images/orange money.png" alt="Orange Money">
@@ -383,7 +431,7 @@
                         </div>
 
                         <!-- Africell Money -->
-                        <div class="money-card">
+                        <div class="money-card africell-glow">
                             <div class="money-info">
                                 <div class="money-logo">
                                     <img src="assets/project-djf-images/africell money.jpg" alt="Afrimoney">
@@ -400,7 +448,7 @@
                         </div>
 
                         <!-- QMoney -->
-                        <div class="money-card">
+                        <div class="money-card qcell-glow">
                             <div class="money-info">
                                 <div class="money-logo">
                                     <img src="assets/project-djf-images/Qmoney.jpg" alt="QMoney">
@@ -426,18 +474,21 @@
                             <div class="file-input-wrapper">
                                 <input type="file" id="screenshot" name="screenshot" accept="image/*" required onchange="updateFileName(this)">
                                 <label for="screenshot" class="file-input-label">
-                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                                    <div>Click to upload screenshot</div>
-                                    <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 5px;">PNG, JPG up to 5MB</div>
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                    <div style="font-weight: 600; color: var(--primary-color); margin-bottom: 5px;">Click to upload screenshot</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-light);">PNG, JPG up to 5MB</div>
                                 </label>
                                 <div class="file-name" id="fileName"></div>
                             </div>
                             
-                            <input type="email" name="email" placeholder="Your Email Address" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 8px; margin-bottom: 15px; font-family: var(--font-body);">
+                            <!-- NEW: Full Name Field -->
+                            <input type="text" name="donor_name" class="form-input" placeholder="Your Full Name" required>
                             
-                            <input type="text" name="phone" placeholder="Your Phone Number" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 8px; margin-bottom: 15px; font-family: var(--font-body);">
+                            <input type="email" name="email" class="form-input" placeholder="Your Email Address" required>
                             
-                            <input type="text" name="amount" placeholder="Amount Donated (Le)" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 8px; margin-bottom: 15px; font-family: var(--font-body);">
+                            <input type="text" name="phone" class="form-input" placeholder="Your Phone Number" required>
+                            
+                            <input type="text" name="amount" class="form-input" placeholder="Amount Donated (Le)" required>
                             
                             <button type="submit" class="submit-btn">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
@@ -446,7 +497,7 @@
                         </form>
                     </div>
 
-                    <p style="margin-top: 20px; font-size: 0.85rem; color: var(--text-light); text-align: center;">Or email screenshots directly to <strong>info@destinyjohnfoundation.org</strong></p>
+                    <p style="margin-top: 25px; font-size: 0.85rem; color: var(--text-light); text-align: center;">Or email screenshots directly to <strong>info@destinyjohnfoundation.org</strong></p>
                 </div>
 
                 <!-- Tab 2: International -->
@@ -674,7 +725,7 @@
             const fileName = input.files[0]?.name || '';
             const fileNameDisplay = document.getElementById('fileName');
             if (fileName) {
-                fileNameDisplay.textContent = `Selected: ${fileName}`;
+                fileNameDisplay.textContent = `📎 Selected: ${fileName}`;
                 fileNameDisplay.style.color = 'var(--primary-color)';
             } else {
                 fileNameDisplay.textContent = '';
