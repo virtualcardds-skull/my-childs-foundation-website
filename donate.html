@@ -279,30 +279,6 @@
         .form-input { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 15px; font-family: var(--font-body); font-size: 0.95rem; transition: all 0.3s; background: white; }
         .form-input:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 4px rgba(255, 138, 128, 0.1); }
 
-        /* TRUST/SECURITY BADGES */
-        .trust-security-badges { 
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 25px 0; padding: 20px; 
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.03), rgba(255, 138, 128, 0.03)); 
-            border-radius: 12px; border: 1px solid rgba(26, 54, 93, 0.1);
-        }
-        .security-badge { 
-            display: flex; align-items: center; gap: 10px; padding: 12px; background: white; 
-            border-radius: 8px; border: 1px solid #e2e8f0; transition: all 0.3s;
-            animation: badge-fade-in 0.6s ease forwards; opacity: 0;
-        }
-        .security-badge:nth-child(1) { animation-delay: 0.1s; }
-        .security-badge:nth-child(2) { animation-delay: 0.2s; }
-        .security-badge:nth-child(3) { animation-delay: 0.3s; }
-        .security-badge:nth-child(4) { animation-delay: 0.4s; }
-        @keyframes badge-fade-in { to { opacity: 1; } }
-        .security-badge:hover { border-color: var(--secondary-color); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 138, 128, 0.15); }
-        .security-badge-icon { 
-            width: 36px; height: 36px; border-radius: 50%; 
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-sun)); 
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
-        }
-        .security-badge-text { font-size: 0.85rem; font-weight: 600; color: var(--primary-color); line-height: 1.3; }
-
         .submit-btn { 
             width: 100%; padding: 18px; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); 
             color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1.1rem; 
@@ -388,7 +364,6 @@
             .bank-value { text-align: left; }
             .transparency-grid, .causes-grid { grid-template-columns: 1fr; }
             .wall-stats { gap: 20px; }
-            .trust-security-badges { grid-template-columns: 1fr; }
             .newsletter-card { grid-template-columns: 1fr; padding: 20px; top: 40px; text-align: center; }
             .newsletter-content h2 { text-align: center; }
             .newsletter-form { max-width: 100%; flex-direction: column; border-radius: 15px; padding: 10px; }
@@ -429,20 +404,20 @@
         <div class="hero-shape"></div>
         <div class="toys-container">
             <div class="toy toy-bear">🧸</div>
-            <div class="toy toy-kite">🪁</div>
+            <div class="toy toy-kite"></div>
             <div class="toy toy-ball">⚽</div>
             <div class="toy toy-car">🚗</div>
             <div class="toy toy-star">✨</div>
-            <div class="toy toy-train"></div>
+            <div class="toy toy-train">🚂</div>
             <div class="toy toy-airplane">✈️</div>
-            <div class="toy toy-rocket">🚀</div>
+            <div class="toy toy-rocket"></div>
             <div class="toy toy-puzzle">🧩</div>
             <div class="toy toy-palette">🎨</div>
             <div class="toy toy-yoyo">🪀</div>
             <div class="toy toy-dice">🎲</div>
-            <div class="toy toy-carousel">🎠</div>
+            <div class="toy toy-carousel"></div>
             <div class="toy toy-balloon-red">🎈</div>
-            <div class="toy toy-balloon-blue">🎈</div>
+            <div class="toy toy-balloon-blue"></div>
             <div class="toy toy-balloon-green">🎈</div>
         </div>
         <div class="container">
@@ -518,8 +493,8 @@
                 <div class="impact-card"><h3>Make an Immediate Impact</h3><p>Le 25 provides a school kit. Le 50 funds a medical checkup. Le 100 supplies a family with a month of nutritional support.</p></div>
                 <div class="trust-badges">
                     <div class="trust-item"><div class="trust-icon">🔒</div><span>100% Secure & Encrypted</span></div>
-                    <div class="trust-item"><div class="trust-icon">📜</div><span>Tax-Deductible Receipt</span></div>
-                    <div class="trust-item"><div class="trust-icon"></div><span>Transparent Operations</span></div>
+                    <div class="trust-item"><div class="trust-icon"></div><span>Tax-Deductible Receipt</span></div>
+                    <div class="trust-item"><div class="trust-icon">🤝</div><span>Transparent Operations</span></div>
                 </div>
             </div>
 
@@ -527,14 +502,14 @@
                 <div class="donation-frequency">
                     <div class="frequency-label">Choose Donation Frequency</div>
                     <div class="frequency-toggle">
-                        <button class="freq-btn active" data-freq="onetime" onclick="setFrequency('onetime')"><span></span> One-Time</button>
+                        <button class="freq-btn active" data-freq="onetime" onclick="setFrequency('onetime')"><span>💝</span> One-Time</button>
                         <button class="freq-btn" data-freq="monthly" onclick="setFrequency('monthly')"><span>🔄</span> Monthly <span class="freq-save">Save 20%</span></button>
                     </div>
                 </div>
 
                 <div class="payment-tabs">
-                    <button class="tab-btn active" data-tab="mobile"><span class="tab-icon">📱</span>Mobile Money</button>
-                    <button class="tab-btn" data-tab="international"><span class="tab-icon"></span>International</button>
+                    <button class="tab-btn active" data-tab="mobile"><span class="tab-icon"></span>Mobile Money</button>
+                    <button class="tab-btn" data-tab="international"><span class="tab-icon">🌍</span>International</button>
                     <button class="tab-btn" data-tab="bank"><span class="tab-icon">🏦</span>Bank Transfer</button>
                 </div>
 
@@ -562,7 +537,7 @@
 
                         <div class="impact-calculator">
                             <div class="impact-calc-header">
-                                <div class="impact-calc-icon" id="impactIcon">🎒</div>
+                                <div class="impact-calc-icon" id="impactIcon"></div>
                                 <div>
                                     <div class="impact-calc-title">Your Impact</div>
                                     <div class="impact-calc-subtitle">Here's what your donation provides</div>
@@ -610,7 +585,7 @@
                         <form id="transactionForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
                             <div class="tribute-toggle" onclick="toggleTribute(event)">
                                 <input type="checkbox" id="tributeCheck" onchange="toggleTributeFields()">
-                                <label for="tributeCheck">️ Dedicate this donation in memory of a loved one</label>
+                                <label for="tributeCheck">🕊️ Dedicate this donation in memory of a loved one</label>
                             </div>
                             <div class="tribute-fields" id="tributeFields">
                                 <label>In Memory Of</label>
@@ -635,26 +610,6 @@
                             <input type="hidden" name="frequency" id="formFrequency" value="One-Time">
                             <input type="hidden" name="impact" id="formImpact" value="School kit for one child">
                             
-                            <!-- TRUST/SECURITY BADGES -->
-                            <div class="trust-security-badges">
-                                <div class="security-badge">
-                                    <div class="security-badge-icon">🔒</div>
-                                    <div class="security-badge-text">256-bit SSL<br>Encryption</div>
-                                </div>
-                                <div class="security-badge">
-                                    <div class="security-badge-icon">✓</div>
-                                    <div class="security-badge-text">Verified<br>Non-Profit</div>
-                                </div>
-                                <div class="security-badge">
-                                    <div class="security-badge-icon">🛡️</div>
-                                    <div class="security-badge-text">Secure<br>Payment</div>
-                                </div>
-                                <div class="security-badge">
-                                    <div class="security-badge-icon">💯</div>
-                                    <div class="security-badge-text">Money-Back<br>Guarantee</div>
-                                </div>
-                            </div>
-
                             <button type="submit" class="submit-btn">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                                 Send Screenshot & Receipt Request
@@ -664,23 +619,22 @@
                     <p style="margin-top: 25px; font-size: 0.85rem; color: var(--text-light); text-align: center;">Or email screenshots directly to <strong>info@destinyjohnfoundation.org</strong></p>
                 </div>
 
-                <!-- INTERNATIONAL TAB (UPDATED WITH FLUTTERWAVE & SWIFT) -->
+                <!-- INTERNATIONAL TAB (UPDATED) -->
                 <div class="tab-content" id="international">
                     <h3>International Donation</h3>
                     <p>Support us from anywhere in the world securely. Choose your preferred method below:</p>
                     
                     <!-- Option 1: Flutterwave / Payment Link -->
                     <div style="text-align: center; margin-bottom: 30px; padding: 25px; background: var(--bg-light); border-radius: 16px; border: 2px solid var(--accent-sun);">
-                        <h4 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.2rem;"> Donate via Credit/Debit Card</h4>
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.2rem;">💳 Donate via Credit/Debit Card</h4>
                         <p style="font-size: 0.9rem; margin-bottom: 20px;">Securely process your donation in USD, GBP, or EUR via Flutterwave.</p>
-                        <!-- REPLACE THE HREF BELOW WITH YOUR ACTUAL FLUTTERWAVE PAYMENT LINK -->
-                        <a href="https://flutterwave.com/pay/your-link-here" target="_blank" class="btn btn-primary" style="background: #f5a623; color: white; border: none;">
+                        <a href="https://flutterwave.com/pay/your-link-here" target="_blank" class="btn btn-primary" style="background: #f5a623; color: white;">
                             Donate Securely via Flutterwave
                         </a>
                     </div>
 
                     <!-- Option 2: Direct Wire Transfer -->
-                    <div style="padding: 25px; background: white; border-radius: 16px; border: 1px solid #edf2f7;">
+                    <div style="padding: 25px; background: white; border-radius: 16px; border: 1px solid #edf2f7; margin-bottom: 30px;">
                         <h4 style="color: var(--primary-color); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-size: 1.2rem;">
                             🏦 Direct International Bank Transfer (SWIFT)
                         </h4>
@@ -693,10 +647,48 @@
                             <strong>Bank Address:</strong> [Bank Branch Address, Freetown, Sierra Leone]<br>
                             <strong>Reference:</strong> Please use "Donation + Your Name"
                         </div>
-                        <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 15px; font-style: italic;">
-                            * After making the transfer, please email your proof of payment to <strong>info@destinyjohnfoundation.org</strong> so we can issue your tax receipt.
-                        </p>
                     </div>
+
+                    <!-- NEW: Send Transaction Screenshot Form for International -->
+                    <div class="upload-section">
+                        <h4>📸 Send Transaction Screenshot</h4>
+                        <p>After completing your international transfer, upload a screenshot of the transaction confirmation. We'll send you a tax receipt via email.</p>
+
+                        <form id="internationalTransactionForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+                            <div class="tribute-toggle" onclick="toggleTributeIntl(event)">
+                                <input type="checkbox" id="tributeCheckIntl" onchange="toggleTributeFieldsIntl()">
+                                <label for="tributeCheckIntl">🕊️ Dedicate this donation in memory of a loved one</label>
+                            </div>
+                            <div class="tribute-fields" id="tributeFieldsIntl">
+                                <label>In Memory Of</label>
+                                <input type="text" name="tribute_name" class="form-input" placeholder="Name of the person you're honoring">
+                                <label style="margin-top: 10px;">Optional Message</label>
+                                <textarea name="tribute_message" class="form-input" rows="2" placeholder="A short message or dedication (optional)" style="resize: vertical;"></textarea>
+                            </div>
+
+                            <div class="file-input-wrapper">
+                                <input type="file" id="screenshotIntl" name="screenshot" accept="image/*" required onchange="updateFileNameIntl(this)">
+                                <label for="screenshotIntl" class="file-input-label">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                    <div style="font-weight: 600; color: var(--primary-color); margin-bottom: 5px;">Click to upload screenshot</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-light);">PNG, JPG up to 5MB</div>
+                                </label>
+                                <div class="file-name" id="fileNameIntl"></div>
+                            </div>
+                            <input type="text" name="donor_name" class="form-input" placeholder="Your Full Name" required>
+                            <input type="email" name="email" class="form-input" placeholder="Your Email Address" required>
+                            <input type="text" name="phone" class="form-input" placeholder="Your Phone Number" required>
+                            <input type="text" name="amount" id="formAmountIntl" class="form-input" placeholder="Amount Donated (USD/GBP/EUR)" required>
+                            <input type="hidden" name="frequency" id="formFrequencyIntl" value="One-Time">
+                            <input type="hidden" name="impact" id="formImpactIntl" value="International Donation">
+                            
+                            <button type="submit" class="submit-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                Send Screenshot & Receipt Request
+                            </button>
+                        </form>
+                    </div>
+                    <p style="margin-top: 25px; font-size: 0.85rem; color: var(--text-light); text-align: center;">Or email screenshots directly to <strong>info@destinyjohnfoundation.org</strong></p>
                 </div>
 
                 <!-- BANK TRANSFER TAB (LOCAL) -->
@@ -720,8 +712,8 @@
             <h2>Our Promise of Transparency</h2>
             <div class="transparency-grid">
                 <div class="transparency-card"><div class="icon">📊</div><h3>Financial Reports</h3><p>We publish annual financial reports detailing exactly how every Leone and Dollar is spent.</p></div>
-                <div class="transparency-card"><div class="icon"></div><h3>Impact Updates</h3><p>Donors receive quarterly updates with photos and stories from the communities you've helped.</p></div>
-                <div class="transparency-card"><div class="icon">🤝</div><h3>Direct Support</h3><p>We minimize administrative costs so the maximum amount goes directly to the children.</p></div>
+                <div class="transparency-card"><div class="icon">📸</div><h3>Impact Updates</h3><p>Donors receive quarterly updates with photos and stories from the communities you've helped.</p></div>
+                <div class="transparency-card"><div class="icon"></div><h3>Direct Support</h3><p>We minimize administrative costs so the maximum amount goes directly to the children.</p></div>
             </div>
         </div>
     </section>
@@ -798,6 +790,13 @@
             if (fileName) { fileNameDisplay.textContent = `📎 Selected: ${fileName}`; fileNameDisplay.style.color = 'var(--primary-color)'; } else { fileNameDisplay.textContent = ''; }
         }
 
+        // NEW JS FOR INTERNATIONAL FORM
+        function updateFileNameIntl(input) {
+            const fileName = input.files[0]?.name || '';
+            const fileNameDisplay = document.getElementById('fileNameIntl');
+            if (fileName) { fileNameDisplay.textContent = `📎 Selected: ${fileName}`; fileNameDisplay.style.color = 'var(--primary-color)'; } else { fileNameDisplay.textContent = ''; }
+        }
+
         function scrollToDonation() { document.getElementById('donationSection').scrollIntoView({ behavior: 'smooth' }); }
 
         function cleanUrl() {
@@ -841,6 +840,7 @@
             document.querySelectorAll('.freq-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.freq-btn[data-freq="${freq}"]`).classList.add('active');
             document.getElementById('formFrequency').value = freq === 'monthly' ? 'Monthly' : 'One-Time';
+            document.getElementById('formFrequencyIntl').value = freq === 'monthly' ? 'Monthly' : 'One-Time';
             updateImpactFromAmount(currentSelectedAmount);
         }
 
@@ -871,11 +871,11 @@
         const impactTiers = [
             { min: 0, max: 9, icon: '🌱', visual: '🌱', description: 'Plants a seed of hope for a child', children: 1 },
             { min: 10, max: 24, icon: '📚', visual: '📚', description: 'Provides school supplies for one child', children: 1 },
-            { min: 25, max: 49, icon: '🎒', visual: '🎒', description: 'Provides a complete school kit for one child', children: 1 },
-            { min: 50, max: 99, icon: '🩺', visual: '', description: 'Funds a medical checkup for one child', children: 1 },
-            { min: 100, max: 249, icon: '🍎', visual: '', description: 'Supplies a family with a month of nutritional support', children: 3 },
-            { min: 250, max: 499, icon: '💉', visual: '💉', description: 'Provides vaccines for 5 children', children: 5 },
-            { min: 500, max: 999, icon: '👩‍⚕️', visual: '👩‍⚕️', description: 'Trains one healthcare worker for a month', children: 10 },
+            { min: 25, max: 49, icon: '', visual: '🎒', description: 'Provides a complete school kit for one child', children: 1 },
+            { min: 50, max: 99, icon: '🩺', visual: '🩺', description: 'Funds a medical checkup for one child', children: 1 },
+            { min: 100, max: 249, icon: '🍎', visual: '🍎', description: 'Supplies a family with a month of nutritional support', children: 3 },
+            { min: 250, max: 499, icon: '', visual: '💉', description: 'Provides vaccines for 5 children', children: 5 },
+            { min: 500, max: 999, icon: '👩‍⚕️', visual: '👩⚕️', description: 'Trains one healthcare worker for a month', children: 10 },
             { min: 1000, max: Infinity, icon: '💧', visual: '💧', description: 'Helps build clean water access for a community', children: 50 }
         ];
 
@@ -916,6 +916,20 @@
         function toggleTributeFields() {
             const checkbox = document.getElementById('tributeCheck');
             const fields = document.getElementById('tributeFields');
+            if (checkbox.checked) { fields.classList.add('show'); } else { fields.classList.remove('show'); }
+        }
+
+        // NEW JS FOR INTERNATIONAL TRIBUTE TOGGLE
+        function toggleTributeIntl(e) {
+            if (e.target.tagName !== 'INPUT') {
+                const checkbox = document.getElementById('tributeCheckIntl');
+                checkbox.checked = !checkbox.checked;
+                toggleTributeFieldsIntl();
+            }
+        }
+        function toggleTributeFieldsIntl() {
+            const checkbox = document.getElementById('tributeCheckIntl');
+            const fields = document.getElementById('tributeFieldsIntl');
             if (checkbox.checked) { fields.classList.add('show'); } else { fields.classList.remove('show'); }
         }
 
