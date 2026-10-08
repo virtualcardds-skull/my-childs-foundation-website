@@ -113,27 +113,64 @@
             z-index: 1;
         }
         
-        .hero-shape:nth-child(1) {
-            width: 400px; height: 400px; top: -10%; left: -5%;
-            animation-delay: 0s;
-        }
-        .hero-shape:nth-child(2) {
-            width: 250px; height: 250px; top: 40%; right: -5%;
-            animation-delay: -5s;
-        }
-        .hero-shape:nth-child(3) {
-            width: 180px; height: 180px; bottom: 10%; left: 15%;
-            animation-delay: -10s;
-        }
+        .hero-shape:nth-child(1) { width: 400px; height: 400px; top: -10%; left: -5%; animation-delay: 0s; }
+        .hero-shape:nth-child(2) { width: 250px; height: 250px; top: 40%; right: -5%; animation-delay: -5s; }
+        .hero-shape:nth-child(3) { width: 180px; height: 180px; bottom: 10%; left: 15%; animation-delay: -10s; }
         
         @keyframes float {
             0%, 100% { transform: translateY(0) scale(1); }
             50% { transform: translateY(-40px) scale(1.05); }
         }
         
-        .page-hero .container {
-            position: relative;
-            z-index: 2;
+        .page-hero .container { position: relative; z-index: 2; }
+
+        /* =========================================
+           NEW: PLAYING TOYS ANIMATION LAYER
+           ========================================= */
+        .toys-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; /* Behind text, above background */
+            pointer-events: none; /* Allows clicking through toys */
+            overflow: hidden;
+        }
+
+        .toy {
+            position: absolute;
+            font-size: 3.5rem;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+            opacity: 0.9;
+        }
+
+        .toy-bear { top: 65%; left: 6%; animation: bounce 3s infinite ease-in-out; }
+        .toy-balloon { top: 15%; right: 8%; animation: float-toy 4s infinite ease-in-out; font-size: 4.5rem; }
+        .toy-kite { top: 10%; left: 22%; animation: sway 5s infinite ease-in-out; font-size: 3rem; }
+        .toy-ball { bottom: 20%; right: 18%; animation: bounce 2.5s infinite ease-in-out; font-size: 2.5rem; }
+        .toy-car { bottom: 22%; left: -10%; animation: drive 14s infinite linear; font-size: 3rem; }
+        .toy-star { top: 30%; left: 8%; animation: twinkle 3s infinite ease-in-out; font-size: 2rem; }
+
+        @keyframes bounce { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-25px); } 
+        }
+        @keyframes float-toy { 
+            0%, 100% { transform: translateY(0) rotate(-5deg); } 
+            50% { transform: translateY(-35px) rotate(5deg); } 
+        }
+        @keyframes sway { 
+            0%, 100% { transform: rotate(-15deg) translateX(0); } 
+            50% { transform: rotate(15deg) translateX(20px); } 
+        }
+        @keyframes drive { 
+            0% { left: -10%; transform: scaleX(1); } 
+            49% { transform: scaleX(1); }
+            50% { left: 110%; transform: scaleX(1); } 
+            51% { left: 110%; transform: scaleX(-1); }
+            100% { left: -10%; transform: scaleX(-1); } 
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.4; transform: scale(0.8) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
         }
 
         .page-hero .breadcrumb {
@@ -144,15 +181,8 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-        
-        .page-hero .breadcrumb a { 
-            color: rgba(255,255,255,0.7); 
-            transition: color 0.3s; 
-        }
-        
-        .page-hero .breadcrumb a:hover { 
-            color: var(--accent-sun); 
-        }
+        .page-hero .breadcrumb a { color: rgba(255,255,255,0.7); transition: color 0.3s; }
+        .page-hero .breadcrumb a:hover { color: var(--accent-sun); }
         
         .page-hero h1 { 
             font-size: 4rem; 
@@ -164,71 +194,21 @@
             background-clip: text;
             text-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
+        .page-hero p { color: rgba(255,255,255,0.85); font-size: 1.3rem; max-width: 650px; margin: 0 auto 40px; line-height: 1.6; }
         
-        .page-hero p { 
-            color: rgba(255,255,255,0.85); 
-            font-size: 1.3rem; 
-            max-width: 650px; 
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-        
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
-        
+        .hero-stats { display: flex; justify-content: center; gap: 30px; margin-top: 50px; flex-wrap: wrap; }
         .hero-stat {
-            text-align: center;
-            padding: 25px 35px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.4s ease;
-            min-width: 160px;
+            text-align: center; padding: 25px 35px;
+            background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.4s ease; min-width: 160px;
         }
-        
-        .hero-stat:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-8px);
-            border-color: var(--secondary-color);
-            box-shadow: 0 15px 40px rgba(255, 138, 128, 0.2);
-        }
-        
-        .hero-stat-number {
-            font-size: 2.8rem;
-            font-weight: 700;
-            display: block;
-            margin-bottom: 8px;
-            color: var(--accent-sun);
-        }
-        
-        .hero-stat-label {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
+        .hero-stat:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-8px); border-color: var(--secondary-color); box-shadow: 0 15px 40px rgba(255, 138, 128, 0.2); }
+        .hero-stat-number { font-size: 2.8rem; font-weight: 700; display: block; margin-bottom: 8px; color: var(--accent-sun); }
+        .hero-stat-label { font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 600; letter-spacing: 0.5px; }
 
         /* Creative SVG Wave Divider at bottom of hero */
-        .hero-wave {
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            z-index: 3;
-            line-height: 0;
-        }
-        .hero-wave svg {
-            width: 100%;
-            height: 80px;
-            display: block;
-        }
+        .hero-wave { position: absolute; bottom: -2px; left: 0; width: 100%; z-index: 3; line-height: 0; }
+        .hero-wave svg { width: 100%; height: 80px; display: block; }
 
         /* =========================================
            6. CAUSES SECTION
@@ -239,49 +219,17 @@
         .section-header p { font-size: 1.1rem; }
         
         .causes-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
-        .cause-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1);
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .cause-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(26, 54, 93, 0.15);
-        }
-        
-        .cause-image {
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .cause-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--secondary-color);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-        
+        .cause-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1); transition: all 0.3s; position: relative; }
+        .cause-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(26, 54, 93, 0.15); }
+        .cause-image { height: 220px; background-size: cover; background-position: center; position: relative; }
+        .cause-badge { position: absolute; top: 20px; right: 20px; background: var(--secondary-color); color: white; padding: 8px 16px; border-radius: 50px; font-weight: 600; font-size: 0.85rem; }
         .cause-content { padding: 30px; }
         .cause-content h3 { font-size: 1.4rem; margin-bottom: 12px; }
         .cause-content p { font-size: 0.95rem; margin-bottom: 20px; color: var(--text-light); }
-        
         .cause-progress { margin-bottom: 20px; }
         .progress-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
         .progress-bar { height: 10px; background: var(--bg-light); border-radius: 10px; overflow: hidden; }
         .progress-fill { height: 100%; background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun)); border-radius: 10px; transition: width 1s ease; }
-        
         .cause-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid #edf2f7; }
         .cause-amount { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
         .cause-amount span { font-size: 0.9rem; color: var(--text-light); font-weight: 400; }
@@ -291,7 +239,6 @@
            ========================================= */
         .donation-section { padding: 80px 20px 100px; background: var(--bg-white); }
         .donation-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: start; }
-        
         .donation-impact { position: sticky; top: 120px; }
         .impact-card { background: var(--bg-light); padding: 30px; border-radius: 20px; border-left: 5px solid var(--secondary-color); margin-bottom: 25px; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05); transition: transform 0.3s; }
         .impact-card:hover { transform: translateY(-5px); }
@@ -312,17 +259,14 @@
         .tab-content { padding: 40px; display: none; animation: fadeIn 0.5s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-
         .tab-content h3 { font-size: 1.5rem; margin-bottom: 10px; text-align: left; }
         .tab-content > p { text-align: left; margin-bottom: 30px; }
 
         .mobile-money-grid { display: grid; gap: 20px; }
         .money-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-radius: 16px; border: 2px solid #edf2f7; transition: all 0.3s; background: white; }
-        
         .money-card.orange-glow:hover { border-color: var(--orange-color); box-shadow: 0 10px 30px rgba(255, 121, 0, 0.15); }
         .money-card.africell-glow:hover { border-color: var(--africell-color); box-shadow: 0 10px 30px rgba(0, 102, 179, 0.15); }
         .money-card.qcell-glow:hover { border-color: var(--qcell-color); box-shadow: 0 10px 30px rgba(227, 6, 19, 0.15); }
-
         .money-info { display: flex; align-items: center; gap: 20px; }
         .money-logo { width: 120px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: white; padding: 10px; }
         .money-logo img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s; }
@@ -345,56 +289,22 @@
         .bank-value { font-weight: 600; color: var(--primary-color); font-size: 1rem; text-align: right; }
 
         .upload-section { margin-top: 30px; padding: 35px; background: white; border-radius: 20px; border: 2px dashed #cbd5e0; position: relative; overflow: hidden; }
-        .upload-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,138,128,0.03) 10px, rgba(255,138,128,0.03) 20px);
-            pointer-events: none;
-        }
+        .upload-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,138,128,0.03) 10px, rgba(255,138,128,0.03) 20px); pointer-events: none; }
         .upload-section h4 { font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color); position: relative; z-index: 1; }
         .upload-section p { font-size: 0.95rem; margin-bottom: 25px; position: relative; z-index: 1; }
-        
         .file-input-wrapper { position: relative; margin-bottom: 20px; }
         .file-input-wrapper input[type="file"] { display: none; }
-        .file-input-label { 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 30px 20px; background: var(--bg-light); border: 2px dashed #cbd5e0; border-radius: 16px; 
-            text-align: center; cursor: pointer; transition: all 0.3s; position: relative; z-index: 1;
-        }
-        .file-input-label:hover { 
-            border-color: var(--secondary-color); 
-            background: var(--bg-white);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 138, 128, 0.15);
-        }
+        .file-input-label { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 20px; background: var(--bg-light); border: 2px dashed #cbd5e0; border-radius: 16px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; z-index: 1; }
+        .file-input-label:hover { border-color: var(--secondary-color); background: var(--bg-white); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 138, 128, 0.15); }
         .file-input-label svg { width: 48px; height: 48px; color: var(--secondary-color); margin-bottom: 15px; transition: transform 0.3s; }
         .file-input-label:hover svg { transform: translateY(-5px); }
         .file-name { margin-top: 15px; font-size: 0.95rem; color: var(--primary-color); font-weight: 600; }
-        
         .form-input { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 15px; font-family: var(--font-body); font-size: 0.95rem; transition: all 0.3s; background: white; }
         .form-input:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 4px rgba(255, 138, 128, 0.1); }
-        
-        .submit-btn { 
-            width: 100%; padding: 16px; 
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); 
-            color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1.05rem; 
-            cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; z-index: 1;
-        }
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s;
-        }
+        .submit-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1.05rem; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; z-index: 1; }
+        .submit-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s; }
         .submit-btn:hover::before { left: 100%; }
-        .submit-btn:hover {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #ff7676 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 138, 128, 0.4);
-        }
+        .submit-btn:hover { background: linear-gradient(135deg, var(--secondary-color) 0%, #ff7676 100%); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 138, 128, 0.4); }
 
         /* =========================================
            8. TRANSPARENCY SECTION
@@ -474,6 +384,10 @@
             .hero-stats { flex-direction: column; gap: 20px; }
             .hero-stat { width: 100%; }
             
+            /* Scale down toys on mobile so they don't block text */
+            .toy { font-size: 2rem !important; opacity: 0.6; }
+            .toy-car { display: none; }
+            
             .donation-layout { grid-template-columns: 1fr; gap: 40px; }
             .donation-impact { position: static; }
             .tab-btn { font-size: 0.8rem; padding: 15px 10px; }
@@ -525,12 +439,22 @@
         </div>
     </header>
 
-    <!-- CREATIVE PAGE HERO (ULTRA-CREATIVE REDESIGN) -->
+    <!-- CREATIVE PAGE HERO (ULTRA-CREATIVE REDESIGN WITH TOYS) -->
     <section class="page-hero">
         <!-- Animated Aurora & Floating Shapes -->
         <div class="hero-shape"></div>
         <div class="hero-shape"></div>
         <div class="hero-shape"></div>
+
+        <!-- NEW: PLAYING TOYS LAYER -->
+        <div class="toys-container">
+            <div class="toy toy-bear">🧸</div>
+            <div class="toy toy-balloon">🎈</div>
+            <div class="toy toy-kite">🪁</div>
+            <div class="toy toy-ball">⚽</div>
+            <div class="toy toy-car">🚗</div>
+            <div class="toy toy-star">✨</div>
+        </div>
         
         <div class="container">
             <div class="breadcrumb">
