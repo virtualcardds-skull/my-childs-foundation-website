@@ -125,13 +125,13 @@
         .page-hero .container { position: relative; z-index: 2; }
 
         /* =========================================
-           NEW: PLAYING TOYS ANIMATION LAYER
+           NEW: PLAYING TOYS ANIMATION LAYER (ENHANCED)
            ========================================= */
         .toys-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; /* Behind text, above background */
-            pointer-events: none; /* Allows clicking through toys */
+            z-index: 1;
+            pointer-events: none;
             overflow: hidden;
         }
 
@@ -142,12 +142,23 @@
             opacity: 0.9;
         }
 
+        /* Original Toys */
         .toy-bear { top: 65%; left: 6%; animation: bounce 3s infinite ease-in-out; }
         .toy-balloon { top: 15%; right: 8%; animation: float-toy 4s infinite ease-in-out; font-size: 4.5rem; }
         .toy-kite { top: 10%; left: 22%; animation: sway 5s infinite ease-in-out; font-size: 3rem; }
         .toy-ball { bottom: 20%; right: 18%; animation: bounce 2.5s infinite ease-in-out; font-size: 2.5rem; }
         .toy-car { bottom: 22%; left: -10%; animation: drive 14s infinite linear; font-size: 3rem; }
         .toy-star { top: 30%; left: 8%; animation: twinkle 3s infinite ease-in-out; font-size: 2rem; }
+
+        /* NEW Toys Added */
+        .toy-train { bottom: 25%; right: -10%; animation: drive-reverse 16s infinite linear; font-size: 3.2rem; }
+        .toy-airplane { top: 20%; left: -10%; animation: fly 12s infinite linear; font-size: 3rem; }
+        .toy-rocket { top: 50%; right: 5%; animation: rocket-launch 6s infinite ease-in-out; font-size: 3.5rem; }
+        .toy-puzzle { bottom: 30%; left: 35%; animation: spin-slow 8s infinite linear; font-size: 2.8rem; }
+        .toy-palette { top: 40%; left: 5%; animation: swing 4s infinite ease-in-out; font-size: 3rem; }
+        .toy-yoyo { bottom: 35%; right: 35%; animation: yoyo-bounce 3.5s infinite ease-in-out; font-size: 2.5rem; }
+        .toy-dice { top: 60%; left: 45%; animation: dice-roll 5s infinite ease-in-out; font-size: 2.8rem; }
+        .toy-carousel { top: 25%; right: 25%; animation: carousel-spin 10s infinite linear; font-size: 3.5rem; }
 
         @keyframes bounce { 
             0%, 100% { transform: translateY(0); } 
@@ -167,6 +178,44 @@
             50% { left: 110%; transform: scaleX(1); } 
             51% { left: 110%; transform: scaleX(-1); }
             100% { left: -10%; transform: scaleX(-1); } 
+        }
+        @keyframes drive-reverse { 
+            0% { right: -10%; transform: scaleX(-1); } 
+            49% { transform: scaleX(-1); }
+            50% { right: 110%; transform: scaleX(-1); } 
+            51% { right: 110%; transform: scaleX(1); }
+            100% { right: -10%; transform: scaleX(1); } 
+        }
+        @keyframes fly {
+            0% { left: -10%; top: 25%; transform: rotate(15deg); }
+            50% { top: 15%; }
+            100% { left: 110%; top: 25%; transform: rotate(15deg); }
+        }
+        @keyframes rocket-launch {
+            0%, 100% { transform: translateY(0) rotate(-45deg); }
+            50% { transform: translateY(-50px) rotate(-45deg); }
+        }
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes swing {
+            0%, 100% { transform: rotate(-20deg); }
+            50% { transform: rotate(20deg); }
+        }
+        @keyframes yoyo-bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+        @keyframes dice-roll {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.1); }
+            50% { transform: rotate(180deg) scale(1); }
+            75% { transform: rotate(270deg) scale(1.1); }
+        }
+        @keyframes carousel-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         @keyframes twinkle {
             0%, 100% { opacity: 0.4; transform: scale(0.8) rotate(0deg); }
@@ -386,7 +435,7 @@
             
             /* Scale down toys on mobile so they don't block text */
             .toy { font-size: 2rem !important; opacity: 0.6; }
-            .toy-car { display: none; }
+            .toy-car, .toy-train, .toy-airplane { display: none; }
             
             .donation-layout { grid-template-columns: 1fr; gap: 40px; }
             .donation-impact { position: static; }
@@ -439,21 +488,32 @@
         </div>
     </header>
 
-    <!-- CREATIVE PAGE HERO (ULTRA-CREATIVE REDESIGN WITH TOYS) -->
+    <!-- CREATIVE PAGE HERO (ULTRA-CREATIVE REDESIGN WITH MORE TOYS) -->
     <section class="page-hero">
         <!-- Animated Aurora & Floating Shapes -->
         <div class="hero-shape"></div>
         <div class="hero-shape"></div>
         <div class="hero-shape"></div>
 
-        <!-- NEW: PLAYING TOYS LAYER -->
+        <!-- ENHANCED: MORE PLAYING TOYS LAYER -->
         <div class="toys-container">
+            <!-- Original Toys -->
             <div class="toy toy-bear">🧸</div>
-            <div class="toy toy-balloon">🎈</div>
+            <div class="toy toy-balloon"></div>
             <div class="toy toy-kite">🪁</div>
             <div class="toy toy-ball">⚽</div>
             <div class="toy toy-car">🚗</div>
             <div class="toy toy-star">✨</div>
+            
+            <!-- NEW Toys Added -->
+            <div class="toy toy-train">🚂</div>
+            <div class="toy toy-airplane">️</div>
+            <div class="toy toy-rocket">🚀</div>
+            <div class="toy toy-puzzle">🧩</div>
+            <div class="toy toy-palette">🎨</div>
+            <div class="toy toy-yoyo">🪀</div>
+            <div class="toy toy-dice">🎲</div>
+            <div class="toy toy-carousel">🎠</div>
         </div>
         
         <div class="container">
@@ -596,7 +656,7 @@
                         <span>Tax-Deductible Receipt</span>
                     </div>
                     <div class="trust-item">
-                        <div class="trust-icon">🤝</div>
+                        <div class="trust-icon"></div>
                         <span>Transparent Operations</span>
                     </div>
                 </div>
@@ -771,7 +831,7 @@
                     <p>We publish annual financial reports detailing exactly how every Leone and Dollar is spent.</p>
                 </div>
                 <div class="transparency-card">
-                    <div class="icon">📸</div>
+                    <div class="icon"></div>
                     <h3>Impact Updates</h3>
                     <p>Donors receive quarterly updates with photos and stories from the communities you've helped.</p>
                 </div>
