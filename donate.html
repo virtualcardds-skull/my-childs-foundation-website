@@ -59,7 +59,7 @@
         .page-hero h1 { font-size: 3.5rem; margin-bottom: 15px; }
         .page-hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: rgba(255,255,255,0.9); }
 
-        /* CAUSES SECTION (NEWLY ADDED) */
+        /* CAUSES SECTION */
         .causes-section { padding: 80px 20px; background-color: var(--bg-light); }
         .section-header { text-align: center; max-width: 700px; margin: 0 auto 50px; }
         .section-header h2 { margin-bottom: 15px; }
@@ -186,10 +186,51 @@
         .form-input { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 15px; font-family: var(--font-body); font-size: 0.95rem; transition: all 0.3s; background: white; }
         .form-input:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 4px rgba(255, 138, 128, 0.1); }
 
+        /* TRUST/SECURITY BADGES (ADDED BACK FOR INTERNATIONAL FORM) */
+        .trust-security-badges { 
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 25px 0; padding: 20px; 
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.03), rgba(255, 138, 128, 0.03)); 
+            border-radius: 12px; border: 1px solid rgba(26, 54, 93, 0.1);
+        }
+        .security-badge { 
+            display: flex; align-items: center; gap: 10px; padding: 12px; background: white; 
+            border-radius: 8px; border: 1px solid #e2e8f0; transition: all 0.3s;
+            animation: badge-fade-in 0.6s ease forwards; opacity: 0;
+        }
+        .security-badge:nth-child(1) { animation-delay: 0.1s; }
+        .security-badge:nth-child(2) { animation-delay: 0.2s; }
+        .security-badge:nth-child(3) { animation-delay: 0.3s; }
+        .security-badge:nth-child(4) { animation-delay: 0.4s; }
+        @keyframes badge-fade-in { to { opacity: 1; } }
+        .security-badge:hover { border-color: var(--secondary-color); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 138, 128, 0.15); }
+        .security-badge-icon { 
+            width: 36px; height: 36px; border-radius: 50%; 
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-sun)); 
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+        }
+        .security-badge-text { font-size: 0.85rem; font-weight: 600; color: var(--primary-color); line-height: 1.3; }
+
         .submit-btn { width: 100%; padding: 18px; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 8px 20px rgba(26, 54, 93, 0.2); }
         .submit-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s; }
         .submit-btn:hover::before { left: 100%; }
         .submit-btn:hover { background: linear-gradient(135deg, var(--secondary-color) 0%, #ff7676 100%); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255, 138, 128, 0.4); }
+
+        /* FLOATING NEWSLETTER SECTION (NEWLY ADDED) */
+        .newsletter-wrapper { background-color: var(--bg-light); padding: 40px 20px 0; position: relative; }
+        .newsletter-card { max-width: 1100px; margin: 0 auto; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); border-radius: 20px; padding: 30px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 25px; align-items: center; position: relative; top: 60px; z-index: 10; box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4); }
+        .newsletter-image { text-align: center; }
+        .newsletter-image img { width: 100%; max-width: 240px; border-radius: 20px; border: 4px solid rgba(255,255,255,0.25); box-shadow: 0 15px 40px rgba(0,0,0,0.3); object-fit: cover; aspect-ratio: 1 / 1; margin: 0 auto; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .newsletter-image img:hover { transform: scale(1.05) rotate(-2deg); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+        .newsletter-content h2 { color: white; font-size: 1.5rem; margin-bottom: 10px; text-align: left; line-height: 1.3; }
+        .newsletter-content > p { color: rgba(255,255,255,0.9); margin-bottom: 15px; font-size: 0.95rem; }
+        .newsletter-form { display: flex; background: white; border-radius: 50px; padding: 4px; max-width: 500px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .newsletter-form input { flex: 1; padding: 10px 16px; border: none; border-radius: 50px; font-size: 0.95rem; font-family: var(--font-body); background: transparent; color: var(--text-dark); }
+        .newsletter-form input::placeholder { color: var(--text-light); }
+        .newsletter-form input:focus { outline: none; }
+        .newsletter-form button { padding: 10px 24px; border-radius: 50px; border: none; background: var(--bg-white); color: var(--primary-color); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; white-space: nowrap; }
+        .newsletter-form button:hover { background: var(--secondary-color); color: white; transform: translateY(-2px); }
+        .newsletter-note { margin-top: 10px; font-size: 0.8rem; color: rgba(255,255,255,0.8); }
+        .newsletter-note a { color: var(--accent-sun); text-decoration: underline; }
 
         /* MAIN FOOTER */
         .main-footer { background-color: var(--bg-white); padding: 100px 20px 30px; border-top: 1px solid #e2e8f0; }
@@ -215,6 +256,16 @@
         .footer-links a { color: var(--text-light); font-size: 0.9rem; transition: color 0.3s; }
         .footer-links a:hover { color: var(--secondary-color); }
 
+        /* SCROLL TO TOP BUTTON (NEWLY ADDED) */
+        .scroll-top-btn {
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%;
+            background-color: var(--primary-color); color: white; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; z-index: 999;
+        }
+        .scroll-top-btn:hover { background-color: var(--secondary-color); transform: translateY(-5px); }
+        .scroll-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
         @media (max-width: 768px) {
             h1 { font-size: 2rem; } h2 { font-size: 1.75rem; } .page-hero h1 { font-size: 2.5rem; }
             .logo img { height: 80px; }
@@ -237,11 +288,22 @@
             .bank-row { flex-direction: column; gap: 5px; }
             .bank-value { text-align: left; }
             
+            .newsletter-card { grid-template-columns: 1fr; padding: 20px; top: 40px; text-align: center; }
+            .newsletter-content h2 { text-align: center; }
+            .newsletter-form { max-width: 100%; flex-direction: column; border-radius: 15px; padding: 10px; }
+            .newsletter-form input { width: 100%; }
+            .newsletter-form button { width: 100%; }
+            .newsletter-image img { max-width: 180px; }
+
+            .trust-security-badges { grid-template-columns: 1fr; }
+            
             .main-footer { padding-top: 70px; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
             .footer-brand { grid-column: 1 / -1; text-align: center; }
             .social-icons { justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
+
+            .scroll-top-btn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
         }
     </style>
 </head>
@@ -274,7 +336,7 @@
         </div>
     </section>
 
-    <!-- SUPPORT OUR CAUSES SECTION (ADDED BACK) -->
+    <!-- SUPPORT OUR CAUSES SECTION -->
     <section class="causes-section">
         <div class="container">
             <div class="section-header">
@@ -282,7 +344,6 @@
                 <p>Choose a specific project to support, or make a general donation to help us where it's needed most.</p>
             </div>
             <div class="causes-grid">
-                <!-- Cause 1 -->
                 <div class="cause-card">
                     <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80');">
                         <span class="cause-badge">Urgent</span>
@@ -299,12 +360,10 @@
                                 <div class="progress-fill" style="width: 50%;"></div>
                             </div>
                         </div>
-                        <!-- Links directly to the frequency section on this page -->
                         <a href="#donate-frequency" class="btn btn-primary cause-btn">Donate to this Cause</a>
                     </div>
                 </div>
 
-                <!-- Cause 2 -->
                 <div class="cause-card">
                     <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80');">
                         <span class="cause-badge">Ongoing</span>
@@ -325,7 +384,6 @@
                     </div>
                 </div>
 
-                <!-- Cause 3 -->
                 <div class="cause-card">
                     <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80');">
                         <span class="cause-badge">New</span>
@@ -363,7 +421,6 @@
             </div>
 
             <div class="payment-container">
-                <!-- Target ID for the anchor links -->
                 <div class="donation-frequency" id="donate-frequency">
                     <div class="frequency-label">Choose Donation Frequency</div>
                     <div class="frequency-toggle">
@@ -375,7 +432,7 @@
                 <div class="payment-tabs">
                     <button class="tab-btn active" data-tab="mobile"><span class="tab-icon">📱</span>Mobile Money</button>
                     <button class="tab-btn" data-tab="international"><span class="tab-icon">🌍</span>International</button>
-                    <button class="tab-btn" data-tab="bank"><span class="tab-icon"></span>Bank Transfer</button>
+                    <button class="tab-btn" data-tab="bank"><span class="tab-icon">🏦</span>Bank Transfer</button>
                 </div>
 
                 <!-- MOBILE MONEY TAB -->
@@ -402,7 +459,7 @@
 
                         <div class="impact-calculator">
                             <div class="impact-calc-header">
-                                <div class="impact-calc-icon" id="impactIcon"></div>
+                                <div class="impact-calc-icon" id="impactIcon">🎒</div>
                                 <div>
                                     <div class="impact-calc-title">Your Impact</div>
                                     <div class="impact-calc-subtitle">Here's what your donation provides</div>
@@ -542,6 +599,26 @@
                             <input type="hidden" name="frequency" id="formFrequencyIntl" value="One-Time">
                             <input type="hidden" name="impact" id="formImpactIntl" value="International Donation">
                             
+                            <!-- TRUST/SECURITY BADGES (ADDED BACK) -->
+                            <div class="trust-security-badges">
+                                <div class="security-badge">
+                                    <div class="security-badge-icon">🔒</div>
+                                    <div class="security-badge-text">256-bit SSL<br>Encryption</div>
+                                </div>
+                                <div class="security-badge">
+                                    <div class="security-badge-icon">✓</div>
+                                    <div class="security-badge-text">Verified<br>Non-Profit</div>
+                                </div>
+                                <div class="security-badge">
+                                    <div class="security-badge-icon">🛡️</div>
+                                    <div class="security-badge-text">Secure<br>Payment</div>
+                                </div>
+                                <div class="security-badge">
+                                    <div class="security-badge-icon">💯</div>
+                                    <div class="security-badge-text">Money-Back<br>Guarantee</div>
+                                </div>
+                            </div>
+
                             <button type="submit" class="submit-btn">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                                 Send Screenshot & Receipt Request
@@ -567,6 +644,24 @@
         </div>
     </section>
 
+    <!-- FLOATING NEWSLETTER SECTION (NEWLY ADDED) -->
+    <div class="newsletter-wrapper">
+        <div class="newsletter-card">
+            <div class="newsletter-image">
+                <img src="assets/project-djf-images/image4.jpeg" alt="A smiling child representing hope and the future of Sierra Leone">
+            </div>
+            <div class="newsletter-content">
+                <h2>Subscribe to our newsletter to get updates on our latest programs</h2>
+                <p>Stay informed about our initiatives, success stories, and ways you can help children in Sierra Leone.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="newsletter-note">You will be able to unsubscribe at any time. <br>Read our privacy policy <a href="#">here</a>.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- MAIN FOOTER -->
     <footer class="main-footer">
         <div class="footer-container">
@@ -589,6 +684,13 @@
             <div class="footer-bottom"><p>© 2026 Destiny John Foundation. All rights reserved. | Built with ❤️ for the children of Sierra Leone.</p><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Legal</a><a href="#">Site Map</a></div></div>
         </div>
     </footer>
+
+    <!-- SCROLL TO TOP BUTTON (NEWLY ADDED) -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
 
     <!-- JAVASCRIPT -->
     <script>
@@ -670,7 +772,7 @@
             { min: 50, max: 99, icon: '🩺', visual: '🩺', description: 'Funds a medical checkup for one child', children: 1 },
             { min: 100, max: 249, icon: '🍎', visual: '🍎', description: 'Supplies a family with a month of nutritional support', children: 3 },
             { min: 250, max: 499, icon: '💉', visual: '💉', description: 'Provides vaccines for 5 children', children: 5 },
-            { min: 500, max: 999, icon: '👩‍️', visual: '👩‍️', description: 'Trains one healthcare worker for a month', children: 10 },
+            { min: 500, max: 999, icon: '👩‍⚕️', visual: '👩‍⚕️', description: 'Trains one healthcare worker for a month', children: 10 },
             { min: 1000, max: Infinity, icon: '💧', visual: '💧', description: 'Helps build clean water access for a community', children: 50 }
         ];
 
@@ -726,6 +828,19 @@
             const fields = document.getElementById('tributeFieldsIntl');
             if (checkbox.checked) { fields.classList.add('show'); } else { fields.classList.remove('show'); }
         }
+
+        // SCROLL TO TOP BUTTON LOGIC (NEWLY ADDED)
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
