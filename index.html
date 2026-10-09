@@ -87,31 +87,13 @@
         .dot:hover { background: rgba(255,255,255,0.7); }
         .dot.active { background: var(--secondary-color); transform: scale(1.3); }
 
-        /* CAROUSEL NAVIGATION BUTTONS (FIXED POSITION) */
         .carousel-btn {
-            position: absolute;
-            top: 350px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: 350px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px); border: 2px solid rgba(255, 255, 255, 0.3); color: white;
+            width: 55px; height: 55px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; z-index: 10;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
         }
-        .carousel-btn:hover {
-            background: var(--secondary-color);
-            border-color: var(--secondary-color);
-            transform: scale(1.1);
-        }
+        .carousel-btn:hover { background: var(--secondary-color); border-color: var(--secondary-color); transform: scale(1.1); }
         .prev-btn { left: 40px; }
         .next-btn { right: 40px; }
 
@@ -127,7 +109,27 @@
         .stat-label { font-size: 1.1rem; opacity: 0.95; }
 
         /* =========================================
-           7. PROGRAMS PREVIEW SECTION
+           7. SUPPORT OUR CAUSES SECTION (NEW)
+           ========================================= */
+        .causes-section { padding: 100px 20px; background-color: var(--bg-light); }
+        .causes-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .cause-card { background: var(--bg-white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08); transition: transform 0.3s, box-shadow 0.3s; }
+        .cause-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15); }
+        .cause-image { height: 220px; background-size: cover; background-position: center; position: relative; }
+        .cause-badge { position: absolute; top: 20px; right: 20px; background: var(--secondary-color); color: white; padding: 6px 14px; border-radius: 50px; font-weight: 600; font-size: 0.8rem; }
+        .cause-content { padding: 30px; }
+        .cause-content h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--primary-color); }
+        .cause-content p { font-size: 0.95rem; margin-bottom: 20px; }
+        
+        .progress-container { margin-bottom: 20px; }
+        .progress-labels { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+        .progress-bar { height: 10px; background: #e2e8f0; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun)); border-radius: 10px; transition: width 1.5s ease; }
+        
+        .cause-btn { width: 100%; text-align: center; }
+
+        /* =========================================
+           8. PROGRAMS PREVIEW SECTION
            ========================================= */
         .programs-section { padding: 100px 20px; background-color: var(--bg-white); }
         .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
@@ -142,7 +144,7 @@
         .program-link:hover { gap: 12px; }
 
         /* =========================================
-           8. WHY CHOOSE US SECTION
+           9. WHY CHOOSE US SECTION
            ========================================= */
         .why-us-section { padding: 100px 20px; background-color: var(--bg-light); }
         .why-us-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -154,21 +156,14 @@
         .feature-text h3 { font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-color); }
         .feature-text p { font-size: 0.9rem; margin-bottom: 0; }
         .why-us-image { position: relative; }
-        .why-us-image img { 
-            border-radius: 15px; 
-            box-shadow: 0 20px 50px rgba(26, 54, 93, 0.2);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .why-us-image img:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 25px 60px rgba(26, 54, 93, 0.3);
-        }
+        .why-us-image img { border-radius: 15px; box-shadow: 0 20px 50px rgba(26, 54, 93, 0.2); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .why-us-image img:hover { transform: scale(1.05) rotate(2deg); box-shadow: 0 25px 60px rgba(26, 54, 93, 0.3); }
         .experience-badge { position: absolute; bottom: -20px; left: -20px; background: var(--secondary-color); color: white; padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(255, 138, 128, 0.4); }
         .experience-badge .years { font-size: 2.5rem; font-weight: 700; font-family: var(--font-heading); display: block; }
         .experience-badge .text { font-size: 0.9rem; opacity: 0.95; }
 
         /* =========================================
-           9. LATEST NEWS SECTION
+           10. LATEST NEWS SECTION
            ========================================= */
         .news-section { padding: 100px 20px; background-color: var(--bg-white); }
         .news-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
@@ -180,7 +175,7 @@
         .news-content p { font-size: 0.95rem; margin-bottom: 20px; }
 
         /* =========================================
-           10. TESTIMONIALS SECTION
+           11. TESTIMONIALS SECTION
            ========================================= */
         .testimonials-section { padding: 100px 20px; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); color: white; text-align: center; }
         .testimonials-section h2 { color: white; margin-bottom: 60px; }
@@ -192,7 +187,7 @@
         .testimonial-role { font-size: 0.9rem; opacity: 0.8; margin-top: 5px; }
 
         /* =========================================
-           11. FAQ SECTION
+           12. FAQ SECTION
            ========================================= */
         .faq-section { padding: 100px 20px; background-color: var(--bg-light); }
         .faq-container { max-width: 800px; margin: 0 auto; }
@@ -204,7 +199,7 @@
         .faq-item p { padding: 0 30px 25px; margin-bottom: 0; font-size: 0.95rem; }
 
         /* =========================================
-           12. CALL TO ACTION SECTION
+           13. CALL TO ACTION SECTION
            ========================================= */
         .cta-section { padding: 100px 20px; background: linear-gradient(135deg, var(--accent-sun) 0%, #f6e05e 100%); text-align: center; position: relative; overflow: hidden; }
         .cta-section::before { content: '❤️'; position: absolute; font-size: 20rem; opacity: 0.05; top: 50%; left: 50%; transform: translate(-50%, -50%); }
@@ -215,28 +210,13 @@
         .cta-buttons .btn { padding: 18px 40px; font-size: 1.1rem; }
 
         /* =========================================
-           13. FLOATING NEWSLETTER SECTION (COMPACT)
+           14. FLOATING NEWSLETTER SECTION
            ========================================= */
         .newsletter-wrapper { background-color: var(--bg-light); padding: 40px 20px 0; position: relative; }
         .newsletter-card { max-width: 1100px; margin: 0 auto; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); border-radius: 20px; padding: 30px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 25px; align-items: center; position: relative; top: 60px; z-index: 10; box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4); }
         .newsletter-image { text-align: center; }
-        
-        .newsletter-image img {
-            width: 100%;
-            max-width: 240px;
-            border-radius: 20px;
-            border: 4px solid rgba(255,255,255,0.25);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            object-fit: cover;
-            aspect-ratio: 1 / 1;
-            margin: 0 auto;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .newsletter-image img:hover {
-            transform: scale(1.05) rotate(-2deg);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-
+        .newsletter-image img { width: 100%; max-width: 240px; border-radius: 20px; border: 4px solid rgba(255,255,255,0.25); box-shadow: 0 15px 40px rgba(0,0,0,0.3); object-fit: cover; aspect-ratio: 1 / 1; margin: 0 auto; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .newsletter-image img:hover { transform: scale(1.05) rotate(-2deg); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
         .newsletter-content h2 { color: white; font-size: 1.5rem; margin-bottom: 10px; text-align: left; line-height: 1.3; }
         .newsletter-content > p { color: rgba(255,255,255,0.9); margin-bottom: 15px; font-size: 0.95rem; }
         .newsletter-form { display: flex; background: white; border-radius: 50px; padding: 4px; max-width: 500px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -249,7 +229,7 @@
         .newsletter-note a { color: var(--accent-sun); text-decoration: underline; }
 
         /* =========================================
-           14. MAIN FOOTER
+           15. MAIN FOOTER
            ========================================= */
         .main-footer { background-color: var(--bg-white); padding: 100px 20px 30px; border-top: 1px solid #e2e8f0; }
         .footer-container { max-width: 1100px; margin: 0 auto; }
@@ -275,41 +255,28 @@
         .footer-links a:hover { color: var(--secondary-color); }
 
         /* =========================================
-           15. SCROLL TO TOP BUTTON
+           16. SCROLL TO TOP & WHATSAPP BUTTONS
            ========================================= */
         .scroll-top-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            z-index: 999;
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%;
+            background-color: var(--primary-color); color: white; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; z-index: 999;
         }
-        .scroll-top-btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-5px);
+        .scroll-top-btn:hover { background-color: var(--secondary-color); transform: translateY(-5px); }
+        .scroll-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        .whatsapp-float {
+            position: fixed; bottom: 30px; left: 30px; width: 55px; height: 55px; border-radius: 50%;
+            background-color: #25D366; color: white; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease; z-index: 999; text-decoration: none;
         }
-        .scroll-top-btn.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+        .whatsapp-float:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6); }
+        .whatsapp-float svg { width: 30px; height: 30px; fill: white; }
 
         /* =========================================
-           16. MOBILE RESPONSIVENESS
+           17. MOBILE RESPONSIVENESS
            ========================================= */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; } h2 { font-size: 1.75rem; } .hero h1 { font-size: 2.25rem; }
@@ -343,6 +310,8 @@
             .next-btn { right: 10px; }
 
             .scroll-top-btn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+            .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; }
+            .whatsapp-float svg { width: 26px; height: 26px; }
         }
     </style>
 </head>
@@ -352,13 +321,11 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <!-- UPDATED: Added class="home-link" for the URL cleaner script -->
                 <a href="index.html" class="home-link"><img src="logo.png" alt="Destiny John Foundation Logo"></a>
             </div>
             <div class="menu-toggle" id="mobile-menu">&#9776;</div>
             <nav>
                 <ul id="nav-list">
-                    <!-- UPDATED: Added class="home-link" for the URL cleaner script -->
                     <li><a href="index.html" class="active home-link">Home</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     <li><a href="story.html">Our Story</a></li>
@@ -414,6 +381,80 @@
         </div>
     </section>
 
+    <!-- NEW: SUPPORT OUR CAUSES SECTION -->
+    <section class="causes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Support Our Causes</h2>
+                <p>Choose a specific project to support, or make a general donation to help us where it's needed most.</p>
+            </div>
+            <div class="causes-grid">
+                <!-- Cause 1 -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80');">
+                        <span class="cause-badge">Urgent</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Pediatric Healthcare</h3>
+                        <p>Provide life-saving medical care, vaccinations, and treatments for children under 5 in underserved communities.</p>
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Raised: Le 35,000</span>
+                                <span>Goal: Le 50,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                        <a href="donate.html" class="btn btn-primary cause-btn">Donate to this Cause</a>
+                    </div>
+                </div>
+
+                <!-- Cause 2 -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80');">
+                        <span class="cause-badge">Ongoing</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Education Support</h3>
+                        <p>Supply school materials, uniforms, and scholarships to ensure every child has access to quality education.</p>
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Raised: Le 18,000</span>
+                                <span>Goal: Le 30,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                        <a href="donate.html" class="btn btn-primary cause-btn">Donate to this Cause</a>
+                    </div>
+                </div>
+
+                <!-- Cause 3 -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80');">
+                        <span class="cause-badge">New</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Community Nutrition</h3>
+                        <p>Build sustainable nutrition programs and clean water access for vulnerable families across Sierra Leone.</p>
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Raised: Le 12,000</span>
+                                <span>Goal: Le 40,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%;"></div>
+                            </div>
+                        </div>
+                        <a href="donate.html" class="btn btn-primary cause-btn">Donate to this Cause</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- PROGRAMS PREVIEW SECTION -->
     <section class="programs-section">
         <div class="section-header">
@@ -424,7 +465,7 @@
             <div class="program-card">
                 <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80');"></div>
                 <div class="program-content">
-                    <h3> Healthcare Access</h3>
+                    <h3>Healthcare Access</h3>
                     <p>Providing direct pediatric medical intervention and training frontline healthcare workers to save young lives.</p>
                     <a href="#" class="program-link">Learn More →</a>
                 </div>
@@ -432,7 +473,7 @@
             <div class="program-card">
                 <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80');"></div>
                 <div class="program-content">
-                    <h3> Education Support</h3>
+                    <h3>Education Support</h3>
                     <p>Ensuring every child has access to quality education and the resources they need to learn and thrive.</p>
                     <a href="#" class="program-link">Learn More →</a>
                 </div>
@@ -440,7 +481,7 @@
             <div class="program-card">
                 <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80');"></div>
                 <div class="program-content">
-                    <h3> Community Engagement</h3>
+                    <h3>Community Engagement</h3>
                     <p>Working directly with families and communities to create sustainable, long-term positive change.</p>
                     <a href="#" class="program-link">Learn More →</a>
                 </div>
@@ -462,7 +503,6 @@
                 </ul>
             </div>
             <div class="why-us-image">
-                <!-- UPDATED: Replaced Unsplash image with local image -->
                 <img src="assets/project-djf-images/image4.jpeg" alt="Children smiling and playing">
                 <div class="experience-badge"><span class="years">2026</span><span class="text">Years of<br>Excellence</span></div>
             </div>
@@ -564,7 +604,6 @@
     <div class="newsletter-wrapper">
         <div class="newsletter-card">
             <div class="newsletter-image">
-                <!-- UPDATED: Replaced Unsplash image with local image -->
                 <img src="assets/project-djf-images/image4.jpeg" alt="A smiling child representing hope and the future of Sierra Leone">
             </div>
             <div class="newsletter-content">
@@ -586,8 +625,6 @@
                 <div class="footer-brand">
                     <div class="logo"><img src="logo.png" alt="Destiny John Foundation"></div>
                     <p>Honoring Destiny John's legacy by ensuring every child in Sierra Leone has access to quality healthcare, education, and the opportunity to fulfill their potential in a safe, supportive environment.</p>
-                    
-                    <!-- UPDATED SOCIAL MEDIA ICONS -->
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook">
                             <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
@@ -662,6 +699,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <!-- IMPORTANT: Replace '23276000000' with your actual WhatsApp number (include country code, no '+' or spaces) -->
+    <a href="https://wa.me/23276000000" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
 
     <!-- SCROLL TO TOP BUTTON -->
     <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
@@ -761,46 +804,31 @@
             });
         });
 
-        // ==========================================
         // GITHUB PAGES URL CLEANER
-        // Forces the URL to maintain exactly ".../my-childs-foundation-website/index"
-        // ==========================================
         function cleanUrlToIndex() {
             const currentPath = window.location.pathname;
-            
-            // Check if the path ends with index.html, is just '/', or is empty
             if (currentPath.endsWith('index.html') || currentPath === '/' || currentPath === '') {
-                // Find the last slash to safely get the repository folder path (e.g., "/my-childs-foundation-website/")
                 const lastSlashIndex = currentPath.lastIndexOf('/');
                 const basePath = currentPath.substring(0, lastSlashIndex + 1);
                 const newPath = basePath + 'index';
-                
-                // Only replace the URL if it isn't already exactly what we want
                 if (window.location.pathname !== newPath) {
                     window.history.replaceState(null, document.title, newPath);
                 }
             }
         }
-
-        // Run the cleaner immediately when the page loads
         cleanUrlToIndex();
 
-        // Handle clicks specifically on the Logo and Home tab
         document.querySelectorAll('.home-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 const currentPath = window.location.pathname;
                 const lastSlashIndex = currentPath.lastIndexOf('/');
                 const basePath = currentPath.substring(0, lastSlashIndex + 1);
                 const targetPath = basePath + 'index';
-
-                // If we are already on the home page (or index.html), prevent the default page reload
                 if (currentPath.endsWith('index.html') || currentPath === targetPath || currentPath === '/') {
-                    e.preventDefault(); // Stop the browser from reloading
-                    window.history.replaceState(null, document.title, targetPath); // Force URL to be exactly "/index"
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smoothly scroll to the top
+                    e.preventDefault(); 
+                    window.history.replaceState(null, document.title, targetPath); 
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); 
                 }
-                // If we are on another page (like about-us.html), let the browser navigate to index.html normally.
-                // Once that new page loads, the cleanUrlToIndex() function above will automatically run and fix the URL.
             });
         });
     </script>
