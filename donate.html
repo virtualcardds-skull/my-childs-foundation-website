@@ -59,21 +59,39 @@
         .page-hero h1 { font-size: 3.5rem; margin-bottom: 15px; }
         .page-hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: rgba(255,255,255,0.9); }
 
+        /* CAUSES SECTION (NEWLY ADDED) */
+        .causes-section { padding: 80px 20px; background-color: var(--bg-light); }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 50px; }
+        .section-header h2 { margin-bottom: 15px; }
+        .section-header p { font-size: 1.1rem; }
+        .causes-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .cause-card { background: var(--bg-white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08); transition: transform 0.3s, box-shadow 0.3s; }
+        .cause-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15); }
+        .cause-image { height: 220px; background-size: cover; background-position: center; position: relative; }
+        .cause-badge { position: absolute; top: 20px; right: 20px; background: var(--secondary-color); color: white; padding: 6px 14px; border-radius: 50px; font-weight: 600; font-size: 0.8rem; }
+        .cause-content { padding: 30px; }
+        .cause-content h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--primary-color); }
+        .cause-content p { font-size: 0.95rem; margin-bottom: 20px; }
+        .progress-container { margin-bottom: 20px; }
+        .progress-labels { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+        .progress-bar { height: 10px; background: #e2e8f0; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun)); border-radius: 10px; transition: width 1.5s ease; }
+        .cause-btn { width: 100%; text-align: center; }
+
         /* DONATION SECTION */
-        .donation-section { padding: 80px 20px 100px; background-color: var(--bg-light); }
+        .donation-section { padding: 80px 20px 100px; background-color: var(--bg-white); }
         .donation-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: start; }
         
         .donation-impact { position: sticky; top: 120px; }
-        .impact-card { background: var(--bg-white); padding: 30px; border-radius: 20px; border-left: 5px solid var(--secondary-color); margin-bottom: 25px; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05); }
+        .impact-card { background: var(--bg-light); padding: 30px; border-radius: 20px; border-left: 5px solid var(--secondary-color); margin-bottom: 25px; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05); }
         .impact-card h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--primary-color); }
         .impact-card p { font-size: 0.95rem; margin-bottom: 0; }
         .trust-badges { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
         .trust-item { display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: var(--text-dark); font-weight: 600; }
-        .trust-icon { width: 40px; height: 40px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+        .trust-icon { width: 40px; height: 40px; background: var(--bg-white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
 
         .payment-container { background: var(--bg-white); border-radius: 24px; box-shadow: 0 25px 60px rgba(26, 54, 93, 0.12); overflow: hidden; border: 1px solid #edf2f7; }
 
-        /* UPDATED: Added ID for anchor linking from homepage */
         .donation-frequency { padding: 25px 40px 20px; background: var(--bg-light); border-bottom: 1px solid #edf2f7; }
         .frequency-label { font-size: 0.85rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; text-align: center; }
         .frequency-toggle { display: flex; background: white; border-radius: 50px; padding: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 380px; margin: 0 auto; }
@@ -205,6 +223,8 @@
             nav ul.active { display: flex; }
             nav .btn-primary { width: 100%; display: block; }
             
+            .causes-grid { grid-template-columns: 1fr; }
+            
             .donation-layout { grid-template-columns: 1fr; gap: 40px; }
             .donation-impact { position: static; }
             .donation-frequency, .tab-content { padding: 20px; }
@@ -254,6 +274,81 @@
         </div>
     </section>
 
+    <!-- SUPPORT OUR CAUSES SECTION (ADDED BACK) -->
+    <section class="causes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Support Our Causes</h2>
+                <p>Choose a specific project to support, or make a general donation to help us where it's needed most.</p>
+            </div>
+            <div class="causes-grid">
+                <!-- Cause 1 -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80');">
+                        <span class="cause-badge">Urgent</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Pediatric Healthcare</h3>
+                        <p>Provide life-saving medical care, vaccinations, and treatments for children under 5 in underserved communities.</p>
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Raised: Le 12,450</span>
+                                <span>Goal: Le 25,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                        <!-- Links directly to the frequency section on this page -->
+                        <a href="#donate-frequency" class="btn btn-primary cause-btn">Donate to this Cause</a>
+                    </div>
+                </div>
+
+                <!-- Cause 2 -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80');">
+                        <span class="cause-badge">Ongoing</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Education Support</h3>
+                        <p>Supply school materials, uniforms, and scholarships to ensure every child has access to quality education.</p>
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Raised: Le 8,200</span>
+                                <span>Goal: Le 15,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 55%;"></div>
+                            </div>
+                        </div>
+                        <a href="#donate-frequency" class="btn btn-primary cause-btn">Donate to this Cause</a>
+                    </div>
+                </div>
+
+                <!-- Cause 3 -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80');">
+                        <span class="cause-badge">New</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Community Development</h3>
+                        <p>Build sustainable infrastructure, clean water systems, and nutrition programs for vulnerable families across Sierra Leone.</p>
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Raised: Le 5,600</span>
+                                <span>Goal: Le 20,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 28%;"></div>
+                            </div>
+                        </div>
+                        <a href="#donate-frequency" class="btn btn-primary cause-btn">Donate to this Cause</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- DONATION SECTION -->
     <section class="donation-section" id="donation-section">
         <div class="donation-layout">
@@ -268,7 +363,7 @@
             </div>
 
             <div class="payment-container">
-                <!-- UPDATED: Added ID for anchor linking from homepage -->
+                <!-- Target ID for the anchor links -->
                 <div class="donation-frequency" id="donate-frequency">
                     <div class="frequency-label">Choose Donation Frequency</div>
                     <div class="frequency-toggle">
@@ -280,7 +375,7 @@
                 <div class="payment-tabs">
                     <button class="tab-btn active" data-tab="mobile"><span class="tab-icon">📱</span>Mobile Money</button>
                     <button class="tab-btn" data-tab="international"><span class="tab-icon">🌍</span>International</button>
-                    <button class="tab-btn" data-tab="bank"><span class="tab-icon">🏦</span>Bank Transfer</button>
+                    <button class="tab-btn" data-tab="bank"><span class="tab-icon"></span>Bank Transfer</button>
                 </div>
 
                 <!-- MOBILE MONEY TAB -->
@@ -307,7 +402,7 @@
 
                         <div class="impact-calculator">
                             <div class="impact-calc-header">
-                                <div class="impact-calc-icon" id="impactIcon">🎒</div>
+                                <div class="impact-calc-icon" id="impactIcon"></div>
                                 <div>
                                     <div class="impact-calc-title">Your Impact</div>
                                     <div class="impact-calc-subtitle">Here's what your donation provides</div>
@@ -497,13 +592,11 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Mobile Menu Toggle
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
         menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
         document.querySelectorAll('#nav-list a').forEach(link => { link.addEventListener('click', () => { navList.classList.remove('active'); }); });
 
-        // Tab Switching Logic
         const tabBtns = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
         tabBtns.forEach(btn => {
@@ -573,11 +666,11 @@
         const impactTiers = [
             { min: 0, max: 9, icon: '🌱', visual: '🌱', description: 'Plants a seed of hope for a child', children: 1 },
             { min: 10, max: 24, icon: '📚', visual: '📚', description: 'Provides school supplies for one child', children: 1 },
-            { min: 25, max: 49, icon: '', visual: '🎒', description: 'Provides a complete school kit for one child', children: 1 },
+            { min: 25, max: 49, icon: '🎒', visual: '🎒', description: 'Provides a complete school kit for one child', children: 1 },
             { min: 50, max: 99, icon: '🩺', visual: '🩺', description: 'Funds a medical checkup for one child', children: 1 },
             { min: 100, max: 249, icon: '🍎', visual: '🍎', description: 'Supplies a family with a month of nutritional support', children: 3 },
-            { min: 250, max: 499, icon: '', visual: '💉', description: 'Provides vaccines for 5 children', children: 5 },
-            { min: 500, max: 999, icon: '👩‍⚕️', visual: '👩‍⚕️', description: 'Trains one healthcare worker for a month', children: 10 },
+            { min: 250, max: 499, icon: '💉', visual: '💉', description: 'Provides vaccines for 5 children', children: 5 },
+            { min: 500, max: 999, icon: '👩‍️', visual: '👩‍️', description: 'Trains one healthcare worker for a month', children: 10 },
             { min: 1000, max: Infinity, icon: '💧', visual: '💧', description: 'Helps build clean water access for a community', children: 50 }
         ];
 
