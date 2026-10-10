@@ -309,7 +309,7 @@
         .whatsapp-float svg { width: 30px; height: 30px; fill: white; }
 
         /* =========================================
-           17. LIGHTBOX IMAGE PREVIEW
+           17. CREATIVE & PROTECTED LIGHTBOX
            ========================================= */
         .lightbox-modal {
             display: none;
@@ -319,20 +319,47 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.92);
+            background-color: rgba(10, 10, 20, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             justify-content: center;
             align-items: center;
             cursor: zoom-out;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         .lightbox-modal.active {
             display: flex;
+            opacity: 1;
         }
-        .lightbox-modal img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        .lightbox-image-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(255, 138, 128, 0.4), 0 0 80px rgba(26, 54, 93, 0.6);
+            animation: lightboxZoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes lightboxZoomIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .lightbox-image-container img {
+            max-width: 90vw;
+            max-height: 90vh;
             object-fit: contain;
+            display: block;
+            pointer-events: none; /* Prevents direct interaction with the image */
+        }
+        /* Invisible shield to block right-click and drag on the image */
+        .lightbox-protect-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
         }
         .lightbox-close {
             position: absolute;
@@ -342,11 +369,13 @@
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: all 0.3s;
             z-index: 2001;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         .lightbox-close:hover {
             color: var(--secondary-color);
+            transform: scale(1.2) rotate(90deg);
         }
 
         /* =========================================
@@ -906,22 +935,28 @@
         });
 
         // ==========================================
-        // LIGHTBOX IMAGE PREVIEW LOGIC
+        // CREATIVE & PROTECTED LIGHTBOX LOGIC
         // ==========================================
         const lightbox = document.createElement('div');
         lightbox.id = 'lightbox';
         lightbox.className = 'lightbox-modal';
-        lightbox.innerHTML = '<span class="lightbox-close">&times;</span><img id="lightbox-img" src="" alt="Image Preview">';
+        lightbox.innerHTML = `
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-image-container">
+                <img id="lightbox-img" src="" alt="Image Preview">
+                <div class="lightbox-protect-overlay"></div>
+            </div>
+        `;
         document.body.appendChild(lightbox);
 
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxClose = lightbox.querySelector('.lightbox-close');
+        const lightboxOverlay = lightbox.querySelector('.lightbox-protect-overlay');
 
         // Add click event to cause and program images
         document.querySelectorAll('.cause-image, .program-image').forEach(div => {
             div.addEventListener('click', () => {
                 const bgImage = div.style.backgroundImage;
-                // Extract URL from 'url("...")' or "url('...')"
                 const imageUrl = bgImage.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
                 lightboxImg.src = imageUrl;
                 lightbox.classList.add('active');
@@ -945,6 +980,12 @@
                 lightbox.classList.remove('active');
             }
         });
+
+        // PREVENT DOWNLOADING (Right-click and Drag)
+        lightboxImg.addEventListener('contextmenu', (e) => e.preventDefault());
+        lightboxImg.addEventListener('dragstart', (e) => e.preventDefault());
+        lightboxOverlay.addEventListener('contextmenu', (e) => e.preventDefault());
+        lightboxOverlay.addEventListener('dragstart', (e) => e.preventDefault());
     </script>
 
 </body>
