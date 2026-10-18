@@ -25,11 +25,22 @@
             --bg-white: #FFFFFF;
             --font-heading: 'Merriweather', serif;
             --font-body: 'Open Sans', sans-serif;
+            --fb-blue: #1877F2;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); color: var(--text-dark); line-height: 1.7; background-color: var(--bg-white); }
+        html { 
+            scroll-behavior: smooth; 
+            overflow-x: hidden; 
+            overflow-y: scroll; /* FIXED: Always show scrollbar to prevent horizontal shift */
+        }
+        body { 
+            font-family: var(--font-body); 
+            color: var(--text-dark); 
+            line-height: 1.7; 
+            background-color: var(--bg-white); 
+            overflow-x: hidden;
+        }
         img { max-width: 100%; height: auto; display: block; }
         a { text-decoration: none; color: inherit; }
 
@@ -66,12 +77,45 @@
         nav .btn-primary { padding: 10px 24px; font-size: 0.9rem; color: white !important; }
 
         /* =========================================
-           5. HERO SECTION & CAROUSEL
+           5. HERO SECTION & CAROUSEL (FIXED: NO MORE SHAKING)
            ========================================= */
-        .hero { color: white; text-align: center; padding: 150px 20px 100px; position: relative; min-height: 80vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun), var(--secondary-color)); z-index: 10; }
+        .hero { 
+            color: white; 
+            text-align: center; 
+            padding: 150px 20px 130px; /* bottom padding keeps space between the hero buttons and the controls row */
+            position: relative; 
+            height: 80vh;
+            min-height: 560px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden;
+            overflow-anchor: none; /* FIXED: Stops browser scroll anchoring from shifting the page */
+            contain: layout style paint;
+            isolation: isolate; /* FIXED: Creates new stacking context */
+        }
+        .hero::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            height: 6px; 
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-sun), var(--secondary-color)); 
+            z-index: 10; 
+        }
         
-        .carousel-slide { 
+        .carousel-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .carousel-slide-bg { 
             position: absolute; 
             top: 0; 
             left: 0; 
@@ -81,11 +125,12 @@
             background-position: 50% 20%; 
             background-repeat: no-repeat;
             opacity: 0; 
-            transition: opacity 1.5s ease-in-out; 
-            user-select: none;
-            -webkit-user-select: none;
+            transition: opacity 1.5s ease-in-out;
+            will-change: opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
-        .carousel-slide.active { opacity: 1; }
+        .carousel-slide-bg.active { opacity: 1; }
         
         .carousel-protect-overlay {
             position: absolute;
@@ -108,7 +153,14 @@
             pointer-events: none;
         }
         
-        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        /* FIXED: Hero content has fixed minimum height to prevent text change reflow */
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+            max-width: 800px;
+            width: 100%;
+            min-height: 280px; /* FIXED: Prevents height changes when text updates */
+        }
         
         .hero h1 { 
             color: white; 
@@ -116,6 +168,7 @@
             margin-bottom: 20px; 
             line-height: 1.2; 
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            min-height: 4.4rem; /* FIXED: Prevents layout shift when title text changes */
         }
         .hero p { 
             color: rgba(255,255,255,0.95); 
@@ -123,6 +176,7 @@
             max-width: 750px; 
             margin: 0 auto 35px auto; 
             text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+            min-height: 3.5rem; /* FIXED: Prevents layout shift when description text changes */
         }
         .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
@@ -131,33 +185,118 @@
         .dot:hover { background: rgba(255,255,255,0.7); }
         .dot.active { background: var(--secondary-color); transform: scale(1.3); }
 
+        /* CONTROLS: Previous / Next flank the dots at the bottom-center; WhatsApp sits in the bottom-right corner (nothing overlaps the banner text) */
         .carousel-btn {
-            position: absolute; top: 350px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
+            position: absolute; bottom: 22px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px); border: 2px solid rgba(255, 255, 255, 0.3); color: white;
-            width: 55px; height: 55px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; z-index: 10;
+            width: 48px; height: 48px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; z-index: 10;
             transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
         }
         .carousel-btn:hover { background: var(--secondary-color); border-color: var(--secondary-color); transform: scale(1.1); }
-        .prev-btn { left: 40px; }
-        .next-btn { right: 40px; }
+        .prev-btn { left: calc(50% - 114px); }
+        .next-btn { left: calc(50% + 66px); }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 95px;
+            right: 28px;
+            width: 55px; height: 55px; border-radius: 50%;
+            background-color: #25D366; color: white; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease; z-index: 998; text-decoration: none;
+        }
+        .whatsapp-float:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6); }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .whatsapp-float svg { 
+            width: 30px; height: 30px; fill: white; 
+            animation: spin 4s linear infinite; 
+        }
 
         /* =========================================
-           6. IMPACT STATISTICS SECTION
+           6. IMPACT STATISTICS SECTION (FIXED: COMPLETELY ISOLATED)
            ========================================= */
-        .impact-stats { background: linear-gradient(135deg, var(--secondary-color) 0%, #ff7676 100%); padding: 80px 20px; color: white; position: relative; overflow: hidden; }
-        .impact-stats::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: rgba(255,255,255,0.1); border-radius: 50%; }
-        .stats-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; position: relative; z-index: 1; }
-        .stat-item { text-align: center; padding: 30px 20px; background: rgba(255,255,255,0.15); border-radius: 15px; backdrop-filter: blur(10px); transition: transform 0.3s; }
+        .impact-stats { 
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #ff7676 100%); 
+            padding: 80px 20px; 
+            color: white; 
+            position: relative; 
+            overflow: hidden;
+            contain: layout paint style; /* FIXED: Isolates from hero transitions */
+            isolation: isolate; /* FIXED: Creates independent stacking context */
+            transform: translate3d(0, 0, 0); /* FIXED: Forces own GPU layer */
+            backface-visibility: hidden; /* FIXED: Prevents rendering flicker */
+        }
+        .impact-stats::before { 
+            content: ''; 
+            position: absolute; 
+            top: -50%; 
+            right: -10%; 
+            width: 400px; 
+            height: 400px; 
+            background: rgba(255,255,255,0.1); 
+            border-radius: 50%;
+            pointer-events: none; /* FIXED: Prevents interaction issues */
+        }
+        .stats-container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 30px; 
+            position: relative; 
+            z-index: 1;
+            min-width: 0;
+            contain: layout paint style; /* FIXED: Further isolation */
+        }
+        .stat-item { 
+            text-align: center; 
+            padding: 30px 20px; 
+            background: rgba(255,255,255,0.15); 
+            border-radius: 15px; 
+            backdrop-filter: blur(10px); 
+            transition: transform 0.3s;
+            min-width: 0;
+            contain: layout paint style; /* FIXED: Prevents internal reflow from cascading */
+        }
         .stat-item:hover { transform: translateY(-10px); }
-        .stat-number { font-size: 3.5rem; font-weight: 700; font-family: var(--font-heading); margin-bottom: 10px; display: block; }
-        .stat-label { font-size: 1.1rem; opacity: 0.95; }
+        .stat-number { 
+            font-size: 3.5rem; 
+            font-weight: 700; 
+            font-family: var(--font-heading); 
+            margin-bottom: 10px; 
+            display: block;
+            word-break: break-word;
+        }
+        .stat-label { 
+            font-size: 1.1rem; 
+            opacity: 0.95;
+            word-break: break-word;
+        }
 
         /* =========================================
            7. SUPPORT OUR CAUSES SECTION
            ========================================= */
         .causes-section { padding: 100px 20px; background-color: var(--bg-light); }
-        .causes-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .cause-card { background: var(--bg-white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08); transition: transform 0.3s, box-shadow 0.3s; }
+        .causes-grid { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+        .cause-card { 
+            background: var(--bg-white); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            max-width: 100%;
+        }
         .cause-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15); }
         .cause-image { height: 220px; background-size: cover; background-position: center; position: relative; cursor: zoom-in; transition: filter 0.3s ease; }
         .cause-image:hover { filter: brightness(1.15); }
@@ -178,8 +317,23 @@
            ========================================= */
         .programs-section { padding: 100px 20px; background-color: var(--bg-white); }
         .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
-        .programs-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .program-card { background: var(--bg-white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1); transition: transform 0.3s, box-shadow 0.3s; border: 2px solid transparent; }
+        .programs-grid { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+        .program-card { 
+            background: var(--bg-white); 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1); 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            border: 2px solid transparent;
+            width: 100%;
+            max-width: 100%;
+        }
         .program-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15); border-color: var(--secondary-color); }
         .program-image { height: 220px; background-size: cover; background-position: center; cursor: zoom-in; transition: filter 0.3s ease; }
         .program-image:hover { filter: brightness(1.15); }
@@ -221,16 +375,377 @@
         .news-content p { font-size: 0.95rem; margin-bottom: 20px; }
 
         /* =========================================
+           10.5 FACEBOOK LIVE POSTS SECTION
+           ========================================= */
+        .fb-live-section { padding: 100px 20px; background-color: var(--bg-light); }
+        .fb-section-header { text-align: center; max-width: 700px; margin: 0 auto 50px; }
+        .fb-section-header h2 { color: var(--primary-color); margin-bottom: 15px; }
+        .fb-section-header p { color: var(--text-light); font-size: 1rem; }
+        
+        .fb-posts-grid { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+        
+        .fb-post-card {
+            background: var(--bg-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #edf2f7;
+            width: 100%;
+            max-width: 100%;
+        }
+        .fb-post-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
+        }
+        
+        .fb-post-header {
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid #edf2f7;
+        }
+        
+        .fb-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .fb-user-info { flex: 1; }
+        .fb-user-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .fb-verified {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            background: var(--fb-blue);
+            border-radius: 50%;
+        }
+        .fb-verified svg {
+            width: 10px;
+            height: 10px;
+            fill: white;
+        }
+        
+        .fb-timestamp {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .fb-timestamp svg {
+            width: 12px;
+            height: 12px;
+            fill: var(--text-light);
+        }
+        
+        .fb-live-badge {
+            background: #E53935;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: fbPulse 2s ease-in-out infinite;
+        }
+        
+        .fb-live-dot {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: fbBlink 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes fbPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(229, 57, 53, 0); }
+        }
+        
+        @keyframes fbBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .fb-post-content {
+            padding: 0;
+        }
+        
+        .fb-post-text {
+            padding: 18px 20px 15px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+        .fb-post-text a {
+            color: var(--fb-blue);
+            font-weight: 600;
+        }
+        
+        .fb-post-image {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: zoom-in;
+            transition: filter 0.3s ease;
+        }
+        .fb-post-image:hover { filter: brightness(1.1); }
+        
+        .fb-post-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fb-play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .fb-play-btn:hover {
+            transform: scale(1.1);
+            background: var(--secondary-color);
+        }
+        .fb-play-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-color);
+            margin-left: 3px;
+        }
+        .fb-play-btn:hover svg { fill: white; }
+        
+        .fb-post-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-top: 1px solid #edf2f7;
+            border-bottom: 1px solid #edf2f7;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .fb-reactions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .fb-reaction-icons {
+            display: flex;
+        }
+        .fb-reaction-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            margin-left: -4px;
+            border: 2px solid white;
+        }
+        .fb-reaction-icon:first-child { margin-left: 0; }
+        .fb-reaction-like { background: var(--fb-blue); color: white; }
+        .fb-reaction-love { background: #F44336; color: white; }
+        .fb-reaction-care { background: #FFEB3B; color: #333; }
+        
+        .fb-post-actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 15px;
+        }
+        
+        .fb-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            background: transparent;
+        }
+        .fb-action-btn:hover {
+            background: #f0f2f5;
+            color: var(--fb-blue);
+        }
+        .fb-action-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+        
+        .fb-follow-btn {
+            display: flex;
+            width: calc(100% - 40px);
+            margin: 15px 20px 20px;
+            padding: 12px;
+            background: var(--fb-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .fb-follow-btn:hover {
+            background: #166FE5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+        }
+        .fb-follow-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+
+        /* =========================================
            11. TESTIMONIALS SECTION
            ========================================= */
-        .testimonials-section { padding: 100px 20px; background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); color: white; text-align: center; }
-        .testimonials-section h2 { color: white; margin-bottom: 60px; }
-        .testimonials-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .testimonial-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s; }
-        .testimonial-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.15); }
-        .testimonial-text { font-size: 1rem; font-style: italic; margin-bottom: 25px; line-height: 1.8; opacity: 0.95; }
-        .testimonial-author { font-weight: 600; font-size: 1.1rem; color: var(--accent-sun); }
-        .testimonial-role { font-size: 0.9rem; opacity: 0.8; margin-top: 5px; }
+        .testimonials-section { 
+            padding: 100px 20px; 
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%); 
+            color: white; 
+            text-align: center; 
+            position: relative;
+        }
+        .testimonials-section h2 { color: white; margin-bottom: 50px; }
+        
+        .testimonial-slider-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 350px;
+        }
+        
+        .testimonial-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            pointer-events: none;
+        }
+        
+        .testimonial-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .testimonial-image {
+            margin-bottom: 25px;
+        }
+        
+        .testimonial-image img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-sun);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            animation: testimonialFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes testimonialFloat {
+            0% {
+                transform: translateY(0px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            }
+            50% {
+                transform: translateY(-15px);
+                box-shadow: 0 20px 30px rgba(0,0,0,0.4);
+            }
+            100% {
+                transform: translateY(0px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            }
+        }
+        
+        .testimonial-content {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            padding: 35px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.25);
+            max-width: 700px;
+            width: 100%;
+        }
+        
+        .testimonial-text { 
+            font-size: 1.1rem; 
+            font-style: italic; 
+            margin-bottom: 25px; 
+            line-height: 1.8; 
+            color: #FFFFFF;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .testimonial-author { 
+            font-weight: 700; 
+            font-size: 1.15rem; 
+            color: #FFD700;
+        }
+        .testimonial-role { 
+            font-size: 0.95rem; 
+            color: #E2E8F0;
+            margin-top: 5px; 
+        }
 
         /* =========================================
            12. FAQ SECTION
@@ -301,27 +816,16 @@
         .footer-links a:hover { color: var(--secondary-color); }
 
         /* =========================================
-           16. SCROLL TO TOP & WHATSAPP BUTTONS
+           16. SCROLL TO TOP BUTTON
            ========================================= */
-        /* UPDATED: Moved inward to right: 110px to avoid overlapping the Next button */
         .scroll-top-btn {
-            position: fixed; bottom: 30px; right: 110px; width: 50px; height: 50px; border-radius: 50%;
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%;
             background-color: var(--primary-color); color: white; border: none; cursor: pointer;
             display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; z-index: 999;
         }
         .scroll-top-btn:hover { background-color: var(--secondary-color); transform: translateY(-5px); }
         .scroll-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
-
-        /* UPDATED: Moved inward to right: 110px to avoid overlapping the Next button */
-        .whatsapp-float {
-            position: fixed; bottom: 90px; right: 110px; width: 55px; height: 55px; border-radius: 50%;
-            background-color: #25D366; color: white; border: none; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease; z-index: 999; text-decoration: none;
-        }
-        .whatsapp-float:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6); }
-        .whatsapp-float svg { width: 30px; height: 30px; fill: white; }
 
         /* =========================================
            17. CREATIVE & PROTECTED LIGHTBOX
@@ -397,18 +901,85 @@
         }
 
         /* =========================================
-           18. MOBILE RESPONSIVENESS
+           18. MOBILE RESPONSIVENESS (IMPROVED)
            ========================================= */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; } h2 { font-size: 1.75rem; } .hero h1 { font-size: 2.25rem; }
-            .logo img { height: 80px; }
+            h1 { font-size: 2rem; } 
+            h2 { font-size: 1.75rem; } 
+            .hero { 
+                height: 90vh; /* FIXED: Fixed height so slide text changes never resize the hero */
+                min-height: 720px; 
+                padding: 120px 15px 140px; /* extra bottom space above dots + controls */
+            }
+            .hero h1 { 
+                font-size: 2rem; 
+                min-height: 3.5rem; /* FIXED: Mobile-specific min-height */
+            }
+            .hero p { 
+                font-size: 1.05rem; 
+                min-height: 3rem; /* FIXED: Mobile-specific min-height */
+            }
+            .hero-content {
+                min-height: 220px; /* FIXED: Mobile-specific min-height */
+            }
+            .logo img { height: 70px; }
             .menu-toggle { display: block; }
-            nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--bg-white); box-shadow: 0 10px 20px rgba(0,0,0,0.1); padding: 20px; gap: 20px; text-align: center; border-top: 1px solid #eee; }
+            nav ul { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                right: 0; 
+                background-color: var(--bg-white); 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+                padding: 20px; 
+                gap: 20px; 
+                text-align: center; 
+                border-top: 1px solid #eee; 
+                z-index: 999;
+            }
             nav ul.active { display: flex; }
             nav .btn-primary { width: 100%; display: block; }
             
-            .stats-container { grid-template-columns: repeat(2, 1fr); }
-            .programs-grid, .news-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            /* IMPACT STATISTICS - PERFECT MOBILE DISPLAY */
+            .stats-container { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px;
+                min-width: 0;
+            }
+            
+            .stat-item {
+                padding: 20px 10px;
+                min-width: 0;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .stat-label {
+                font-size: 0.95rem;
+            }
+            
+            .causes-grid,
+            .programs-grid,
+            .news-grid,
+            .fb-posts-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+                padding: 0;
+            }
+            
+            .cause-card,
+            .program-card,
+            .news-card,
+            .fb-post-card {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+            }
+            
             .why-us-container { grid-template-columns: 1fr; }
             .why-us-content h2 { text-align: center; }
             .experience-badge { left: 50%; transform: translateX(-50%); }
@@ -421,19 +992,104 @@
             .newsletter-image img { max-width: 180px; }
             
             .main-footer { padding-top: 70px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
-            .footer-brand { grid-column: 1 / -1; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .footer-brand { text-align: center; }
             .social-icons { justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
 
-            .carousel-btn { top: 250px; width: 40px; height: 40px; font-size: 1.2rem; }
-            .prev-btn { left: 10px; }
-            .next-btn { right: 10px; }
+            /* Mobile: arrows flank the dots, WhatsApp in the bottom-right corner */
+            .carousel-btn { bottom: 26px; width: 40px; height: 40px; font-size: 1.1rem; }
+            .prev-btn { left: calc(50% - 106px); }
+            .next-btn { left: calc(50% + 66px); }
 
-            /* UPDATED: Adjusted mobile positioning to avoid overlap with smaller carousel buttons */
-            .scroll-top-btn { bottom: 20px; right: 80px; width: 45px; height: 45px; }
-            .whatsapp-float { bottom: 75px; right: 80px; width: 50px; height: 50px; }
-            .whatsapp-float svg { width: 26px; height: 26px; }
+            .scroll-top-btn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+            .whatsapp-float { 
+                bottom: 75px; 
+                right: 21px; 
+                width: 42px; 
+                height: 42px; 
+            }
+            .whatsapp-float svg { width: 24px; height: 24px; }
+
+            .testimonial-content { padding: 25px 20px; }
+            .testimonial-image img { width: 90px; height: 90px; }
+            
+            .fb-post-image { height: 200px; }
+            .fb-action-btn span { display: none; }
+            .fb-action-btn { padding: 8px 12px; }
+            
+            .causes-section,
+            .programs-section,
+            .news-section,
+            .fb-live-section,
+            .why-us-section,
+            .testimonials-section,
+            .faq-section,
+            .cta-section {
+                padding: 60px 15px;
+            }
+        }
+        
+        /* EXTRA SMALL SCREENS */
+        @media (max-width: 380px) {
+            .hero { padding: 100px 10px 140px; min-height: 760px; }
+            .prev-btn { left: calc(50% - 100px); }
+            .next-btn { left: calc(50% + 60px); }
+            .hero h1 { 
+                font-size: 1.7rem; 
+                min-height: 3rem;
+            }
+            .hero p { 
+                font-size: 0.95rem; 
+                min-height: 2.5rem;
+            }
+            .hero-content {
+                min-height: 180px;
+            }
+            .cause-content, .program-content { padding: 20px; }
+            .progress-labels { flex-direction: column; gap: 4px; }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .stat-item {
+                padding: 15px 10px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* =========================================
+           19. EQUAL CARD SIZE: SUPPORT OUR CAUSES = OUR PROGRAMS
+           ========================================= */
+        /* Same grid width as Our Programs (removes the extra container padding) */
+        .causes-section .container { max-width: 1100px; padding: 0; }
+
+        /* Same corner radius, border and minimum height on both card types */
+        .cause-card,
+        .program-card {
+            border-radius: 15px;
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            min-height: 560px;
+        }
+        .cause-content,
+        .program-content { flex: 1; display: flex; flex-direction: column; }
+        .cause-btn { margin-top: auto; }
+        .program-link { margin-top: auto; align-self: flex-start; }
+
+        @media (max-width: 768px) {
+            .cause-card,
+            .program-card { min-height: 0; }
         }
     </style>
 </head>
@@ -463,19 +1119,19 @@
     <!-- HERO SECTION WITH CAROUSEL -->
     <section class="hero">
         <div class="carousel-container">
-            <div class="carousel-slide active" style="background-image: url('assets/project-djf-images/image14.jpeg');">
+            <div class="carousel-slide-bg active" style="background-image: url('assets/project-djf-images/image14.jpeg');">
                 <div class="carousel-protect-overlay"></div>
             </div>
-            <div class="carousel-slide" style="background-image: url('assets/project-djf-images/image22.jpeg');">
+            <div class="carousel-slide-bg" style="background-image: url('assets/project-djf-images/image22.jpeg');">
                 <div class="carousel-protect-overlay"></div>
             </div>
-            <div class="carousel-slide" style="background-image: url('assets/project-djf-images/image12.jpeg');">
+            <div class="carousel-slide-bg" style="background-image: url('assets/project-djf-images/image12.jpeg');">
                 <div class="carousel-protect-overlay"></div>
             </div>
-            <div class="carousel-slide" style="background-image: url('assets/project-djf-images/image20.jpeg');">
+            <div class="carousel-slide-bg" style="background-image: url('assets/project-djf-images/image20.jpeg');">
                 <div class="carousel-protect-overlay"></div>
             </div>
-            <div class="carousel-slide" style="background-image: url('assets/project-djf-images/image17.jpeg');">
+            <div class="carousel-slide-bg" style="background-image: url('assets/project-djf-images/image17.jpeg');">
                 <div class="carousel-protect-overlay"></div>
             </div>
         </div>
@@ -501,19 +1157,20 @@
             <button class="dot" data-index="3" aria-label="Slide 4"></button>
             <button class="dot" data-index="4" aria-label="Slide 5"></button>
         </div>
-    </section>
+
+</section>
 
     <!-- IMPACT STATISTICS SECTION -->
     <section class="impact-stats">
         <div class="stats-container">
-            <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Children Supported</span></div>
+            <div class="stat-item"><span class="stat-number">5,000+</span><span class="stat-label">Children Supported</span></div>
             <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Healthcare Workers Trained</span></div>
-            <div class="stat-item"><span class="stat-number">20+</span><span class="stat-label">Communities Reached</span></div>
+            <div class="stat-item"><span class="stat-number">25+</span><span class="stat-label">Communities Reached</span></div>
             <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Dedication to Change</span></div>
         </div>
     </section>
 
-    <!-- SUPPORT OUR CAUSES SECTION -->
+    <!-- SUPPORT OUR CAUSES SECTION (6 CARDS) -->
     <section class="causes-section">
         <div class="container">
             <div class="section-header">
@@ -532,7 +1189,7 @@
                         <div class="progress-container">
                             <div class="progress-labels">
                                 <span>Raised: Le 12,450</span>
-                                <span>Goal: Le 25,000</span>
+                                <span>Goal: Le 120,000</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 50%;"></div>
@@ -544,7 +1201,7 @@
 
                 <!-- Cause 2 -->
                 <div class="cause-card">
-                    <div class="cause-image" style="background-image: url('assets/project-djf-images/image32.jpeg');">
+                    <div class="cause-image" style="background-image: url('assets/project-djf-images/image41.jpeg');">
                         <span class="cause-badge">Ongoing</span>
                     </div>
                     <div class="cause-content">
@@ -553,7 +1210,7 @@
                         <div class="progress-container">
                             <div class="progress-labels">
                                 <span>Raised: Le 8,200</span>
-                                <span>Goal: Le 15,000</span>
+                                <span>Goal: Le 50,000</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 55%;"></div>
@@ -574,10 +1231,73 @@
                         <div class="progress-container">
                             <div class="progress-labels">
                                 <span>Raised: Le 5,600</span>
-                                <span>Goal: Le 20,000</span>
+                                <span>Goal: Le 200,000</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 28%;"></div>
+                            </div>
+                        </div>
+                        <a href="donate.html#donate-frequency" class="btn btn-primary cause-btn">Donate to this Cause</a>
+                    </div>
+                </div>
+
+                <!-- Cause 4 -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('assets/project-djf-images/image39.jpeg');">
+                        <span class="cause-badge">Critical</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Clean Water Initiative</h3>
+                        <p>Provide access to safe, clean drinking water by building wells and water purification systems in rural communities.</p>
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Raised: Le 15,800</span>
+                                <span>Goal: Le 80,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <a href="donate.html#donate-frequency" class="btn btn-primary cause-btn">Donate to this Cause</a>
+                    </div>
+                </div>
+
+                <!-- Cause 5 -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('assets/project-djf-images/image37.jpeg');">
+                        <span class="cause-badge">Ongoing</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Nutrition & Food Security</h3>
+                        <p>Combat childhood malnutrition by providing daily meals, nutritional supplements, and family food support programs.</p>
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Raised: Le 9,400</span>
+                                <span>Goal: Le 60,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%;"></div>
+                            </div>
+                        </div>
+                        <a href="donate.html#donate-frequency" class="btn btn-primary cause-btn">Donate to this Cause</a>
+                    </div>
+                </div>
+
+                <!-- Cause 6 -->
+                <div class="cause-card">
+                    <div class="cause-image" style="background-image: url('assets/project-djf-images/image12.jpeg');">
+                        <span class="cause-badge">Urgent</span>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Emergency Relief Fund</h3>
+                        <p>Provide immediate assistance to families affected by natural disasters, health crises, and unexpected emergencies.</p>
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Raised: Le 22,100</span>
+                                <span>Goal: Le 150,000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 35%;"></div>
                             </div>
                         </div>
                         <a href="donate.html#donate-frequency" class="btn btn-primary cause-btn">Donate to this Cause</a>
@@ -587,7 +1307,7 @@
         </div>
     </section>
 
-    <!-- PROGRAMS PREVIEW SECTION -->
+    <!-- PROGRAMS PREVIEW SECTION (6 CARDS) -->
     <section class="programs-section">
         <div class="section-header">
             <h2>Our Programs</h2>
@@ -595,7 +1315,7 @@
         </div>
         <div class="programs-grid">
             <div class="program-card">
-                <div class="program-image" style="background-image: url('assets/project-djf-images/image19.jpeg');"></div>
+                <div class="program-image" style="background-image: url('assets/project-djf-images/image40.jpeg');"></div>
                 <div class="program-content">
                     <h3>Healthcare Access</h3>
                     <p>Providing direct pediatric medical intervention and training frontline healthcare workers to save young lives.</p>
@@ -603,7 +1323,7 @@
                 </div>
             </div>
             <div class="program-card">
-                <div class="program-image" style="background-image: url('assets/project-djf-images/image37.jpeg');"></div>
+                <div class="program-image" style="background-image: url('assets/project-djf-images/image32.jpeg');"></div>
                 <div class="program-content">
                     <h3>Education Support</h3>
                     <p>Ensuring every child has access to quality education and the resources they need to learn and thrive.</p>
@@ -611,10 +1331,40 @@
                 </div>
             </div>
             <div class="program-card">
-                <div class="program-image" style="background-image: url('assets/project-djf-images/image33.jpeg');"></div>
+                <div class="program-image" style="background-image: url('assets/project-djf-images/image43.jpeg');"></div>
                 <div class="program-content">
                     <h3>Community Engagement</h3>
                     <p>Working directly with families and communities to create sustainable, long-term positive change.</p>
+                    <a href="#" class="program-link">Learn More →</a>
+                </div>
+            </div>
+
+            <!-- Program 4 -->
+            <div class="program-card">
+                <div class="program-image" style="background-image: url('assets/project-djf-images/image44.jpeg');"></div>
+                <div class="program-content">
+                    <h3>Mentorship Program</h3>
+                    <p>Pairing vulnerable youth with trained mentors who provide guidance, emotional support, and career development.</p>
+                    <a href="#" class="program-link">Learn More →</a>
+                </div>
+            </div>
+
+            <!-- Program 5 -->
+            <div class="program-card">
+                <div class="program-image" style="background-image: url('assets/project-djf-images/image20.jpeg');"></div>
+                <div class="program-content">
+                    <h3>Nutrition & Wellness</h3>
+                    <p>Delivering balanced meals and nutrition education to fight childhood malnutrition and promote healthy growth.</p>
+                    <a href="#" class="program-link">Learn More →</a>
+                </div>
+            </div>
+
+            <!-- Program 6 -->
+            <div class="program-card">
+                <div class="program-image" style="background-image: url('assets/project-djf-images/image42.jpeg');"></div>
+                <div class="program-content">
+                    <h3>Youth Empowerment</h3>
+                    <p>Equipping young people with vocational skills, leadership training, and entrepreneurship opportunities.</p>
                     <a href="#" class="program-link">Learn More →</a>
                 </div>
             </div>
@@ -675,24 +1425,231 @@
         </div>
     </section>
 
+    <!-- FACEBOOK LIVE POSTS SECTION -->
+    <section class="fb-live-section">
+        <div class="fb-section-header">
+            <h2>📺 Facebook Live & Updates</h2>
+            <p>Stay connected with our community! Watch our latest live streams, announcements, and behind-the-scenes moments from the field.</p>
+        </div>
+        
+        <div class="fb-posts-grid">
+            <!-- Facebook Post 1 - LIVE -->
+            <div class="fb-post-card">
+                <div class="fb-post-header">
+                    <div class="fb-avatar">DJF</div>
+                    <div class="fb-user-info">
+                        <div class="fb-user-name">
+                            Destiny John Foundation
+                            <span class="fb-verified">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </span>
+                        </div>
+                        <div class="fb-timestamp">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            2 hours ago · 🌍 Public
+                        </div>
+                    </div>
+                    <div class="fb-live-badge">
+                        <span class="fb-live-dot"></span>
+                        LIVE
+                    </div>
+                </div>
+                <div class="fb-post-content">
+                    <div class="fb-post-text">
+                        🔴 <strong>LIVE NOW:</strong> Join us as we visit the pediatric ward in Freetown to deliver medical supplies and meet the incredible children whose lives you've helped transform! <a href="#">#DestinyJohnFoundation</a> <a href="#">#HealthcareHeroes</a>
+                    </div>
+                    <div class="fb-post-image" style="background-image: url('assets/project-djf-images/image19.jpeg');">
+                        <div class="fb-post-image-overlay">
+                            <div class="fb-play-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fb-post-stats">
+                    <div class="fb-reactions">
+                        <div class="fb-reaction-icons">
+                            <span class="fb-reaction-icon fb-reaction-like">👍</span>
+                            <span class="fb-reaction-icon fb-reaction-love">❤️</span>
+                            <span class="fb-reaction-icon fb-reaction-care">🤗</span>
+                        </div>
+                        <span>2.4K</span>
+                    </div>
+                    <span>347 Comments · 89 Shares</span>
+                </div>
+                <div class="fb-post-actions">
+                    <button class="fb-action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+                        <span>Like</span>
+                    </button>
+                    <button class="fb-action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
+                        <span>Comment</span>
+                    </button>
+                    <button class="fb-action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                        <span>Share</span>
+                    </button>
+                </div>
+                <button class="fb-follow-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 16H6v-.99c0-2 4-3.08 6-3.08s6 1.08 6 3.08V20zm2-9h-4V4h4v7z"/></svg>
+                    Follow Page
+                </button>
+            </div>
+
+            <!-- Facebook Post 2 - Video -->
+            <div class="fb-post-card">
+                <div class="fb-post-header">
+                    <div class="fb-avatar">DJF</div>
+                    <div class="fb-user-info">
+                        <div class="fb-user-name">
+                            Destiny John Foundation
+                            <span class="fb-verified">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </span>
+                        </div>
+                        <div class="fb-timestamp">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            Yesterday at 3:00 PM · 🌍 Public
+                        </div>
+                    </div>
+                </div>
+                <div class="fb-post-content">
+                    <div class="fb-post-text">
+                        🎉 <strong>INCREDIBLE MILESTONE!</strong> Today we celebrated the graduation of 25 new community health workers who are now ready to serve rural villages across Sierra Leone. Your support made this possible! 🙏
+                    </div>
+                    <div class="fb-post-image" style="background-image: url('assets/project-djf-images/image33.jpeg');">
+                        <div class="fb-post-image-overlay">
+                            <div class="fb-play-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fb-post-stats">
+                    <div class="fb-reactions">
+                        <div class="fb-reaction-icons">
+                            <span class="fb-reaction-icon fb-reaction-like">👍</span>
+                            <span class="fb-reaction-icon fb-reaction-love">❤️</span>
+                            <span class="fb-reaction-icon fb-reaction-care">🤗</span>
+                        </div>
+                        <span>1.8K</span>
+                    </div>
+                    <span>212 Comments · 156 Shares</span>
+                </div>
+                <div class="fb-post-actions">
+                    <button class="fb-action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+                        <span>Like</span>
+                    </button>
+                    <button class="fb-action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
+                        <span>Comment</span>
+                    </button>
+                    <button class="fb-action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                        <span>Share</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Facebook Post 3 - Announcement -->
+            <div class="fb-post-card">
+                <div class="fb-post-header">
+                    <div class="fb-avatar">DJF</div>
+                    <div class="fb-user-info">
+                        <div class="fb-user-name">
+                            Destiny John Foundation
+                            <span class="fb-verified">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </span>
+                        </div>
+                        <div class="fb-timestamp">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            October 12 at 10:00 AM · 🌍 Public
+                        </div>
+                    </div>
+                </div>
+                <div class="fb-post-content">
+                    <div class="fb-post-text">
+                        📚 <strong>BACK TO SCHOOL UPDATE:</strong> We've just completed distributing 1,200 school kits to children in 8 different districts! Thank you to every donor who made this possible. Every child deserves a chance to learn! ✏️📖
+                    </div>
+                    <div class="fb-post-image" style="background-image: url('assets/project-djf-images/image41.jpeg');">
+                    </div>
+                </div>
+                <div class="fb-post-stats">
+                    <div class="fb-reactions">
+                        <div class="fb-reaction-icons">
+                            <span class="fb-reaction-icon fb-reaction-like">👍</span>
+                            <span class="fb-reaction-icon fb-reaction-love">❤️</span>
+                            <span class="fb-reaction-icon fb-reaction-care">🤗</span>
+                        </div>
+                        <span>3.1K</span>
+                    </div>
+                    <span>489 Comments · 234 Shares</span>
+                </div>
+                <div class="fb-post-actions">
+                    <button class="fb-action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+                        <span>Like</span>
+                    </button>
+                    <button class="fb-action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
+                        <span>Comment</span>
+                    </button>
+                    <button class="fb-action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                        <span>Share</span>
+                    </button>
+                </div>
+                <button class="fb-follow-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 16H6v-.99c0-2 4-3.08 6-3.08s6 1.08 6 3.08V20zm2-9h-4V4h4v7z"/></svg>
+                    Follow Page
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- TESTIMONIALS SECTION -->
     <section class="testimonials-section">
-        <h2>Stories of Hope & Impact</h2>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p class="testimonial-text">"Thanks to the Destiny John Foundation, my child received the medical care that saved their life. We are forever grateful."</p>
-                <div class="testimonial-author">Fatima K.</div>
-                <div class="testimonial-role">Mother from Freetown</div>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"The training provided by the foundation has transformed how I care for my young patients. I now have the skills to make a real difference."</p>
-                <div class="testimonial-author">Dr. Ibrahim S.</div>
-                <div class="testimonial-role">Pediatric Nurse</div>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"This foundation doesn't just provide aid; they empower entire communities. Their holistic approach to child welfare is truly remarkable."</p>
-                <div class="testimonial-author">Sarah M.</div>
-                <div class="testimonial-role">Community Leader</div>
+        <div class="container">
+            <h2>Stories of Hope & Impact</h2>
+            
+            <div class="testimonial-slider-container">
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <div class="testimonial-slide active">
+                        <div class="testimonial-image">
+                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80" alt="Fatima K.">
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"Thanks to the Destiny John Foundation, my child received the medical care that saved their life. We are forever grateful."</p>
+                            <div class="testimonial-author">Fatima K.</div>
+                            <div class="testimonial-role">Mother from Freetown</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-image">
+                            <img src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=200&q=80" alt="Dr. Ibrahim S.">
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"The training provided by the foundation has transformed how I care for my young patients. I now have the skills to make a real difference."</p>
+                            <div class="testimonial-author">Dr. Ibrahim S.</div>
+                            <div class="testimonial-role">Pediatric Nurse</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-image">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Sarah M.">
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"This foundation doesn't just provide aid; they empower entire communities. Their holistic approach to child welfare is truly remarkable."</p>
+                            <div class="testimonial-author">Sarah M.</div>
+                            <div class="testimonial-role">Community Leader</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -732,7 +1689,7 @@
         </div>
     </section>
 
-    <!-- FLOATING NEWSLETTER SECTION (COMPACT) -->
+    <!-- FLOATING NEWSLETTER SECTION -->
     <div class="newsletter-wrapper">
         <div class="newsletter-card">
             <div class="newsletter-image">
@@ -745,7 +1702,6 @@
                     <input type="email" placeholder="Enter your email address" required>
                     <button type="submit">Subscribe</button>
                 </form>
-                
             </div>
         </div>
     </div>
@@ -832,10 +1788,10 @@
         </div>
     </footer>
 
-    <!-- FLOATING WHATSAPP BUTTON -->
+    <!-- FLOATING WHATSAPP BUTTON (fixed: follows the user while scrolling) -->
     <a href="https://wa.me/+23278383134" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    </a>
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </a>
 
     <!-- SCROLL TO TOP BUTTON -->
     <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
@@ -853,7 +1809,7 @@
         document.querySelectorAll('#nav-list a').forEach(link => { link.addEventListener('click', () => { navList.classList.remove('active'); }); });
 
         // Hero Carousel Logic
-        const slides = document.querySelectorAll('.carousel-slide');
+        const slides = document.querySelectorAll('.carousel-slide-bg');
         const dots = document.querySelectorAll('.dot');
         const heroTitle = document.getElementById('hero-title');
         const heroDesc = document.getElementById('hero-desc');
@@ -963,9 +1919,7 @@
             });
         });
 
-        // ==========================================
         // CREATIVE & PROTECTED LIGHTBOX LOGIC
-        // ==========================================
         const lightbox = document.createElement('div');
         lightbox.id = 'lightbox';
         lightbox.className = 'lightbox-modal';
@@ -982,41 +1936,37 @@
         const lightboxClose = lightbox.querySelector('.lightbox-close');
         const lightboxOverlay = lightbox.querySelector('.lightbox-protect-overlay');
 
-        // Add click event to cause and program images
-        document.querySelectorAll('.cause-image, .program-image').forEach(div => {
+        document.querySelectorAll('.cause-image, .program-image, .fb-post-image').forEach(div => {
             div.addEventListener('click', () => {
                 const bgImage = div.style.backgroundImage;
-                const imageUrl = bgImage.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
-                lightboxImg.src = imageUrl;
-                lightbox.classList.add('active');
+                if (bgImage) {
+                    const imageUrl = bgImage.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
+                    lightboxImg.src = imageUrl;
+                    lightbox.classList.add('active');
+                }
             });
         });
 
-        // Close on X button click
         lightboxClose.addEventListener('click', (e) => {
             e.stopPropagation();
             lightbox.classList.remove('active');
         });
 
-        // Close on background click
         lightbox.addEventListener('click', () => {
             lightbox.classList.remove('active');
         });
 
-        // Close on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                 lightbox.classList.remove('active');
             }
         });
 
-        // PREVENT DOWNLOADING (Right-click and Drag) on lightbox
         lightboxImg.addEventListener('contextmenu', (e) => e.preventDefault());
         lightboxImg.addEventListener('dragstart', (e) => e.preventDefault());
         lightboxOverlay.addEventListener('contextmenu', (e) => e.preventDefault());
         lightboxOverlay.addEventListener('dragstart', (e) => e.preventDefault());
 
-        // PREVENT SCREENSHOTS (Print Screen Key Detection) for lightbox
         document.addEventListener('keyup', (e) => {
             if (e.key === 'PrintScreen') {
                 lightboxImg.style.filter = 'blur(30px) brightness(0.2)';
@@ -1030,25 +1980,19 @@
             }
         });
 
-        // ==========================================
         // BANNER CAROUSEL PROTECTION
-        // ==========================================
-        
-        // Disable right-click on carousel slides
-        document.querySelectorAll('.carousel-slide').forEach(slide => {
+        document.querySelectorAll('.carousel-slide-bg').forEach(slide => {
             slide.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
                 return false;
             });
             
-            // Disable dragging
             slide.addEventListener('dragstart', (e) => {
                 e.preventDefault();
                 return false;
             });
         });
 
-        // Disable right-click on carousel protect overlays
         document.querySelectorAll('.carousel-protect-overlay').forEach(overlay => {
             overlay.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
@@ -1061,7 +2005,6 @@
             });
         });
 
-        // Disable right-click on entire hero section (optional, but good for safety)
         const heroSection = document.querySelector('.hero');
         heroSection.addEventListener('contextmenu', (e) => {
             if (e.target.closest('.carousel-container')) {
@@ -1070,10 +2013,8 @@
             }
         });
 
-        // Blur carousel slides on Print Screen
         document.addEventListener('keyup', (e) => {
             if (e.key === 'PrintScreen') {
-                // Blur all carousel slides
                 slides.forEach(slide => {
                     slide.style.filter = 'blur(30px) brightness(0.2)';
                 });
@@ -1090,9 +2031,55 @@
             }
         });
 
-        // Prevent image dragging on carousel
-        document.querySelectorAll('.carousel-slide').forEach(slide => {
+        document.querySelectorAll('.carousel-slide-bg').forEach(slide => {
             slide.setAttribute('draggable', 'false');
+        });
+
+        // TESTIMONIAL SLIDER LOGIC
+        const testiSlides = document.querySelectorAll('.testimonial-slide');
+        let currentTesti = 0;
+        let testiInterval;
+
+        function showTestimonial(index) {
+            testiSlides.forEach(slide => slide.classList.remove('active'));
+            testiSlides[index].classList.add('active');
+            currentTesti = index;
+        }
+
+        function nextTestimonial() {
+            let next = (currentTesti + 1) % testiSlides.length;
+            showTestimonial(next);
+        }
+
+        function startTestiCarousel() {
+            testiInterval = setInterval(nextTestimonial, 6000);
+        }
+
+        const testiContainer = document.querySelector('.testimonial-slider-container');
+        testiContainer.addEventListener('mouseenter', () => clearInterval(testiInterval));
+        testiContainer.addEventListener('mouseleave', startTestiCarousel);
+
+        startTestiCarousel();
+        
+        // FACEBOOK POST INTERACTIONS
+        document.querySelectorAll('.fb-action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.querySelector('span')?.textContent || 'Action';
+                alert(`Thank you for your interest! In a live implementation, this would ${action.toLowerCase()} the post on Facebook.`);
+            });
+        });
+        
+        document.querySelectorAll('.fb-follow-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                window.open('https://facebook.com', '_blank');
+            });
+        });
+        
+        document.querySelectorAll('.fb-play-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                alert('🎥 Video player would open here. Connect your Facebook Live stream or uploaded video URL to enable playback.');
+            });
         });
     </script>
 
